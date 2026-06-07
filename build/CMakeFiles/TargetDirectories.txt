@@ -1,3 +1,0 @@
-E:/Coding/Projects/chillichez-Spicy-Engine/build/CMakeFiles/spicy-engine.dir
-E:/Coding/Projects/chillichez-Spicy-Engine/build/CMakeFiles/edit_cache.dir
-E:/Coding/Projects/chillichez-Spicy-Engine/build/CMakeFiles/rebuild_cache.dir
