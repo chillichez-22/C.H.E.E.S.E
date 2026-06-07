@@ -1,0 +1,56 @@
+[
+{
+  "directory": "E:/Coding/Projects/chillichez-Spicy-Engine/build",
+  "command": "E:\\Coding\\MinGw\\ucrt64\\bin\\g++.exe -IE:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/header -IE:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/header/maths -IE:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/header/shapes -g -o CMakeFiles\\spicy-engine.dir\\spicy-engine\\source\\main.cpp.obj -c E:\\Coding\\Projects\\chillichez-Spicy-Engine\\spicy-engine\\source\\main.cpp",
+  "file": "E:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/source/main.cpp",
+  "output": "E:/Coding/Projects/chillichez-Spicy-Engine/build/CMakeFiles/spicy-engine.dir/spicy-engine/source/main.cpp.obj"
+},
+{
+  "directory": "E:/Coding/Projects/chillichez-Spicy-Engine/build",
+  "command": "E:\\Coding\\MinGw\\ucrt64\\bin\\g++.exe -IE:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/header -IE:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/header/maths -IE:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/header/shapes -g -o CMakeFiles\\spicy-engine.dir\\spicy-engine\\source\\maths\\math.cpp.obj -c E:\\Coding\\Projects\\chillichez-Spicy-Engine\\spicy-engine\\source\\maths\\math.cpp",
+  "file": "E:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/source/maths/math.cpp",
+  "output": "E:/Coding/Projects/chillichez-Spicy-Engine/build/CMakeFiles/spicy-engine.dir/spicy-engine/source/maths/math.cpp.obj"
+},
+{
+  "directory": "E:/Coding/Projects/chillichez-Spicy-Engine/build",
+  "command": "E:\\Coding\\MinGw\\ucrt64\\bin\\g++.exe -IE:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/header -IE:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/header/maths -IE:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/header/shapes -g -o CMakeFiles\\spicy-engine.dir\\spicy-engine\\source\\maths\\vector.cpp.obj -c E:\\Coding\\Projects\\chillichez-Spicy-Engine\\spicy-engine\\source\\maths\\vector.cpp",
+  "file": "E:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/source/maths/vector.cpp",
+  "output": "E:/Coding/Projects/chillichez-Spicy-Engine/build/CMakeFiles/spicy-engine.dir/spicy-engine/source/maths/vector.cpp.obj"
+},
+{
+  "directory": "E:/Coding/Projects/chillichez-Spicy-Engine/build",
+  "command": "E:\\Coding\\MinGw\\ucrt64\\bin\\g++.exe -IE:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/header -IE:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/header/maths -IE:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/header/shapes -g -o CMakeFiles\\spicy-engine.dir\\spicy-engine\\source\\maths\\matrix.cpp.obj -c E:\\Coding\\Projects\\chillichez-Spicy-Engine\\spicy-engine\\source\\maths\\matrix.cpp",
+  "file": "E:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/source/maths/matrix.cpp",
+  "output": "E:/Coding/Projects/chillichez-Spicy-Engine/build/CMakeFiles/spicy-engine.dir/spicy-engine/source/maths/matrix.cpp.obj"
+},
+{
+  "directory": "E:/Coding/Projects/chillichez-Spicy-Engine/build",
+  "command": "E:\\Coding\\MinGw\\ucrt64\\bin\\g++.exe -IE:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/header -IE:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/header/maths -IE:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/header/shapes -g -o CMakeFiles\\spicy-engine.dir\\spicy-engine\\source\\shapes\\shape.cpp.obj -c E:\\Coding\\Projects\\chillichez-Spicy-Engine\\spicy-engine\\source\\shapes\\shape.cpp",
+  "file": "E:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/source/shapes/shape.cpp",
+  "output": "E:/Coding/Projects/chillichez-Spicy-Engine/build/CMakeFiles/spicy-engine.dir/spicy-engine/source/shapes/shape.cpp.obj"
+},
+{
+  "directory": "E:/Coding/Projects/chillichez-Spicy-Engine/build",
+  "command": "E:\\Coding\\MinGw\\ucrt64\\bin\\g++.exe -IE:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/header -IE:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/header/maths -IE:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/header/shapes -g -o CMakeFiles\\spicy-engine.dir\\spicy-engine\\source\\shapes\\circle.cpp.obj -c E:\\Coding\\Projects\\chillichez-Spicy-Engine\\spicy-engine\\source\\shapes\\circle.cpp",
+  "file": "E:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/source/shapes/circle.cpp",
+  "output": "E:/Coding/Projects/chillichez-Spicy-Engine/build/CMakeFiles/spicy-engine.dir/spicy-engine/source/shapes/circle.cpp.obj"
+},
+{
+  "directory": "E:/Coding/Projects/chillichez-Spicy-Engine/build",
+  "command": "E:\\Coding\\MinGw\\ucrt64\\bin\\g++.exe -IE:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/header -IE:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/header/maths -IE:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/header/shapes -g -o CMakeFiles\\spicy-engine.dir\\spicy-engine\\source\\shapes\\line.cpp.obj -c E:\\Coding\\Projects\\chillichez-Spicy-Engine\\spicy-engine\\source\\shapes\\line.cpp",
+  "file": "E:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/source/shapes/line.cpp",
+  "output": "E:/Coding/Projects/chillichez-Spicy-Engine/build/CMakeFiles/spicy-engine.dir/spicy-engine/source/shapes/line.cpp.obj"
+},
+{
+  "directory": "E:/Coding/Projects/chillichez-Spicy-Engine/build",
+  "command": "E:\\Coding\\MinGw\\ucrt64\\bin\\g++.exe -IE:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/header -IE:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/header/maths -IE:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/header/shapes -g -o CMakeFiles\\spicy-engine.dir\\spicy-engine\\source\\shapes\\rect.cpp.obj -c E:\\Coding\\Projects\\chillichez-Spicy-Engine\\spicy-engine\\source\\shapes\\rect.cpp",
+  "file": "E:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/source/shapes/rect.cpp",
+  "output": "E:/Coding/Projects/chillichez-Spicy-Engine/build/CMakeFiles/spicy-engine.dir/spicy-engine/source/shapes/rect.cpp.obj"
+},
+{
+  "directory": "E:/Coding/Projects/chillichez-Spicy-Engine/build",
+  "command": "E:\\Coding\\MinGw\\ucrt64\\bin\\g++.exe -IE:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/header -IE:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/header/maths -IE:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/header/shapes -g -o CMakeFiles\\spicy-engine.dir\\spicy-engine\\source\\shapes\\tri.cpp.obj -c E:\\Coding\\Projects\\chillichez-Spicy-Engine\\spicy-engine\\source\\shapes\\tri.cpp",
+  "file": "E:/Coding/Projects/chillichez-Spicy-Engine/spicy-engine/source/shapes/tri.cpp",
+  "output": "E:/Coding/Projects/chillichez-Spicy-Engine/build/CMakeFiles/spicy-engine.dir/spicy-engine/source/shapes/tri.cpp.obj"
+}
+]

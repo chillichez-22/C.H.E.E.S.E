@@ -1,0 +1,11 @@
+# ninja log v7
+27	276	8025710749173866	CMakeFiles/spicy-engine.dir/spicy-engine/source/shapes/line.cpp.obj	fc21de8db9d412c1
+11	359	8025710749003863	CMakeFiles/spicy-engine.dir/spicy-engine/source/maths/vector.cpp.obj	5022770921a9eb09
+19	396	8025710749083860	CMakeFiles/spicy-engine.dir/spicy-engine/source/shapes/shape.cpp.obj	a2dbbd536847910
+15	411	8025710749043862	CMakeFiles/spicy-engine.dir/spicy-engine/source/maths/matrix.cpp.obj	90fd68d4bdd78bf9
+23	413	8025710749123869	CMakeFiles/spicy-engine.dir/spicy-engine/source/shapes/circle.cpp.obj	79d01884717354da
+32	414	8025710749213869	CMakeFiles/spicy-engine.dir/spicy-engine/source/shapes/rect.cpp.obj	77b3cf29e8355064
+6	424	8025710748963845	CMakeFiles/spicy-engine.dir/spicy-engine/source/maths/math.cpp.obj	68176a6e03e17326
+277	485	8025710751672949	CMakeFiles/spicy-engine.dir/spicy-engine/source/shapes/tri.cpp.obj	ef98b5078c88cb01
+2	676	8025710748913858	CMakeFiles/spicy-engine.dir/spicy-engine/source/main.cpp.obj	5d716632a3b15d0b
+677	922	8025710755662937	spicy-engine.exe	ba3dc7e6acef0082
