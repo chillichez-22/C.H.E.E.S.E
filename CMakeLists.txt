@@ -2,9 +2,11 @@ cmake_minimum_required( VERSION 3.20 )
 
 project( spicy-engine )
 
-add_executable( spicy-engine spicy-engine/source/main.cpp )
+find_package( SDL3 REQUIRED )
 
-target_sources( spicy-engine
+add_executable( ${PROJECT_NAME} spicy-engine/source/main.cpp )
+
+target_sources( ${PROJECT_NAME}
     PRIVATE 
 
         # Header files
@@ -43,11 +45,16 @@ target_sources( spicy-engine
 
 )
 
-target_include_directories( spicy-engine
+target_include_directories( ${PROJECT_NAME}
 
     PRIVATE
 
         ${CMAKE_CURRENT_SOURCE_DIR}/spicy-engine/header
         ${CMAKE_CURRENT_SOURCE_DIR}/spicy-engine/header/maths
         ${CMAKE_CURRENT_SOURCE_DIR}/spicy-engine/header/shapes
+)
+
+target_link_libraries( ${PROJECT_NAME} 
+    PRIVATE
+    SDL3::SDL3
 )
