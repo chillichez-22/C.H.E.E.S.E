@@ -62,9 +62,16 @@ This is not an exhaustive list only a breif outline of a higher up veiw of what 
 
 I feel its hard knowing where to start, but I will use mutiple resources and content to help me along the way.
 
-Rescources used so far:
+Rescources used so far
+
+##### Learning Materials
 
 - Real-Time Rendering 4 (EBook)
+
+##### Technologies
+
+- Mingw-w64
+- GCC compiler
 - SFML3
 
 
