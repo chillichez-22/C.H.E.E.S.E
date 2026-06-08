@@ -7,7 +7,7 @@ Spicy-Engine is a custom 2D and 3D renderer that I will build over the course of
 
 # Why did you decide to build it ?
 
-I have always wanted to build another large project on my own, to test myself, ever since my first project my "A-Level NEA (Non Examined Assesment)", basically uk college ( 16yo - 18yo ) coursework. I really enjoyed it and found that I like learning deeply about how things work and why are built that way. For example "Masks" in pygame ( a 2D bitmask ) are just a 2d map of booleans since thats the most efficent way of holding a large amount of data; 
+I have always wanted to build another large project on my own, to test myself, ever since my first project my "A-Level NEA (Non Examined Assessment)", basically uk college ( 16yo - 18yo ) coursework. I really enjoyed it and found that I like learning deeply about how things work and why are built that way. For example "Masks" in pygame ( a 2D bitmask ) are just a 2d map of booleans since thats the most efficient way of holding a large amount of data; 
 
 I wanted to build it to push myself and to learn more about: 
 
@@ -20,12 +20,12 @@ I wanted to build it to push myself and to learn more about:
 - Industry-Used Graphical Techniques
 - Advanced & Semi-Accurate Physics Simulations of Real World Objects
 
-- Renderering Pipelines
-- CPU Based Graphical Renderering
+- Rendering Pipelines
+- CPU Based Graphical Rendering
 
-- GPU Based Graphical Renderering
+- GPU Based Graphical Rendering
 - OpenGL and GLSL
-- Shaders ( and more renderering pipelines )
+- Shaders ( and more rendering pipelines )
 - Advanced C++ Coding
 
 - Managing Large Projects
@@ -40,8 +40,8 @@ And I feel that *doing* something is the hands-down the best way to learn; and n
 Right now its still early on but I have a checklist of what I want to do below. A rough outline that I hope to have is:
 
 Part One
-- [ ] - 2D Shape Renderering
-- [ ] - 3D Shape Renderering
+- [ ] - 2D Shape Rendering
+- [ ] - 3D Shape Rendering
 
 Part Two
 - [ ] - 2D Shape Collisions
@@ -52,26 +52,28 @@ Part Three
 - [ ] - Advanced 3D Shape Physics
 
 Part Four 
-- [ ] - GPU Based Renderering of 2D Shapes
-- [ ] - GPU Based Renderering of 3D Shapes as primitives
+- [ ] - GPU Based Rendering of 2D Shapes
+- [ ] - GPU Based Rendering of 3D Shapes as primitives
 
-This is not an exhaustive list only a breif outline of a higher up veiw of what i hope to achieve; some things may be added or removed.
+This is not an exhaustive list only a brief outline of a higher up view of what i hope to achieve; some things may be added or removed.
 
 
 # How do intend to learn ?
 
-I feel its hard knowing where to start, but I will use mutiple resources and content to help me along the way.
+I feel its hard knowing where to start, but I will use multiple resources and content to help me along the way.
 
-Rescources used so far
+Resources used so far:
 
 ##### Learning Materials
 
 - Real-Time Rendering 4 (EBook)
+- [Divio's Grand Unified Theory of Documentation](https://docs.divio.com/documentation-system/) 
+- [Doxygen Commenting](https://www.doxygen.nl/manual/docblocks.html)
 
 ##### Technologies
 
 - Mingw-w64
-- GCC compiler
-- SFML3
-
-
+- GCC compiler for C++ ( 15.2.0 ) 
+- CMake / Make
+- C++ 201703 ( C++ 17.03 )
+- SDL3 (3.4.10)
