@@ -4,57 +4,59 @@ project( spicy-engine )
 
 find_package( SDL3 REQUIRED )
 
-add_executable( ${PROJECT_NAME} spicy-engine/source/main.cpp )
 
-target_sources( ${PROJECT_NAME}
-    PRIVATE 
+# Creates engine library
+add_library( engine
 
-        # Header files
+    # Source files ( Headers aren't necessary )
 
-            # Maths 
-            spicy-engine/header/maths/math.hpp
+    # Maths
+    spicy-engine/source/maths/math.cpp
 
-            spicy-engine/header/maths/vector.hpp
-            spicy-engine/header/maths/matrix.hpp
+    spicy-engine/source/maths/vector.cpp
+    spicy-engine/source/maths/matrix.cpp
 
-            # Shapes
-            spicy-engine/header/shapes/shape.hpp
+    # Shapes
+    spicy-engine/source/shapes/shape.cpp
 
-            spicy-engine/header/shapes/circle.hpp
-            spicy-engine/header/shapes/line.hpp
-            spicy-engine/header/shapes/rect.hpp
-            spicy-engine/header/shapes/tri.hpp
-
-
-        # Source files
-        spicy-engine/source/main.cpp
-
-            # Maths
-            spicy-engine/source/maths/math.cpp
-
-            spicy-engine/source/maths/vector.cpp
-            spicy-engine/source/maths/matrix.cpp
-
-            # Shapes
-            spicy-engine/source/shapes/shape.cpp
-
-            spicy-engine/source/shapes/circle.cpp
-            spicy-engine/source/shapes/line.cpp
-            spicy-engine/source/shapes/rect.cpp
-            spicy-engine/source/shapes/tri.cpp
+    spicy-engine/source/shapes/circle.cpp
+    spicy-engine/source/shapes/line.cpp
+    spicy-engine/source/shapes/rect.cpp
+    spicy-engine/source/shapes/tri.cpp
 
 )
 
-target_include_directories( ${PROJECT_NAME}
+target_include_directories( engine
 
-    PRIVATE
+    PUBLIC
 
         ${CMAKE_CURRENT_SOURCE_DIR}/spicy-engine/header
         ${CMAKE_CURRENT_SOURCE_DIR}/spicy-engine/header/maths
         ${CMAKE_CURRENT_SOURCE_DIR}/spicy-engine/header/shapes
 )
 
-target_link_libraries( ${PROJECT_NAME} 
+# Links SDL3 to the engine library
+target_link_libraries( engine
+
+    PUBLIC
+        SDL3::SDL3
+)
+
+
+# Creates main build
+add_executable( spicy-engine-main spicy-engine/source/main.cpp )
+
+target_link_libraries( spicy-engine-main
+
     PRIVATE
-    SDL3::SDL3
+        engine
+)
+
+# Creates testing build
+add_executable( spicy-engine-testing spicy-engine/source/testing.cpp )
+
+target_link_libraries( spicy-engine-testing
+
+    PRIVATE
+        engine
 )

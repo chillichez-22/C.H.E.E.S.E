@@ -1,12 +1,12 @@
-Checklist to give an overview on the current taks.
+Checklist to give an overview on the current tasks.
 
 # Checklist
 
 #### Maths
 - [ ] - Vectors
 - [ ] - Vector Maths & Vector Arithmetic
-- [ ] - Trigonomentry 
-- [ ] - Matricies
+- [ ] - Trigonometry 
+- [ ] - Matrices
 - [ ] - Vector & Matrix Maths togethor
 - [ ] - Clear Documentation Covering This Section
 
@@ -19,51 +19,51 @@ Checklist to give an overview on the current taks.
 - [ ] - Clear Documentation Covering This Section
 
 #### 2D Wireframe
-- [ ] - Point Renderering
-- [ ] - Line Renderering ( Non Anti-Aliased )
-- [ ] - Tri Renderering
-- [ ] - Rect/Quad Renderering
-- [ ] - Polygonal Renderering
-- [ ] - Circle Renderering
+- [ ] - Point Rendering
+- [ ] - Line Rendering ( Non Anti-Aliased )
+- [ ] - Tri Rendering
+- [ ] - Rect/Quad Rendering
+- [ ] - Polygonal Rendering
+- [ ] - Circle Rendering
 - [ ] - Clear Documentation Covering This Section
 
 #### Maths - 3D
-- [ ] - World and Clip Space Diffrentiation
-- [ ] - Projection Matricies
+- [ ] - World and Clip Space Differentiation
+- [ ] - Projection Matrices
 - [ ] - Frustum Basics ( Close and Far Planes )
 - [ ] - Clear Documentation Covering This Section
 
-#### 3D Wireframes
-- [ ] - Point Renderering
-- [ ] - Line Renderering ( Non Anti-Aliased )
-- [ ] - Tri Renderering
-- [ ] - Quad Renderering
-- [ ] - Polygonal Renderering 
-- [ ] - Sphere/Ball Renderering 
+#### 3D Wireframe
+- [ ] - Point Rendering
+- [ ] - Line Rendering ( Non Anti-Aliased )
+- [ ] - Tri Rendering
+- [ ] - Quad Rendering
+- [ ] - Polygonal Rendering 
+- [ ] - Sphere/Ball Rendering 
 - [ ] - Clear Documentation Covering This Section
 
 #### Maths - Rotations
 - [ ] - 2D Point Rotation
 - [ ] - 2D Shape Rotation
-- [ ] - 4D Matricies
+- [ ] - 4D Matrices
 - [ ] - 3D Point Rotation
 - [ ] - 3D Shape Rotation
 - [ ] - Clear Documentation Covering This Section
 
-#### 2D Shape Renderering
-- [ ] - Anti-Aliased Line Renderering
+#### 2D Shape Rendering
+- [ ] - Anti-Aliased Line Rendering
 - [ ] - CPU Rasterisation of Tri
 - [ ] - CPU Rasterisation of Rects/Quads
 - [ ] - CPU Rasterisation of Polygons
 - [ ] - Clear Documentation Covering This Section
 
-#### Maths - Renderering
+#### Maths - Rendering
 - [ ] - 2D Interpolation
 - [ ] - 3D Interpolation
 - [ ] - 3D Vector Maths ( 3D Normals )
 - [ ] - Clear Documentation Covering This Section
 
-#### 3D Shape Renderering
+#### 3D Shape Rendering
 - [ ] - CPU Rasterisation using Tris
 - [ ] - CPU Rasterisation using Rects/Quads
 - [ ] - CPU Rasterisation using Polygons
@@ -75,11 +75,11 @@ Checklist to give an overview on the current taks.
 
 #### Maths - Applied Physics & Mechanics
 - [ ] - Basic Calculus 
-- [ ] - Diffrentiation
+- [ ] - Differentiation
 - [ ] - Integration
 - [ ] - Forces & Energies
 - [ ] - Momentum & Conservation of energies
-- [ ] - SUVAT ( Non air resisitance mechanics )
+- [ ] - SUVAT ( Non air resistance mechanics )
 - [ ] - Moments & Impulses
 - [ ] - Clear Documentation Covering This Section
 
@@ -88,11 +88,11 @@ Checklist to give an overview on the current taks.
 - [ ] - Different Types of Lines on a Graph
 - [ ] - Rearranging Line Equations
 - [ ] - Equation of a Circle
-- [ ] - Modifying Curves Using Thier Equations
+- [ ] - Modifying Curves Using There Equations
 - [ ] - Clear Documentation Covering This Section
 
 #### Physics - Collisions
-- [ ] - SAT ( Seperating axis theorem )
+- [ ] - SAT ( Separating axis theorem )
 - [ ] - GJK
 - [ ] - EPA
 
@@ -128,7 +128,7 @@ Checklist to give an overview on the current taks.
 - [ ] - 2D Rect Collisions
 - [ ] - 2D Tri Collisions 
 
-    ##### Polgons 
+    ##### Polygons 
 - [ ] - 2D Point and Polygon Collisions
 - [ ] - 2D Line and Polygon Collisions
 - [ ] - 2D Polygons Collisions
@@ -139,7 +139,7 @@ Checklist to give an overview on the current taks.
 - [ ] - 2D Circle and Rect Collisions
 - [ ] - 2D Rect and Tri Collisions
 - [ ] - 2D Rect and Polygon Collisions
-- [ ] - 2D Tri and Polgon Collisions
+- [ ] - 2D Tri and Polygon Collisions
 
 - [ ] - Clear Documentation Covering This Section
 
