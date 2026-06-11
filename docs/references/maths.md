@@ -3,43 +3,51 @@ Maths Reference Page
 # Maths
 
 
-#### [ Matrix ]( ../explanations/maths.md#matrix )
+## [ Matrix ]( ../explanations/maths.md#matrix )
 
-##### [ class Matrix ]( ../explanations/maths.md#class-matrix )
+### Variables
+- [ identity4x4 ]()
+- [ projectionMatrix ]()
 
+### [ class Matrix ]( ../explanations/maths.md#class-matrix )
+
+#### Constructor
 - [ Matrix() ]()
 
-- [ identity() ]()
+#### Members
+- [ matrix ]()
+- [ rows ]()
+- [ columns ]()
 
+#### Methods
 - [ add() ]()
 - [ sub() ]()
 - [ multiplication() ]()
+- [ identity() ]()
+- [ fill() ]()
 
 
-### [ Vectors ]( ../explanations/maths.md#vectors )
+## [ struct Vector2 ]( ../explanations/maths.md#vector2 )
 
-#### [ Vector2 ]( ../explanations/maths.md#vector2 )
-
-- [ struct Vector2 ]()
-
+### Functions
 - [ add() ]()
 - [ sub() ]()
 - [ multiply() ]()
 - [ divide() ]()
 
-#### [ Vector3 ]( ../explanations/maths.md#vector3 )
 
-- [ struct Vector3 ]()
+## [ struct Vector3 ]( ../explanations/maths.md#vector3 )
 
+### Functions
 - [ add() ]()
 - [ sub() ]()
 - [ multiply() ]()
 - [ divide() ]()
 
-#### [ Vector4 ]( ../explanations/maths.md#vector4 )
 
-- [ struct Vector4 ]()
+## [ struct Vector4 ]( ../explanations/maths.md#vector4 )
 
+### Functions
 - [ add() ]()
 - [ sub() ]()
 - [ multiply() ]()

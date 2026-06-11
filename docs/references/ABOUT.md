@@ -30,58 +30,51 @@ It should give examples of how to use the code.
 
 ### Writing
 
-References should be broken into sections using the headers file.
-Each new folder in the headers folder gets its own markdown script.
+References should be broken into sections using categories ( Maths, Shapes, Collisions ).
+Each new overarching category get there own markdown script.
 
-The name of this folder is the " # " header level 1.
-More subfolders use the " ## " header level 2.
+The name of the overall category is the " # " header level 1.
+Each concept has its own " ## " header level 2.
+Then in a higher level than the previous goes the: variables, functions, methods, constructors, structs, classes.
 
-From here group similar concepts using " ### " header level 3 ( or omit this level if not needed ).
-Each file in the respective folder gets its own " #### " heading level 4.
+Default order: Variables, Functions, Classes / Structs.
+Class's order: Constructor, Members (Variables), Methods.
 
-Each struct, public variable & function gets is put in a list using " - " markdown notation for a list, following the order of structs, variables, functions. Only the function name is provided, not the parameters or the return type. Struct should include its type "struct" before its name.
-
-Classes using one header level higher than the current header level. ( Typically " ##### " header level 5)
-Classes should include its type "class" before its name.
-Class's variables are put in new lists, with the private going first, followed by protected variables, then public variables.
-Class's methods are also put in a new lists with private going first followed by protected, then public. 
-Class's constructors should go before every methods and variable, to make it easy to find
+If a file contains only one class or struct, have the class / struct be the " ## " header level 2. Otherwise use a " ### " header level 3 for the class / struct, and use the " ## " header level 2 as the general concept. [See matrix for an example]
 
 Example ( not reflective of current api ):
 
 ````
-# Maths  <- Folder
+# Maths  <- Category
 
+## struct Vector2  <- Struct ( Only this type is in the file )
 
-### Vectors   <- Grouping
-
-#### Vector2  <- File name
-
-- struct Vector2  <- Struct
-
-- add()  <- Functions
+### Functions
+- add()  
 - sub()
 
-#### Vector3 
+## struct Vector3
 
-- struct Vector3
-
+### Functions
 - divide()
 - multiply()
 
+## Matrix  <- General Idea
 
-#### Matrix  <- File name
-
-- projectionMatrix  <- Variables
+### Variables      <- Public variables
+- projectionMatrix  
 - identity4x4 
 
-##### class Matrix  <- Class name
+### class Matrix   <- Class ( Not only this type is in the file )
 
-- Matrix()  <- Constructor
+#### Constructors
+- Matrix()  
 
-- identity  <- Variables
+#### Variables
+- identity  
 
-- add()     <- Methods
+#### Methods
+- add()     
 - multiply()
 
 ````

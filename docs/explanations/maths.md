@@ -3,48 +3,52 @@ Maths Explanation Page
 # Maths
 
 
-#### Matrix
+## Matrix
+
+### Variables
+- identity4x4
+- projectionMatrix
+
+### class Matrix
+
+#### Constructor
+- Matrix()
+
+#### Members
+- matrix
+- rows
+- columns
+
+#### Methods
+- add()
+- sub()
+- multiplication()
+- identity()
+- fill()
 
 
-##### class Matrix
+## struct Vector2
 
-###### Matrix Matrix( int, int )
-
-###### Matrix identity( Matrix )
-
-###### Matrix add( Matrix, Matrix )
-###### Matrix sub( Matrix, Matrix )
-###### Matrix multiplication( Matrix, Matrix )
+### Functions
+- add()
+- sub()
+- multiply()
+- divide()
 
 
-### Vectors
+## struct Vector3
+
+### Functions
+- add()
+- sub()
+- multiply()
+- divide()
 
 
-#### Vector2
+## struct Vector4
 
-##### struct Vector2
-
-##### Vector2 add()
-##### Vector2 sub()
-##### Vector2 multiply()
-##### Vector2 divide()
-
-
-#### Vector3
-
-##### struct Vector3
-
-##### Vector3 add()
-##### Vector3 sub()
-##### Vector3 multiply()
-##### Vector3 divide()
-
-
-#### Vector4
-
-##### struct Vector4
-
-##### Vector4 add()
-##### Vector4 sub()
-##### Vector4 multiply()
-##### Vector4 divide()
+### Functions
+- add()
+- sub()
+- multiply()
+- divide()
