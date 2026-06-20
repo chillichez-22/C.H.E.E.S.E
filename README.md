@@ -34,23 +34,19 @@ I wanted to build it to push myself and to learn more about:
 - CMake
 - GCC ( and the compiler pipeline )
 - SDL3 ( Simple Direct Layer 3 )
-
-
+ 
 - Advanced Maths & Physics Concepts
 - Industry-Used Graphical Techniques
 - Advanced & Semi-Accurate Physics Simulations of Real World Objects
-
-
+ 
 - Rendering Pipelines
 - CPU Based Graphical Rendering
-
-
+ 
 - GPU Based Graphical Rendering
 - OpenGL and GLSL
 - Shaders ( and more rendering pipelines )
 - Advanced C++ Coding
-
-
+ 
 - Managing Large Projects
 - Documentation Writing and Styling
 - Good Coding Structure & Principles
