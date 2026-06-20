@@ -2,9 +2,7 @@
 #include "shape.hpp"
 
 // Tests
-#include "vector_2_test.hpp"
-#include "vector_3_test.hpp"
-#include "vector_4_test.hpp"
+#include "vector_test.hpp"
 
 // External
 #include <iostream>
@@ -28,21 +26,17 @@ int HandleTest( bool testCase ){
 
 int TestVector2(){
 
-	bool testAdd = testVector2Adding();
 	std::cout << "test Vector2 Adding ";
-	HandleTest( testAdd );
+	HandleTest( testVector2Adding() );
 
-	bool testSub = testVector2Subbing();
 	std::cout << "test Vector2 Subbing ";
-	HandleTest( testSub );
+	HandleTest( testVector2Subbing() );
 
-	bool testMult = testVector2Multiplying();
 	std::cout << "test Vector2 Multiplying ";
-	HandleTest( testMult );
+	HandleTest( testVector2Multiplying() );
 
-	bool testDiv = testVector2Dividing();
 	std::cout << "test Vector2 Division ";
-	HandleTest( testDiv );
+	HandleTest( testVector2Dividing() );
 
 	return 0;
 }

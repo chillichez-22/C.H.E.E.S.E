@@ -1,13 +1,26 @@
-Spicy-Engine by Chillichez
+C.H.E.E.S.E by Chillichez
 
-# What is Spicy-Engine ?
+# What is C.H.E.E.S.E ?
 
-Spicy-Engine is a custom 2D and 3D renderer that I will build over the course of 2 or more years to experiment and push myself to build a large-scale project in c++.
+Cheese is a custom 2D and 3D engine and renderer that I will build over the course of 2 or more years to experiment and push myself to build a large-scale project in c++.
+
+
+# Why call it C.H.E.E.S.E ?
+
+It stands for "Chilli's Heuristical Enhanced Environment Simulation Engine".
+
+My online nametag is "Chilli-Cheese" often shortened to "chillichez", and most people call me "Chilli" so I took the latter part of that name "Cheese" and gave it to the engine. 
+
+The first part comes from my online name of "Chilli".
+The second part "Heuristical" comes from the term heuristic ( meaning a good enough approximation ), as I hope the engine to one day be a heursitcal simulation of some of the real world. 
+The middle section "Enhanced" meaning to create complex scenes to render and apply realistic physics to.
+The latter part "Environment Simulation" as I hope for it to be a realistic simulation of a real-world environment.  
+With the last part "Engine" describing what it is, an engine of simulations.
 
 
 # Why did you decide to build it ?
 
-I have always wanted to build another large project on my own, to test myself, ever since my first project my "A-Level NEA (Non Examined Assessment)", basically uk college ( 16yo - 18yo ) coursework. I really enjoyed it and found that I like learning deeply about how things work and why are built that way. For example "Masks" in pygame ( a 2D bitmask ) are just a 2d map of booleans since thats the most efficient way of holding a large amount of data; 
+I have always wanted to build another large project on my own, to test myself, ever since my first project my "A-Level NEA (Non Examined Assessment)", basically uk college ( 16yo - 18yo ) coursework. I really enjoyed it and found that I like learning deeply about how things work and why are built that way. For example "Masks" in pygame ( a 2D bitmask ) are just a 1 dimensional array of booleans since that's the most efficient way of holding a large amount of data. 
 
 I wanted to build it to push myself and to learn more about: 
 
@@ -55,7 +68,7 @@ Part Four
 - [ ] - GPU Based Rendering of 2D Shapes
 - [ ] - GPU Based Rendering of 3D Shapes as primitives
 
-This is not an exhaustive list only a brief outline of a higher up view of what i hope to achieve; some things may be added or removed.
+This is not an exhaustive list only a brief outline of a higher up view of what I hope to achieve; some things may be added or removed.
 
 
 # How do intend to learn ?
