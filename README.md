@@ -30,23 +30,28 @@ I really enjoyed it and found that I like learning deeply about how things work 
 
 I wanted to build it to push myself and to learn more about: 
 
+##### Technologies
 - Github
 - CMake
 - GCC ( and the compiler pipeline )
 - SDL3 ( Simple Direct Layer 3 )
-- 
+
+##### Physics & Maths
 - Advanced Maths & Physics Concepts
 - Industry-Used Graphical Techniques
 - Advanced & Semi-Accurate Physics Simulations of Real World Objects
-- 
+
+##### Rendering
 - Rendering Pipelines
 - CPU Based Graphical Rendering
-- 
+
+##### GPU & Shading
 - GPU Based Graphical Rendering
 - OpenGL and GLSL
 - Shaders ( and more rendering pipelines )
 - Advanced C++ Coding
-- 
+
+##### Principles
 - Managing Large Projects
 - Documentation Writing and Styling
 - Good Coding Structure & Principles
