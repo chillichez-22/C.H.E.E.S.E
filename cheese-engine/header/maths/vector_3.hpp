@@ -17,7 +17,6 @@ struct Vector3{
 
 // Vector Basic
 
-
 /**
  * @brief Returns the addition of vectorOne + vectorTwo.
  * 
@@ -61,7 +60,6 @@ Vector3 divide( Vector3& vectorOne, Vector3& vectorTwo );
 
 // Vector math
 
-
 /**
  * @brief Returns the magnitude of the inputted Vector3s.
  * 
@@ -70,6 +68,55 @@ Vector3 divide( Vector3& vectorOne, Vector3& vectorTwo );
  * @return Float of the magnitude of the Vector3s.
  */
 float magnitude( Vector3& vector );
+
+/**
+ * @brief Returns the inputted Vector3 scaled by the inputted factor.
+ * 
+ * @attention This does NOT scale the vector TO the inputted factor, it simply
+ *            multiplies the vector BY the scale. scaleTo( ) scales the vector to 
+ *            the inputted factor.
+ * 
+ * @param vector Vector to be scaled.
+ * @param factor Factor to scale the Vector3.
+ * 
+ * @return Vector3 of the vector scaled.
+ */
+Vector3 scale( Vector3& vector, float factor );
+
+/**
+ * @brief Returns the inputted Vector3 scaled to the inputted factor.
+ * 
+ * @attention This scale the vector TO the inputted factor. 
+ *            scale( ) scales the vector by the inputted factor.
+ * 
+ * @param vector Vector to be scaled.
+ * @param factor Length to set the Vector3's magnitude.
+ * 
+ * @return Vector3 of the vector scaled to the factor.
+ */
+Vector3 scaleTo( Vector3& vector, float factor );
+
+/**
+ * @brief Returns the unit vector of the inputted Vector3.
+ * 
+ * @param vector Vector to calculate the unit vector.
+ * 
+ * @return Vector3 for the unit vector.
+ */
+Vector3 unit( Vector3& vector );
+
+/**
+ * @brief Returns the dot product of the inputted Vector3s.
+ * 
+ * @param vectorOne First vector.
+ * @param vectorTwo Second vector.
+ * 
+ * @return Float of the dot product of the Vector3s.
+ */
+float dot( Vector3& vectorOne, Vector3& vectorTwo );
+
+
+// Vector Rotations
 
 /**
  * @brief Returns the 3 inner angles of the inputted Vector3 in degrees.
@@ -92,52 +139,3 @@ Vector3 angleDegrees( Vector3& vector );
  * @return Vector3 representing the Vector3's 3 inner angles in radians.
  */
 Vector3 angleRadians( Vector3& vector );
-
-
-/**
- * @brief Returns the inputted Vector3 scaled by the inputted factor.
- * 
- * @attention This does NOT scale the vector TO the inputted factor, it simply
- *            multiplies the vector BY the scale. scaleTo( ) scales the vector to 
- *            the inputted factor.
- * 
- * @param vector Vector to be scaled.
- * @param factor Factor to scale the Vector3.
- * 
- * @return Vector3 of the vector scaled.
- */
-Vector3 scale( Vector3& vector, float factor );
-
-/**
- * @brief Returns the inputted Vector3 scaled to the inputted factor.
- * 
- * @attention This scale the vector TO the inputted factor.
- *            scale( ) scales the vector by the inputted factor.
- * 
- * @param vector Vector to be scaled.
- * @param factor Length to set the Vector3's magnitude.
- * 
- * @return Vector3 of the vector scaled to the factor.
- */
-Vector3 scaleTo( Vector3& vector, float factor );
-
-/**
- * @brief Returns the unit vector of the inputted Vector3.
- * 
- * @param vector Vector to calculate the unit vector.
- * 
- * @return Vector3 for the unit vector.
- */
-Vector3 unit( Vector3& vector );
-
-
-/**
- * @brief Returns the dot product of the inputted Vector3s.
- * 
- * @param vectorOne First vector.
- * @param vectorTwo Second vector.
- * 
- * @return Float of the dot product of the Vector3s.
- */
-float dot( Vector3& vectorOne, Vector3& vectorTwo );
-

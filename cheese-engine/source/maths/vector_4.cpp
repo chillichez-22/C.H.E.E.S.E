@@ -63,6 +63,39 @@ float magnitude( Vector4& vector ){
                 );
 }
 
+Vector4 scale( Vector4& vector, float factor ){
+
+    Vector4 newVector = {
+
+                            vector.x * factor,
+                            vector.y * factor,
+                            vector.z * factor,
+                            vector.w * factor
+                        };
+
+    return newVector;
+}
+
+Vector4 scaleTo( Vector4& vector, float factor ){
+
+    Vector4 unitVector = unit( vector );
+
+    return scale( unitVector, factor );
+}
+
+Vector4 unit( Vector4& vector ){
+
+    Vector4 newVector = {
+
+                            vector.x / magnitude( vector ),
+                            vector.y / magnitude( vector ),
+                            vector.z / magnitude( vector ),
+                            vector.w / magnitude( vector )
+                        };
+    
+    return newVector;
+}
+
 float dot( Vector4& vectorOne, Vector4& vectorTwo ){
 
     return ( 
@@ -73,3 +106,5 @@ float dot( Vector4& vectorOne, Vector4& vectorTwo ){
             );
 }
 
+
+// Vector Rotations

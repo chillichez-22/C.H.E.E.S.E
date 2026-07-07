@@ -58,31 +58,6 @@ float magnitude( Vector3& vector ){
                 );
 }
 
-Vector3 angleDegrees( Vector3& vector ){
-
-    Vector3 radians = angleRadians( vector );
-    return scale( radians, (180 / M_PI) );
-
-}
-
-Vector3 angleRadians( Vector3& vector ){
-
-    float vectorMagnitude = magnitude( vector );
-
-    float alpha = acosf( vector.x / vectorMagnitude );
-    float beta = acosf( vector.y / vectorMagnitude );
-    float gamma = acosf( vector.z / vectorMagnitude );
-
-    Vector3 angleVector = {
-                            alpha,
-                            beta,
-                            gamma
-                        };
-
-    return angleVector;
-}
-
-
 Vector3 scale( Vector3& vector, float factor ){
 
     Vector3 newVector = {
@@ -114,7 +89,6 @@ Vector3 unit( Vector3& vector ){
     return newVector;
 }
 
-
 float dot( Vector3& vectorOne, Vector3& vectorTwo ){
     
     return ( 
@@ -122,5 +96,32 @@ float dot( Vector3& vectorOne, Vector3& vectorTwo ){
                 vectorOne.y * vectorTwo.y +
                 vectorOne.z * vectorTwo.z
             );
+}
+
+
+// Vector Rotations
+
+Vector3 angleDegrees( Vector3& vector ){
+
+    Vector3 radians = angleRadians( vector );
+    return scale( radians, (180 / M_PI) );
+
+}
+
+Vector3 angleRadians( Vector3& vector ){
+
+    float vectorMagnitude = magnitude( vector );
+
+    float alpha = acosf( vector.x / vectorMagnitude );
+    float beta = acosf( vector.y / vectorMagnitude );
+    float gamma = acosf( vector.z / vectorMagnitude );
+
+    Vector3 angleVector = {
+                            alpha,
+                            beta,
+                            gamma
+                        };
+
+    return angleVector;
 }
 

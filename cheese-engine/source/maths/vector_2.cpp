@@ -53,6 +53,46 @@ float magnitude( Vector2& vector ){
                 );
 }
 
+Vector2 scale( Vector2& vector, float factor ){
+
+    Vector2 newVector = {
+
+                            vector.x * factor,
+                            vector.y * factor
+                        };
+
+    return newVector;
+}
+
+Vector2 scaleTo( Vector2& vector, float factor ){
+
+    Vector2 unitVector = unit( vector );
+
+    return scale( unitVector, factor );
+}
+
+Vector2 unit( Vector2& vector ){
+
+    Vector2 newVector = {
+
+                            vector.x / magnitude( vector ),
+                            vector.y / magnitude( vector )
+                        };
+    
+    return newVector;
+}
+
+float dot( Vector2& vectorOne, Vector2& vectorTwo ){
+
+    return ( 
+                vectorOne.x * vectorTwo.x +
+                vectorOne.y * vectorTwo.y
+            );
+}
+
+
+// Vector Rotations
+
 float angleDegrees( Vector2& vector ){
 
     // cmath uses radians natively
@@ -63,13 +103,3 @@ float angleRadians( Vector2& vector ){
 
     return atan2f( vector.y, vector.x );
 }
-
-
-float dot( Vector2& vectorOne, Vector2& vectorTwo ){
-
-    return ( 
-                vectorOne.x * vectorTwo.x +
-                vectorOne.y * vectorTwo.y
-            );
-}
-

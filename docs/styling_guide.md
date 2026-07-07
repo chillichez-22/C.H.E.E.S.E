@@ -1,26 +1,18 @@
-Technical Design Document.
+Styling Guide.
 
-# Main Page
-
-## About
-
-This is the technical design document for the project where the code will be documented, and why it was written the way it was.
-I well detail clearly: how the code function, why the code has been written this way, when the code should be used, and how the code is used.
-
-# Syling Guide
-
-## Writing Code
-
-### Naming Conventions
+## Naming Conventions
 
 #### Files
 
 All files will be lowercase with _ to separate new words.
+Absolutely no spaces are to be used in naming of any file.
 
 main.cpp
 new_file.hpp
 text_for_something.txt
 new_file_2.md
+
+Excluding files needed for the documentation: EDD ( Engine Design Document ), TDD(s) ( Technical Design Document(s) ), generated doxygen api. And other files that must have specific names, such as: "CMakeList.txt", "README.md", "LICENSE.txt".
 
 #### Classes & Structs
 
@@ -45,9 +37,8 @@ Vector2 screenSpaceCoord;
 
 ## Writing Documentation
 
-Doxygen will be used primarily for code ==documentation== of function, classes with "/\*\*" ending with "*/" and variables with "/**<"  "*/">.
+Doxygen will be used primarily for code ==documentation== of function, classes with "/\*\*" ending with "*/" and variables with "/**<"  "*/>".
 Code ==comments== will use default c++ comments structure.
-
 
 ### Code comments
 ```
@@ -58,6 +49,13 @@ Code ==comments== will use default c++ comments structure.
 // for longer description
 
 ```
+
+Comments should not be written on every line of code. 
+
+Comments explaining *what* is done should *preferably* not be written on any selection statement or loop ( if, case, while, do.... ). 
+If this is the case then code structure would need to change to make it more obvious, as to, what is happening. 
+
+Code should not be intentionally vague, or devoid of comments, but should be read first and explain itself within its own structure. Only afterwards comments are to be added, where clarity is *lacking*.
 
 ### Code Documentation
 ```
@@ -74,7 +72,7 @@ Code ==comments== will use default c++ comments structure.
 * 
 * @returns To describe the return case ( not needed if void )
 * 
-* @examples To give multi-Line code snippets giving brief examples of
+* @examples To give multi-line code snippets giving brief examples of
 * how to use the code including parameters and returns
 */ 
 

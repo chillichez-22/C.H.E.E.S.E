@@ -9,7 +9,7 @@ Cheese is a custom 2D and 3D engine and renderer that I will build over the cour
 
 It stands for "Chilli's Heuristical Enhanced Environment Simulation Engine".
 
-My online nametag is "Chilli-Cheese" often shortened to "chillichez", and most people call me "Chilli" so I took the latter part of that name "Cheese" and gave it to the engine. 
+My online name-tag is "Chilli-Cheese" often shortened to "chillichez", and most people call me "Chilli" so I took the latter part of that name "Cheese" and gave it to the engine. 
 
 The first part comes from my online name of "Chilli".
 
@@ -29,12 +29,6 @@ I have always wanted to build another large project on my own, to test myself, e
 I really enjoyed it and found that I like learning deeply about how things work and why are built that way. For example "Masks" in pygame ( a 2D bitmask ) are just a 1 dimensional array of booleans since that's the most efficient way of holding a large amount of data. 
 
 I wanted to build it to push myself and to learn more about: 
-
-##### Technologies
-- Github
-- CMake
-- GCC ( and the compiler pipeline )
-- SDL3 ( Simple Direct Layer 3 )
 
 ##### Physics & Maths
 - Advanced Maths & Physics Concepts
@@ -93,11 +87,16 @@ Resources used so far:
 - Real-Time Rendering 4 (EBook)
 - [Divio's Grand Unified Theory of Documentation](https://docs.divio.com/documentation-system/) 
 - [Doxygen Commenting](https://www.doxygen.nl/manual/docblocks.html)
+- [Markdown Syntax](https://www.markdownguide.org)
+- [Markdown Tables](https://www.tablesgenerator.com/markdown_tables)
 
 ##### Technologies
 
 - Mingw-w64
-- GCC compiler for C++ ( 15.2.0 ) 
+- GCC compiler for C++ ( GGC 15.2.0 ) 
 - CMake / Make
 - C++ 201703 ( C++ 17.03 )
 - SDL3 (3.4.10)
+
+- Git & GitHub
+- VSCode Community

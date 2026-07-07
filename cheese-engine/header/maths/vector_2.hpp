@@ -16,7 +16,6 @@ struct Vector2{
 
 // Vector Basic
 
-
 /**
  * @brief Returns the addition of vectorOne + vectorTwo.
  * 
@@ -60,7 +59,6 @@ Vector2 divide( Vector2& vectorOne, Vector2& vectorTwo );
 
 // Vector Maths
 
-
 /**
  * @brief Returns the magnitude of the inputted Vector2s.
  * 
@@ -69,6 +67,55 @@ Vector2 divide( Vector2& vectorOne, Vector2& vectorTwo );
  * @return Float of the magnitude of the Vector2s.
  */
 float magnitude( Vector2& vector );
+
+/**
+ * @brief Returns the inputted Vector2 scaled by the inputted factor.
+ * 
+ * @attention This does NOT scale the vector TO the inputted factor, it simply
+ *            multiplies the vector BY the scale. scaleTo( ) scales the vector to 
+ *            the inputted factor.
+ * 
+ * @param vector Vector to be scaled.
+ * @param factor Factor to scale the Vector2.
+ * 
+ * @return Vector2 of the vector scaled.
+ */
+Vector2 scale( Vector2& vector, float factor );
+
+/**
+ * @brief Returns the inputted Vector3 scaled to the inputted factor.
+ * 
+ * @attention This scale the vector TO the inputted factor.
+ *            scale( ) scales the vector by the inputted factor.
+ * 
+ * @param vector Vector to be scaled.
+ * @param factor Length to set the Vector2's magnitude.
+ * 
+ * @return Vector2 of the vector scaled to the factor.
+ */
+Vector2 scaleTo( Vector2& vector, float factor );
+
+/**
+ * @brief Returns the unit vector of the inputted Vector3.
+ * 
+ * @param vector Vector to calculate the unit vector.
+ * 
+ * @return Vector2 for the unit vector.
+ */
+Vector2 unit( Vector2& vector );
+
+/**
+ * @brief Returns the dot product of the inputted Vector2s.
+ * 
+ * @param vectorOne First vector.
+ * @param vectorTwo Second vector.
+ * 
+ * @return Float of the dot product of the Vector2s.
+ */
+float dot( Vector2& vectorOne, Vector2& vectorTwo );
+
+
+// Vector Rotations
 
 /**
  * @brief Returns the angle of the inputted Vector2 in degrees.
@@ -91,15 +138,4 @@ float angleDegrees( Vector2& vector );
  * @return Float of the Vector2's inner angle in radians.
  */
 float angleRadians( Vector2& vector );
-
-
-/**
- * @brief Returns the dot product of the inputted Vector2s.
- * 
- * @param vectorOne First vector.
- * @param vectorTwo Second vector.
- * 
- * @return Float of the dot product of the Vector2s.
- */
-float dot( Vector2& vectorOne, Vector2& vectorTwo );
 
