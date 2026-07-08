@@ -1,9 +1,12 @@
-cmake_minimum_required( VERSION 3.20 )
+cmake_minimum_required( VERSION 4.3.3 )
 
-project( cheese-engine )
+project( cheese-engine LANGUAGES CXX )
+
+set( CMAKE_CXX_STANDARD 26 )
+set( CMAKE_CXX_STANDARD_REQUIRED ON )
+set( CMAKE_CXX_EXTENSIONS ON )
 
 find_package( SDL3 REQUIRED )
-
 
 # Creates engine library
 add_library( engine
