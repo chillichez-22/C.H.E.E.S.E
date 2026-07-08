@@ -121,7 +121,7 @@ float dot( Vector3& vectorOne, Vector3& vectorTwo );
 /**
  * @brief Returns the 3 inner angles of the inputted Vector3 in degrees.
  * 
- * @attention The "cmath" library uses radians natively for all angles and
+ * @attention The `cmath` library uses radians natively for all angles and
  *            functions; are you sure your using the correct method ? 
  *            angleRadians( ) returns the radian angle.
  * 

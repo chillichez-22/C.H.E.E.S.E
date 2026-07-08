@@ -120,7 +120,7 @@ float dot( Vector2& vectorOne, Vector2& vectorTwo );
 /**
  * @brief Returns the angle of the inputted Vector2 in degrees.
  * 
- * @attention The "cmath" library uses radians natively for all angles and
+ * @attention The `cmath` library uses radians natively for all angles and
  *            functions; are you sure your using the correct method ? 
  *            angleRadians( ) returns the radian angle.
  * 
