@@ -1,5 +1,54 @@
 #include "vector_2.hpp"
 
+
+Vector2::Vector2( float x, float y ){
+    x = x;
+    y = y;
+};
+
+// Vector overloading
+
+Vector2 Vector2::operator+( Vector2& vector ){
+
+    return Vector2(
+        x + vector.x,
+        y + vector.y
+    );
+};
+
+Vector2 Vector2::operator-( Vector2& vector ){
+
+    return Vector2(
+        x - vector.x,
+        y - vector.y
+    );
+};
+
+Vector2 Vector2::operator*( Vector2& vector ){
+
+    return Vector2(
+        x * vector.x,
+        y * vector.y
+    );
+};
+
+Vector2 Vector2::operator/( Vector2& vector ){
+
+    return Vector2(
+        x / vector.x,
+        y / vector.y
+    );
+};
+
+Vector2 Vector2::operator^( float& scale ){
+
+    return Vector2(
+        powf(x, scale),
+        powf(y, scale)
+    );
+};
+
+
 // Vector Basic
 
 Vector2 add( Vector2& vectorOne, Vector2& vectorTwo ){

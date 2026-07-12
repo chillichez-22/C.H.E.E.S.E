@@ -11,50 +11,99 @@ struct Vector2{
 
     float x;
     float y;
+
+    Vector2( float x, float y );
+
+    // Basic Operator Overloading
+
+    /**
+     * @brief Returns the addition of this + another `Vector2`.
+     * 
+     * @param vector Other vector to add.
+     * 
+     * @return Addition the two vectors.
+     */
+    Vector2 operator+( Vector2& vector );
+
+    /**
+     * @brief Returns the subtraction of this - another `Vector2`.
+     * 
+     * @param vector Other vector to sub.
+     * 
+     * @return Subtraction the two vectors.
+     */
+    Vector2 operator-( Vector2& vector );
+
+    /**
+     * @brief Returns the multiplication of this - another `Vector2`.
+     * 
+     * @param vector Other vector to multiply.
+     * 
+     * @return Multiplication of the two vectors.
+     */
+    Vector2 operator*( Vector2& vector );
+
+    /**
+     * @brief Returns the division of this - another `Vector2`.
+     * 
+     * @param vector Other vector to divide.
+     * 
+     * @return Division of the two vectors.
+     */
+    Vector2 operator/( Vector2& vector );
+
+    /**
+     * @brief Returns the vector raised to the power of `scale`.
+     * 
+     * @param vector Other vector to add.
+     * 
+     * @return Vector raised by the `scale`.
+     */
+    Vector2 operator^( float& scale );
+
+
+    // Assignment Operator Overloading
+
+    
+    /**
+     * @brief Returns the addition of this + another `Vector2`.
+     * 
+     * @param vector Other vector to add.
+     */
+    void operator+=( Vector2& vector );
+
+    /**
+     * @brief Returns the subtraction of this - another `Vector2`.
+     * 
+     * @param vector Other vector to sub.
+     */
+    void operator-=( Vector2& vector );
+
+    /**
+     * @brief Returns the multiplication of this - another `Vector2`.
+     * 
+     * @param vector Other vector to multiply.
+     */
+    void operator*=( Vector2& vector );
+
+    /**
+     * @brief Returns the division of this - another `Vector2`.
+     * 
+     * @param vector Other vector to divide.
+     */
+    void operator/=( Vector2& vector );
+
+    /**
+     * @brief Returns the vector raised to the power of `scale`.
+     * 
+     * @param vector Other vector to add.
+     */
+    void operator^=( float& scale );
+
+
+
+
 };
-
-
-// Vector Basic
-
-/**
- * @brief Returns the addition of vectorOne + vectorTwo.
- * 
- * @param vectorOne First vector to add.
- * @param vectorTwo Second vector to add.
- * 
- * @return New Vector2 of the added Vector2s.
- */
-Vector2 add( Vector2& vectorOne, Vector2& vectorTwo );
-
-/**
- * @brief Returns the subtraction of vectorTwo - vectorOne. 
- * 
- * @param vectorOne First vector to subtract.
- * @param vectorTwo Second vector to subtract.
- * 
- * @return New Vector2 of the subtracted Vector2s.
- */
-Vector2 sub( Vector2& vectorOne, Vector2& vectorTwo );
-
-/**
- * @brief Returns the multiplication of vectorOne * vectorTwo. 
- * 
- * @param vectorOne First vector to multiply.
- * @param vectorTwo Second vector to multiply.
- * 
- * @return New Vector2 of the divided Vector2s.
- */
-Vector2 multiply( Vector2& vectorOne, Vector2& vectorTwo );
-
-/**
- * @brief Returns the division of vectorTwo / vectorOne. 
- * 
- * @param vectorOne First vector to divide.
- * @param vectorTwo Second vector to divide.
- * 
- * @return New Vector2 of the divided Vector2s.
- */
-Vector2 divide( Vector2& vectorOne, Vector2& vectorTwo );
 
 
 // Vector Maths
