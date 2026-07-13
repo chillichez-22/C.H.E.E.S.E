@@ -4,8 +4,8 @@ Create the CMake build folder, with ninja and MinGw, using the GCC C++ Compiler:
 
 
 Create the testing build executable:
-    >> cmake --build build --target cheese-engine-testing
+    >> cmake --build build --target cheese-testing
 
 Create the main build executable:
-    >> cmake --build build --target cheese-engine-main
+    >> cmake --build build --target cheese-main
     
