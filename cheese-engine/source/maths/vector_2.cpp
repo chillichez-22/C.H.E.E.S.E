@@ -6,7 +6,7 @@ Vector2::Vector2( float x, float y ){
     y = y;
 };
 
-// Vector overloading
+// Basic Operator Overloading
 
 Vector2 Vector2::operator+( Vector2& vector ){
 
@@ -49,85 +49,112 @@ Vector2 Vector2::operator^( float& scale ){
 };
 
 
-// Vector Basic
+// Assignment Operator Overloading
 
-Vector2 add( Vector2& vectorOne, Vector2& vectorTwo ){
+void Vector2::operator+=( Vector2& vector ){
 
-    Vector2 newVector2 = { 
-        vectorOne.x + vectorTwo.x, 
-        vectorOne.y + vectorTwo.y 
-    };
-    return newVector2;
+    x += vector.x;
+    y += vector.y;
+};
+
+void Vector2::operator-=( Vector2& vector ){
+
+    x -= vector.x;
+    y -= vector.y;
+};
+
+void Vector2::operator*=( Vector2& vector ){
+
+    x *= vector.x;
+    y *= vector.y;
+};
+
+void Vector2::operator/=( Vector2& vector ){
+
+    x /= vector.x;
+    y /= vector.y;
+};
+
+void Vector2::operator^=( float& scale ){
+
+    x = powf( x, scale );
+    y = powf( y, scale );
+};
+
+
+// Vector Maths
+
+float Vector2::magnitude(  ){
+
+    return sqrtf( 
+        x * x + 
+        y * y 
+    );
 }
 
-Vector2 sub( Vector2& vectorOne, Vector2& vectorTwo ){
 
-    // VectorTwo and VectorOne are in the reversed order, since thats the most commonly used
-    // way for a vector subtraction
-    Vector2 newVector2 = { 
-        vectorTwo.x - vectorOne.x, 
-        vectorTwo.y - vectorOne.y 
-    };
-    return newVector2;
+void Vector2::normalise(){
+
+    x /= magnitude();
+    y /= magnitude();
 }
 
-Vector2 multiply( Vector2& vectorOne, Vector2& vectorTwo ){
+Vector2 Vector2::normalised(){
 
-    Vector2 newVector2 = { 
-        vectorOne.x * vectorTwo.x, 
-        vectorOne.y * vectorTwo.y 
-    };
-    return newVector2;
+    Vector2 newVector = Vector2(
+        x / magnitude(),
+        y / magnitude()
+    );
+    
+    return newVector;
 }
 
-Vector2 divide( Vector2& vectorOne, Vector2& vectorTwo ){
 
-    // VectorTwo and VectorOne are in the reversed order, since thats the most commonly used
-    // way for a vector division
-    Vector2 newVector2 = { 
-        vectorTwo.x / vectorOne.x, 
-        vectorTwo.y / vectorOne.y 
-    };
-    return newVector2;
+void Vector2::scale( float factor ){
+
+    x *= factor;
+    y *= factor;
+}
+
+void Vector2::scaleTo( float factor ){
+
+    normalise();
+    scale( factor );
+}
+
+Vector2 Vector2::scaled( float factor ){
+
+    Vector2 newVector = Vector2(
+        x * factor,
+        y * factor
+    );
+
+    return newVector;
+}
+
+Vector2 Vector2::scaledTo( float factor ){
+
+    Vector2 unitVector = normalised();
+
+    return unitVector.scaled( factor );
+}
+
+
+// Vector Rotations
+
+float Vector2::angleDegrees(){
+
+    // cmath uses radians natively
+    return atan2f( y, x ) * ( 180 / M_PI );
+}
+
+float Vector2::angleRadians(){
+
+    return atan2f( y, x );
 }
 
 
 // Vector Math
-
-float magnitude( Vector2& vector ){
-
-    return sqrtf( 
-        vector.x * vector.x + 
-        vector.y * vector.y 
-    );
-}
-
-Vector2 scale( Vector2& vector, float factor ){
-
-    Vector2 newVector = {
-        vector.x * factor,
-        vector.y * factor
-    };
-
-    return newVector;
-}
-
-Vector2 scaleTo( Vector2& vector, float factor ){
-
-    Vector2 unitVector = unit( vector );
-
-    return scale( unitVector, factor );
-}
-
-Vector2 unit( Vector2& vector ){
-
-    Vector2 newVector = {
-        vector.x / magnitude( vector ),
-        vector.y / magnitude( vector )
-    };
-    
-    return newVector;
-}
 
 float dot( Vector2& vectorOne, Vector2& vectorTwo ){
 
@@ -138,15 +165,3 @@ float dot( Vector2& vectorOne, Vector2& vectorTwo ){
 }
 
 
-// Vector Rotations
-
-float angleDegrees( Vector2& vector ){
-
-    // cmath uses radians natively
-    return atan2f( vector.y, vector.x ) * ( 180 / M_PI );
-}
-
-float angleRadians( Vector2& vector ){
-
-    return atan2f( vector.y, vector.x );
-}

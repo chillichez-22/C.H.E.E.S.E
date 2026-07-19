@@ -13,9 +13,10 @@ int main() {
 
 	std::cout << "Testing Scene Loaded.";
 
-	std::getchar(); 
-
+	
+	
 	std::cout << "Testing Scene Ended.";
+	std::getchar(); 
 	
 	return 0;
 }

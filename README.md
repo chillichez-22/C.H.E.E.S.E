@@ -89,14 +89,16 @@ Resources used so far:
 - [Doxygen Commenting](https://www.doxygen.nl/manual/docblocks.html)
 - [Markdown Syntax](https://www.markdownguide.org)
 - [Markdown Tables](https://www.tablesgenerator.com/markdown_tables)
+- [Google's GTest for C++]()
 
 ##### Technologies
 
 - Mingw-w64
 - GCC compiler for C++ ( GGC 15.2.0 ) 
-- CMake / Make
-- C++ 201703 ( C++ 17.03 )
-- SDL3 (3.4.10)
-
+- CMake ( 4.3.3 )
+- C++ 201703 ( C++ 26 202400 )
+- SDL3 ( 3.4.10 )
+- GTest
+- 
 - Git & GitHub
 - VSCode Community
