@@ -1,15 +1,15 @@
 cmake_minimum_required( VERSION 4.3.3 )
-
 project( cheese LANGUAGES CXX )
 
 set( CMAKE_CXX_STANDARD 26 )
 set( CMAKE_CXX_STANDARD_REQUIRED ON )
 set( CMAKE_CXX_EXTENSIONS ON )
 
+# External dependencies
 find_package( SDL3 REQUIRED )
+find_package( GTest REQUIRED )
 
 # Finds engine source files
-
 set( maths_sources
 
     "cheese-engine/source/maths/math.cpp"
@@ -39,7 +39,6 @@ set( test_sources
 add_library( engine
 
     # Source files ( Headers aren't necessary )
-
     ${maths_sources}
     ${shapes_sources}
 )
