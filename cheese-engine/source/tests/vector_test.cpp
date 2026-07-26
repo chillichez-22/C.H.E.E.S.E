@@ -1,26 +1,15 @@
-#include "vector_test.hpp"
+#include "vector_2.hpp"
+#include "vector_3.hpp"
+#include "vector_4.hpp"
 
 #include <iostream>
+#include <gtest/gtest.h>
 #include <SDL3/SDL.h>
 
 
-bool areVectorsEqual( Vector2 vectorOne, Vector2 vectorTwo ){
-
-    if ( vectorOne.x == vectorTwo.x && vectorOne.y == vectorTwo.y ) return true;
-
-    else return false;
-}
-
-bool areVectorsEqual( Vector3 vectorOne, Vector3 vectorTwo ){
-
-    if ( vectorOne.x == vectorTwo.x && vectorOne.y == vectorTwo.y && vectorOne.z == vectorTwo.z ) return true;
-
-    else return false;
-}
-
-bool areVectorsEqual( Vector4 vectorOne, Vector4 vectorTwo ){
-
-    if ( vectorOne.x == vectorTwo.x && vectorOne.y == vectorTwo.y && vectorOne.z == vectorTwo.z && vectorOne.w == vectorTwo.w ) return true;
-
-    else return false;
+TEST(HelloTest, BasicAssertions) {
+  // Expect two strings not to be equal.
+  EXPECT_STRNE("hello", "world");
+  // Expect equality.
+  EXPECT_EQ(7 * 6, 42);
 }

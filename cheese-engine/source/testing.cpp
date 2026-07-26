@@ -1,9 +1,6 @@
 #include "math.hpp"
 #include "shape.hpp"
 
-// Tests
-#include "vector_test.hpp"
-
 // External
 #include <iostream>
 #include <SDL3/SDL.h>

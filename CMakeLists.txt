@@ -7,7 +7,12 @@ set( CMAKE_CXX_EXTENSIONS ON )
 
 # External dependencies
 find_package( SDL3 REQUIRED )
+
 find_package( GTest REQUIRED )
+
+# Options
+
+option( IS_TESTING "Enables the testing." OFF )
 
 # Finds engine source files
 set( maths_sources
@@ -60,39 +65,53 @@ target_link_libraries( engine
         SDL3::SDL3
 )
 
-
-# Creates main build
-add_executable( ${PROJECT_NAME}-main cheese-engine/source/main.cpp )
-
-target_link_libraries( ${PROJECT_NAME}-main
-
-    PRIVATE
-        engine
-)
+if( IS_TESTING )
 
 
-# Creates testing build
-add_executable( ${PROJECT_NAME}-testing cheese-engine/source/testing.cpp )
+    # Creates testing build
+    add_executable( ${PROJECT_NAME}-testing cheese-engine/source/testing.cpp )
 
-# Adds test source files
-target_sources( engine
+    # Adds test source files
+    target_sources( engine
 
-    PRIVATE
-        ${test_sources}
-)
+        PRIVATE
+            ${test_sources}
+    )
 
-# Adds test header files
-target_include_directories( engine
+    # Adds test header files
+    target_include_directories( engine
 
-    PUBLIC
+        PUBLIC
 
-        ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header
-        ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/tests
-)
+            ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header
+            ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/tests
+    )
 
-target_link_libraries( ${PROJECT_NAME}-testing
+    # Adds Gtest
+    target_link_libraries( engine
+    
+        PRIVATE
+            GTest::gtest
+            GTest::gtest_main
+    )
 
-    PRIVATE
-        engine
-)
+    target_link_libraries( ${PROJECT_NAME}-testing
 
+        PRIVATE
+            engine
+    )
+
+
+
+else()
+
+    # Creates main build
+    add_executable( ${PROJECT_NAME}-main cheese-engine/source/main.cpp )
+
+    target_link_libraries( ${PROJECT_NAME}-main
+
+        PRIVATE
+            engine
+    )
+
+endif()
