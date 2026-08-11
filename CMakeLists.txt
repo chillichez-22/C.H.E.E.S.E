@@ -8,7 +8,6 @@ set( CMAKE_CXX_EXTENSIONS ON )
 # External dependencies
 find_package( SDL3 REQUIRED )
 
-find_package( GTest REQUIRED )
 
 # Options
 
@@ -35,13 +34,9 @@ set( shapes_sources
     "cheese-engine/source/shapes/tri.cpp"
 )
 
-set( test_sources
 
-    "cheese-engine/source/tests/vector_test.cpp"
-)
-
-# Creates engine library
-add_library( engine
+# Creates engine library as an object
+add_library( engine OBJECT
 
     # Source files ( Headers aren't necessary )
     ${maths_sources}
@@ -65,46 +60,45 @@ target_link_libraries( engine
         SDL3::SDL3
 )
 
+
 if( IS_TESTING )
+    
+    find_package( GTest REQUIRED )
 
+    include( CTest )
+    enable_testing()
 
-    # Creates testing build
-    add_executable( ${PROJECT_NAME}-testing cheese-engine/source/testing.cpp )
+    # Gets the unit test sources
+    set( test_sources
 
-    # Adds test source files
-    target_sources( engine
-
-        PRIVATE
-            ${test_sources}
+        "cheese-engine/tests/vector_test.cpp"
     )
 
-    # Adds test header files
-    target_include_directories( engine
+    # Creates testing build
+    add_executable( ${PROJECT_NAME}-testing ${test_sources} )
 
-        PUBLIC
+    # Adds test header files to the project
+    target_include_directories( ${PROJECT_NAME}-testing
 
+        PRIVATE
             ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header
             ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/tests
     )
 
-    # Adds Gtest
-    target_link_libraries( engine
+    # Adds Gtest to the project
+    target_link_libraries( ${PROJECT_NAME}-testing
     
         PRIVATE
+            engine
             GTest::gtest
             GTest::gtest_main
     )
 
-    target_link_libraries( ${PROJECT_NAME}-testing
-
-        PRIVATE
-            engine
-    )
-
-
+    include(GoogleTest)
+    gtest_discover_tests( ${PROJECT_NAME}-testing )
 
 else()
-
+ 
     # Creates main build
     add_executable( ${PROJECT_NAME}-main cheese-engine/source/main.cpp )
 

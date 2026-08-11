@@ -9,9 +9,6 @@
 int main() {
 
 	std::cout << "Testing Scene Loaded.";
-
-	
-	
 	std::cout << "Testing Scene Ended.";
 	std::getchar(); 
 	

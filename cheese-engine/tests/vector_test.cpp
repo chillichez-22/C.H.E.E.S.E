@@ -1,3 +1,5 @@
+#define SDL_MAIN_HANDLED
+
 #include "vector_2.hpp"
 #include "vector_3.hpp"
 #include "vector_4.hpp"
@@ -5,6 +7,7 @@
 #include <iostream>
 #include <gtest/gtest.h>
 #include <SDL3/SDL.h>
+
 
 
 TEST(HelloTest, BasicAssertions) {
