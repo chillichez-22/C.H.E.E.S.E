@@ -2,6 +2,8 @@ Checklist to give an overview on the current tasks.
 
 # Checklist
 
+## Phase 1 - 2D Renderering
+
 #### Maths
 - [ x ] - Vectors
 - [ x ] - Vector Maths & Vector Arithmetic
@@ -9,6 +11,10 @@ Checklist to give an overview on the current tasks.
 - [ ] - Matrices
 - [ ] - Vector & Matrix Maths together
 - [ ] - Clear Documentation Covering This Section
+
+#### Maths - 2D
+- [ ] - 2D Point Rotation
+- [ ] - 2D Interpolation
 
 #### Shape Creation
 - [ ] - Lines
@@ -27,6 +33,16 @@ Checklist to give an overview on the current tasks.
 - [ ] - Circle Rendering
 - [ ] - Clear Documentation Covering This Section
 
+#### 2D Shape Rendering
+- [ ] - Anti-Aliased Line Rendering
+- [ ] - CPU Rasterisation of Tri
+- [ ] - CPU Rasterisation of Rects/Quads
+- [ ] - CPU Rasterisation of Polygons
+- [ ] - Clear Documentation Covering This Section
+
+
+## Phase 2 - 3D Rendering
+
 #### Maths - 3D
 - [ ] - World and Clip Space Differentiation
 - [ ] - Projection Matrices
@@ -42,23 +58,13 @@ Checklist to give an overview on the current tasks.
 - [ ] - Sphere/Ball Rendering 
 - [ ] - Clear Documentation Covering This Section
 
-#### Maths - Rotations
-- [ ] - 2D Point Rotation
-- [ ] - 2D Shape Rotation
+#### Maths - 3D Rotations
 - [ ] - 4D Matrices
 - [ ] - 3D Point Rotation
 - [ ] - 3D Shape Rotation
 - [ ] - Clear Documentation Covering This Section
 
-#### 2D Shape Rendering
-- [ ] - Anti-Aliased Line Rendering
-- [ ] - CPU Rasterisation of Tri
-- [ ] - CPU Rasterisation of Rects/Quads
-- [ ] - CPU Rasterisation of Polygons
-- [ ] - Clear Documentation Covering This Section
-
-#### Maths - Rendering
-- [ ] - 2D Interpolation
+#### Maths - 3D Rendering
 - [ ] - 3D Interpolation
 - [ ] - 3D Vector Maths ( 3D Normals )
 - [ ] - Clear Documentation Covering This Section
@@ -72,6 +78,9 @@ Checklist to give an overview on the current tasks.
 #### Maths - Frustum
 - [ ] - Frustum Culling
 - [ ] - Clear Documentation Covering This Section
+
+
+## Phase 3 - Physics
 
 #### Maths - Applied Physics & Mechanics
 - [ ] - Basic Calculus 
@@ -164,3 +173,29 @@ Checklist to give an overview on the current tasks.
 - [ ] - kDOP Collisions ???
 
 - [ ] - Clear Documentation Covering This Section
+
+
+## Phase 4 - Loading Files
+
+#### 2D Textures
+- [ ] - JPEG
+- [ ] - JPG
+- [ ] - PNG
+- [ ] - WebP
+- [ ] - TGA  
+- [ ] - TIFF
+- [ ] - BMP
+- [ ] - GIF ( Maybe )
+
+##### GPU Efficient Textures
+- [ ] - DDS
+- [ ] - KTX2
+
+#### 3D Objects
+
+- [ ] - OBJ
+- [ ] - FBX
+- [ ] - GLTF/GLB
+- [ ] - STL
+- [ ] - PLY
+- [ ] - DAE
