@@ -35,7 +35,6 @@ Additionally the project will use the Simple Direct Layer 3 ( SDL3 3.4.10 ) only
 # 1.0 System Overview
 
 
-
 ## 1.1 Roadmap
 
 ### 1.2.0 Phase 0 - Setup, Loop, Basic UI
@@ -179,5 +178,5 @@ Learn how to save 2D Images.
 
 TBC
 
-## UML Diagram
+## UML Diagrams
 

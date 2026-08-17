@@ -1,10 +1,32 @@
-Checklist to give an overview on the current tasks.
 
 # Checklist
+Checklist to give an overview on the current tasks.
 
-## Phase 0 - Setup
+# Phase 0 - Setup
 
-## Phase 1 - 2D Renderering
+### Dependencies
+- [x] - SDL Loaded
+- [x] - GTest Loaded
+
+### Setup
+- [x] - Screen Initialisation
+- [x] - Main Loop 
+- [ ] - Exit Button
+- [ ] - Screen Resizing
+
+### Basic Input handling
+- [ ] - Keyboard Inputs
+- [ ] - Mouse Inputs
+
+### Basic UI
+- [ ] - Togglable Button 
+- [ ] - Checkboxes
+- [ ] - Sliders
+- [ ] - Input Fields
+
+<br>
+
+# Phase 1 - 2D Renderering
 
 ### Maths
 - [x] - Vectors
@@ -42,8 +64,9 @@ Checklist to give an overview on the current tasks.
 - [ ] - CPU Rasterisation of Polygons
 - [ ] - Clear Documentation Covering This Section
 
+<br>
 
-## Phase 2 - 3D Rendering
+# Phase 2 - 3D Rendering
 
 ### Maths - 3D
 - [ ] - World and Clip Space Differentiation
@@ -81,8 +104,9 @@ Checklist to give an overview on the current tasks.
 - [ ] - Frustum Culling
 - [ ] - Clear Documentation Covering This Section
 
+<br>
 
-## Phase 3 - Physics & Collisions
+# Phase 3 - Physics & Collisions
 
 ### Maths - Applied Physics & Mechanics
 - [ ] - Basic Calculus 
@@ -115,9 +139,9 @@ Checklist to give an overview on the current tasks.
 - [ ] - Sort & Sweep
 - [ ] - Clear Documentation Covering This Section
 
-### Physics - 1D & 2D Collisions
+## Physics - 1D & 2D Collisions
 
-#### Vector
+### Vector
 - [ ] - Vector and Vector Collisions
 - [ ] - Vector and Point Collisions
 - [ ] - Vector and Line Collisions
@@ -125,14 +149,14 @@ Checklist to give an overview on the current tasks.
 - [ ] - Vector and Rect Collisions
 - [ ] - Vector and Circle Collisions
 
-#### Point
+### Point
 - [ ] - Point and Point Collisions
 - [ ] - Point and Line Collisions
 - [ ] - Point and Tri Collisions
 - [ ] - Point and Rect Collisions
 - [ ] - Point and Circle Collisions
 
-#### Line 
+### Line 
 - [ ] - Line and Line Collisions
 - [ ] - Line and Tri Collisions
 - [ ] - Line and Rect Collisions
@@ -141,9 +165,9 @@ Checklist to give an overview on the current tasks.
 
 - [ ] - Clear Documentation Covering This Section
 
-### Physics 3D Collisions
+## Physics 3D Collisions
 
-#### Vector
+### Vector
 - [ ] - Vector and Vector Collisions
 - [ ] - Vector and Point Collisions
 - [ ] - Vector and Line Collisions
@@ -152,7 +176,7 @@ Checklist to give an overview on the current tasks.
 - [ ] - Vector and Box Collisions
 - [ ] - Vector and Sphere Collisions
 
-#### Point
+### Point
 - [ ] - Point and Point Collisions
 - [ ] - Point and Line Collisions
 - [ ] - Point and Tri Collisions
@@ -160,19 +184,20 @@ Checklist to give an overview on the current tasks.
 - [ ] - Point and Box Collisions
 - [ ] - Point and Sphere Collisions
 
-#### Line 
+### Line 
 - [ ] - Line and Line Collisions
 - [ ] - Line and Tri Collisions
 - [ ] - Line and Plane Collisions
 - [ ] - Line and Box Collisions
 - [ ] - Line and Sphere Collisions
 
-#### Compound Shape Collisions
+### Compound Shape Collisions
 - [ ] - kDOP Collisions ???
 - [ ] - Clear Documentation Covering This Section
 
+<br>
 
-## Phase 4 - Loading Files
+# Phase 4 - Loading Files
 
 ### 2D Textures
 - [ ] - JPEG
@@ -184,7 +209,7 @@ Checklist to give an overview on the current tasks.
 - [ ] - BMP
 - [ ] - GIF ( Maybe )
 
-#### GPU Efficient Textures
+### GPU Efficient Textures
 - [ ] - DDS
 - [ ] - KTX2
 
@@ -196,3 +221,9 @@ Checklist to give an overview on the current tasks.
 - [ ] - STL
 - [ ] - PLY
 - [ ] - DAE
+
+### Data Files
+
+- [ ] - JSON
+- [ ] - CSV
+- [ ] - TXT
