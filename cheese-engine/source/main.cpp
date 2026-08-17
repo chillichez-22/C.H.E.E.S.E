@@ -14,7 +14,8 @@ int main() {
 		return -1;
 	}
 
-	std::cout << "CPP version: " << __cplusplus << std::endl;
+	std::cout << "CPP version: " << __cplusplus << "\n";
+	std::cout << "SDL3 version: " << SDL_GetVersion() << "\n";
 
 	SDL_Window* window;
 	SDL_Renderer* renderer;
@@ -33,6 +34,7 @@ int main() {
 	renderer = SDL_CreateRenderer( window, NULL );
 
 
+	// Main Loop
 	bool running = true;
 
 	while (running){
@@ -58,7 +60,7 @@ int main() {
 
 		// Draws bg
 		SDL_SetRenderDrawColor( renderer, 255, 255, 255, 255 );
-		SDL_RenderPoint( renderer, 500/2, 300/2 );
+
 		
 		// Renders display
 		SDL_RenderPresent( renderer );

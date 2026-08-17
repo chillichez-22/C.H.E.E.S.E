@@ -2,21 +2,23 @@ Checklist to give an overview on the current tasks.
 
 # Checklist
 
+## Phase 0 - Setup
+
 ## Phase 1 - 2D Renderering
 
-#### Maths
-- [ x ] - Vectors
-- [ x ] - Vector Maths & Vector Arithmetic
+### Maths
+- [x] - Vectors
+- [x] - Vector Maths & Vector Arithmetic
 - [ ] - Trigonometry 
 - [ ] - Matrices
 - [ ] - Vector & Matrix Maths together
 - [ ] - Clear Documentation Covering This Section
 
-#### Maths - 2D
+### Maths - 2D
 - [ ] - 2D Point Rotation
 - [ ] - 2D Interpolation
 
-#### Shape Creation
+### Shape Creation
 - [ ] - Lines
 - [ ] - Tri
 - [ ] - Rects
@@ -24,7 +26,7 @@ Checklist to give an overview on the current tasks.
 - [ ] - Circles 
 - [ ] - Clear Documentation Covering This Section
 
-#### 2D Wireframe
+### 2D Wireframe
 - [ ] - Point Rendering
 - [ ] - Line Rendering ( Non Anti-Aliased )
 - [ ] - Tri Rendering
@@ -33,7 +35,7 @@ Checklist to give an overview on the current tasks.
 - [ ] - Circle Rendering
 - [ ] - Clear Documentation Covering This Section
 
-#### 2D Shape Rendering
+### 2D Shape Rendering
 - [ ] - Anti-Aliased Line Rendering
 - [ ] - CPU Rasterisation of Tri
 - [ ] - CPU Rasterisation of Rects/Quads
@@ -43,13 +45,13 @@ Checklist to give an overview on the current tasks.
 
 ## Phase 2 - 3D Rendering
 
-#### Maths - 3D
+### Maths - 3D
 - [ ] - World and Clip Space Differentiation
 - [ ] - Projection Matrices
 - [ ] - Frustum Basics ( Close and Far Planes )
 - [ ] - Clear Documentation Covering This Section
 
-#### 3D Wireframe
+### 3D Wireframe
 - [ ] - Point Rendering
 - [ ] - Line Rendering ( Non Anti-Aliased )
 - [ ] - Tri Rendering
@@ -58,31 +60,31 @@ Checklist to give an overview on the current tasks.
 - [ ] - Sphere/Ball Rendering 
 - [ ] - Clear Documentation Covering This Section
 
-#### Maths - 3D Rotations
+### Maths - 3D Rotations
 - [ ] - 4D Matrices
 - [ ] - 3D Point Rotation
 - [ ] - 3D Shape Rotation
 - [ ] - Clear Documentation Covering This Section
 
-#### Maths - 3D Rendering
+### Maths - 3D Rendering
 - [ ] - 3D Interpolation
 - [ ] - 3D Vector Maths ( 3D Normals )
 - [ ] - Clear Documentation Covering This Section
 
-#### 3D Shape Rendering
+### 3D Shape Rendering
 - [ ] - CPU Rasterisation using Tris
 - [ ] - CPU Rasterisation using Rects/Quads
 - [ ] - CPU Rasterisation using Polygons
 - [ ] - Clear Documentation Covering This Section
 
-#### Maths - Frustum
+### Maths - Frustum
 - [ ] - Frustum Culling
 - [ ] - Clear Documentation Covering This Section
 
 
-## Phase 3 - Physics
+## Phase 3 - Physics & Collisions
 
-#### Maths - Applied Physics & Mechanics
+### Maths - Applied Physics & Mechanics
 - [ ] - Basic Calculus 
 - [ ] - Differentiation
 - [ ] - Integration
@@ -92,7 +94,7 @@ Checklist to give an overview on the current tasks.
 - [ ] - Moments & Impulses
 - [ ] - Clear Documentation Covering This Section
 
-#### Maths - Graphs, Circles & Line Equations
+### Maths - Graphs, Circles & Line Equations
 - [ ] - Linear Algebra 
 - [ ] - Different Types of Lines on a Graph
 - [ ] - Rearranging Line Equations
@@ -100,84 +102,79 @@ Checklist to give an overview on the current tasks.
 - [ ] - Modifying Curves Using There Equations
 - [ ] - Clear Documentation Covering This Section
 
-#### Physics - Collisions
+### Physics - Collisions
 - [ ] - SAT ( Separating axis theorem )
 - [ ] - GJK
 - [ ] - EPA
-
 - [ ] - CCD vs Narrow vs Broad Phase
 - [ ] - AABB ( Axis Aligned Bounding Box ) 
 - [ ] - AABS ( Axis Aligned Bounding Sphere )
 - [ ] - OOB ( Oriented Bounding Box )
 - [ ] - k-DOP ( Convex Shape Hull )
-
 - [ ] - Sweep & Prune
 - [ ] - Sort & Sweep
+- [ ] - Clear Documentation Covering This Section
+
+### Physics - 1D & 2D Collisions
+
+#### Vector
+- [ ] - Vector and Vector Collisions
+- [ ] - Vector and Point Collisions
+- [ ] - Vector and Line Collisions
+- [ ] - Vector and Tri Collisions
+- [ ] - Vector and Rect Collisions
+- [ ] - Vector and Circle Collisions
+
+#### Point
+- [ ] - Point and Point Collisions
+- [ ] - Point and Line Collisions
+- [ ] - Point and Tri Collisions
+- [ ] - Point and Rect Collisions
+- [ ] - Point and Circle Collisions
+
+#### Line 
+- [ ] - Line and Line Collisions
+- [ ] - Line and Tri Collisions
+- [ ] - Line and Rect Collisions
+- [ ] - Line and Circle Collisions
+
 
 - [ ] - Clear Documentation Covering This Section
 
-#### Physics - 1D & 2D Collisions
+### Physics 3D Collisions
 
-- [ ] - 1D Point Collisions
-- [ ] - 1D Line & Point Collisions
-- [ ] - 2D Line Collisions
+#### Vector
+- [ ] - Vector and Vector Collisions
+- [ ] - Vector and Point Collisions
+- [ ] - Vector and Line Collisions
+- [ ] - Vector and Tri Collisions
+- [ ] - Vector and Plane Collisions
+- [ ] - Vector and Box Collisions
+- [ ] - Vector and Sphere Collisions
 
-    ##### Point & Other
-- [ ] - 2D Point and Circle Collisions
-- [ ] - 2D Point and Rect Collisions
-- [ ] - 2D Point and Tri Collisions
+#### Point
+- [ ] - Point and Point Collisions
+- [ ] - Point and Line Collisions
+- [ ] - Point and Tri Collisions
+- [ ] - Point and Plane Collisions
+- [ ] - Point and Box Collisions
+- [ ] - Point and Sphere Collisions
 
-    ##### Line & Other
-- [ ] - 2D Line and Circle Collisions
-- [ ] - 2D Line and Rect Collisions
-- [ ] - 2D Line and Tri Collisions
+#### Line 
+- [ ] - Line and Line Collisions
+- [ ] - Line and Tri Collisions
+- [ ] - Line and Plane Collisions
+- [ ] - Line and Box Collisions
+- [ ] - Line and Sphere Collisions
 
-    ##### Self
-- [ ] - 2D Circle Collisions
-- [ ] - 2D Rect Collisions
-- [ ] - 2D Tri Collisions 
-
-    ##### Polygons 
-- [ ] - 2D Point and Polygon Collisions
-- [ ] - 2D Line and Polygon Collisions
-- [ ] - 2D Polygons Collisions
-
-    ##### Other & Other
-- [ ] - 2D Circle and Tri Collisions
-- [ ] - 2D Circle and Polygon Collisions
-- [ ] - 2D Circle and Rect Collisions
-- [ ] - 2D Rect and Tri Collisions
-- [ ] - 2D Rect and Polygon Collisions
-- [ ] - 2D Tri and Polygon Collisions
-
-- [ ] - Clear Documentation Covering This Section
-
-#### Physics 3D Collisions
-
-##### Sphere
-- [ ] - Spherical Collisions
-
-    ##### Line
-- [ ] - 3D Line Collisions
-
-    ##### Tri
-- [ ] - 3D Tri Collisions
-
-    ##### Rect/Quad
-- [ ] - 3D Rect Collisions
-
-    ##### Box
-- [ ] - Box Collisions
-
-    ##### Compound Shape Collisions
+#### Compound Shape Collisions
 - [ ] - kDOP Collisions ???
-
 - [ ] - Clear Documentation Covering This Section
 
 
 ## Phase 4 - Loading Files
 
-#### 2D Textures
+### 2D Textures
 - [ ] - JPEG
 - [ ] - JPG
 - [ ] - PNG
@@ -187,11 +184,11 @@ Checklist to give an overview on the current tasks.
 - [ ] - BMP
 - [ ] - GIF ( Maybe )
 
-##### GPU Efficient Textures
+#### GPU Efficient Textures
 - [ ] - DDS
 - [ ] - KTX2
 
-#### 3D Objects
+### 3D Objects
 
 - [ ] - OBJ
 - [ ] - FBX

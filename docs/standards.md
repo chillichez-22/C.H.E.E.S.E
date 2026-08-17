@@ -10,33 +10,34 @@ All files will be lowercase with _ to separate new words.
 Absolutely no spaces are to be used in naming of any file.
 
 main.cpp
-new_file.hpp
-text_for_something.txt
-new_file_2.md
+<br>new_file.hpp
+<br>text_for_something.txt
+<br>new_file_2.md
 
-Excluding files needed for the documentation: EDD ( Engine Design Document ), TDD(s) ( Technical Design Document(s) ), generated doxygen API. And other files that must have specific names, such as: "CMakeList.txt", "README.md", "LICENSE.txt".
+Excluding files needed for the documentation, EDD, TDD(s), generated doxygen API. And other files that must have specific names, such as: "CMakeList.txt", "README.md", "LICENSE.txt".
 
-#### Classes & Structs
+#### Classes & Structs & Methods
 
 All classes are structs will be PascalCase where each new word is a capital letter with no word delimiter.
+<br>Note: Only class, and struct __Names, not variables__ 
 
 class Vector
-struct MyNewStruct
-class LevelDataChunk
+<br>struct MyNewStruct
+<br>class LevelDataChunk
 
 #### Methods & Variables & Everything else
 
 Everything else will be camelCase where the first word has no capital letter at the start, but every following word has a capital start, with no word delimiter.
 
 int add();
-float subtractAllVectors();
-bool isCollidingWithSomething();
+<br>float subtractAllVectors();
+<br>bool isCollidingWithSomething();
 
 int myInt;
-float widthOfLine;
-Vector2 screenSpaceCoord;
+<br>float widthOfLine;
+<br>Vector2 screenSpaceCoord;
 
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+<br>
 
 # Documentation
 
@@ -44,7 +45,7 @@ Vector2 screenSpaceCoord;
 
 This relates to header file doxygen, code comments made throughout the codebase
 
-Doxygen will be used primarily for code documentation of function, classes with "/\*\*" ending with "*/" and variables with "/**<"  "*/>".
+Doxygen will be used primarily for code documentation of function, classes; starting with "/\*\*" and ending with "\*/". Variables start with "/**<" and end with "\*/>".
 Code comments will use default c++ comments structure.
 
 #### Code comments
@@ -103,22 +104,25 @@ int var; //!< Detailed description of the member
 These are the technical design documents for the project, where the solutions will be documented for a relevant sub-system.
 
 
-It covers the design, structure and architecture of a sub-system, explaining:
-    *what* a problem is; 
-    *how* the problem was over come; 
-    *why* we chose that way to over come it; 
-    and the downsides to choosing that way. 
+It covers the design, structure and architecture of a sub-system, explaining: 
+-    *what* a problem is.
+-    *how* the problem was over come;.
+-    *why* we chose that way to over come it;
+-    and the downsides to choosing that way. 
 
-It does not cover:
-    *code* written;
-    *who* will use the goal/problem;
-    *when* the goal/problem should be used.
+<br>It does not cover:
+-    *code* written.
+-    *who* will use the goal/problem.
+-    *when* the goal/problem should be used.
 
 
-It should explain steps to solve the problem / achieve the goal but not the code to solve the solution. As it is a blueprint / reference to implement a specific sub-system.
+<br>It should explain steps to solve the problem / achieve the goal but not the code to solve the solution. As it is a blueprint / reference to implement a specific sub-system.
+<br>It will be up to date, and will not go over the process of ideas, and how they came to form the problem / goal. 
 
-It will be up to date, and will not go over the process of ideas that came to form the problem / goal. 
-( It wont be a running commentary of "We did X, but thought it was slower, so now were doing Y. But Y slows I, so J needed to change......". This is what the [(ADR) Architectural Design Record]( #adr-architectural-design-records ) is for. )
+It wont be a running commentary of: 
+<br>&emsp;"We did X, but thought it was slower, so now were doing Y." 
+<br>&emsp;"But Y slows I, so J needed to change......"
+<br>This is what the [(ADR) Architectural Design Record]( #adr-architectural-design-records ) is for.
 
 
 
@@ -130,4 +134,4 @@ These are logs of design decisions made over the course of the project.
 They are sequential logs going over the design process, where each log holds one feature to implement.
 
 Newer logs may supersede older ones, in that case the older log's status changes from "Accepted" to "Superseded" with the name ( **not the reason why** ) it was superseded by.
-And in the newer log state that it supersedes the older one.
+<br>And in the newer log, state that it supersedes the older one.

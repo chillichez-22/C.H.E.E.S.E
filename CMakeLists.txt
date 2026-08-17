@@ -35,8 +35,8 @@ set( shapes_sources
 )
 
 
-# Creates engine library as an object
-add_library( engine OBJECT
+# Creates engine library
+add_library( engine
 
     # Source files ( Headers aren't necessary )
     ${maths_sources}
