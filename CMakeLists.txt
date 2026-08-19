@@ -10,10 +10,16 @@ find_package( SDL3 REQUIRED )
 
 
 # Options
-
 option( IS_TESTING "Enables the testing." OFF )
 
+
 # Finds engine source files
+
+set( colour_sources 
+
+    "cheese-engine/source/colour/colour.cpp"
+)
+
 set( maths_sources
 
     "cheese-engine/source/maths/math.cpp"
@@ -34,13 +40,23 @@ set( shapes_sources
     "cheese-engine/source/shapes/tri.cpp"
 )
 
+set( ui_sources 
+    "cheese-engine/source/ui/ui.cpp"
+
+    "cheese-engine/source/ui/button.cpp"
+    "cheese-engine/source/ui/slider.cpp"
+)
+
 
 # Creates engine library
 add_library( engine
 
     # Source files ( Headers aren't necessary )
+    ${colour_sources}
     ${maths_sources}
     ${shapes_sources}
+    ${ui_sources}
+
 )
 
 # Attaches the header files
@@ -48,9 +64,13 @@ target_include_directories( engine
 
     PUBLIC
 
+        # Likes to misbehave without calling all individual header folders
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header
+
+        ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/colour
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/maths
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/shapes
+        ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/ui
 )
 
 # Links SDL3 to the engine library

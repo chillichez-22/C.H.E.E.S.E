@@ -19,12 +19,20 @@ int main() {
 
 	SDL_Window* window;
 	SDL_Renderer* renderer;
+	
+	SDL_DisplayID* displays;
+	int displayCount;
+	int targetDisplay = 2;
+
+	displays = SDL_GetDisplays( &displayCount );
+
+	std::cout << "Display count: " << displayCount << "\n";
+	std::cout << "First Display: " << displays[0] << "\n";
 
 	window = SDL_CreateWindow(
 		"C.H.E.E.S.E - SDL3", 
 		500, 
 		300, 
-		SDL_WINDOW_RESIZABLE |
 		SDL_WINDOW_RESIZABLE
 	);
 
