@@ -6,7 +6,7 @@ Standards.md
 
 #### Files
 
-All files will be lowercase with _ to separate new words.
+All `files` will be lowercase with _ to separate new words.
 Absolutely no spaces are to be used in naming of any file.
 
 main.cpp
@@ -16,14 +16,33 @@ main.cpp
 
 Excluding files needed for the documentation, EDD, TDD(s), generated doxygen API. And other files that must have specific names, such as: "CMakeList.txt", "README.md", "LICENSE.txt".
 
-#### Classes & Structs & Methods
+#### Classes & Structs 
 
-All classes are structs will be PascalCase where each new word is a capital letter with no word delimiter.
+All `classes` and `structs` will be PascalCase where each new word is a capital letter with no word delimiter.
 <br>Note: Only class, and struct __Names, not variables__ 
 
 class Vector
 <br>struct MyNewStruct
 <br>class LevelDataChunk
+
+#### Enums
+
+All `enums` will be PascalCase where each new word is a capital letter with no word delimiter. 
+<br>And every enum item will be UPPER_CASE separated by an underscore "_" delimiter. ( Since they are constant variables )
+
+enum LevelSelection { 
+    PLATFORMER, 
+    SPACE, 
+    SURVIVAL_CRAFTING 
+}
+
+#### Const 
+
+Every `const` will be UPPER_CASE separated by an underscore "_" delimiter.
+
+const object* WINDOW
+<br> const float MATH_PI
+<br> const uint VERSION_ID
 
 #### Methods & Variables & Everything else
 
@@ -66,6 +85,12 @@ If this is the case then code structure would need to change to make it more obv
 Code should not be intentionally vague, or devoid of comments, but should be read first and explain itself within its own structure. Only afterwards comments are to be added, where clarity is *lacking*.
 
 #### Code Documentation
+
+Following the same rules and logic as the Code Comments, the code documentation should explain *what* is done in the `@brief`, and *how* in the `@details`.
+
+Keep the brief short and to-the-point as it is the first description shown in the IDE's descriptor. 
+<br>Use the details to explain generally how code works, and why it has been written in that way.
+
 ```
 
 // Class, Struct, Function....  documentation

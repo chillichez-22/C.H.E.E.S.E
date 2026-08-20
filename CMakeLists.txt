@@ -20,6 +20,12 @@ set( colour_sources
     "cheese-engine/source/colour/colour.cpp"
 )
 
+set( inputs_sources 
+
+    "cheese-engine/source/inputs/mouse.cpp"
+)
+
+
 set( maths_sources
 
     "cheese-engine/source/maths/math.cpp"
@@ -53,6 +59,7 @@ add_library( engine
 
     # Source files ( Headers aren't necessary )
     ${colour_sources}
+    ${inputs_sources}
     ${maths_sources}
     ${shapes_sources}
     ${ui_sources}
@@ -64,10 +71,11 @@ target_include_directories( engine
 
     PUBLIC
 
-        # Likes to misbehave without calling all individual header folders
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header
-
+    
+        # Likes to misbehave without calling all individual header folders
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/colour
+        ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/inputs
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/maths
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/shapes
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/ui
