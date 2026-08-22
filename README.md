@@ -13,7 +13,7 @@ My online name-tag is "Chilli-Cheese" often shortened to "chillichez", and most 
 
 The first part comes from my online name of "Chilli".
 
-The second part "Heuristical" comes from the term heuristic ( meaning a good enough approximation ), as I hope the engine to one day be a heursitcal simulation of some of the real world. 
+The second part "Heuristical" comes from the term heuristic ( meaning a good enough approximation ), as I hope the engine to one day be a heuristical simulation of some of the real world. 
 
 The latter part "Environmental Effects" as I hope for it to be a realistic simulation of a real-world environment and how different system effect it.  
 
