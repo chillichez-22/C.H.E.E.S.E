@@ -94,9 +94,8 @@ Resources used so far:
 - Mingw-w64
 - GCC compiler for C++ ( GGC 15.2.0 ) 
 - CMake ( 4.3.3 )
-- C++ 201703 ( C++ 26 202400 )
+- C++ 26 ( 202400 )
 - SDL3 ( 3.4.10 )
 - GTest
-- 
 - Git & GitHub
 - VSCode Community
