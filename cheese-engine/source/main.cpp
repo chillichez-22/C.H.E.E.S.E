@@ -1,6 +1,7 @@
 #include "math.hpp"
 #include "shape.hpp"
 #include "mouse.hpp"
+#include "ui.hpp"
 
 #include <iostream>
 #include <SDL3/SDL.h>
@@ -32,7 +33,6 @@ int main() {
 	std::cout << "Display count: " << displayCount << "\n";
 	std::cout << "First Display: " << displays[0] << "\n";
 	*/
-
 
 	// FPS & Performance
 
@@ -67,11 +67,14 @@ int main() {
 	SDL_SetRenderVSync( renderer, 0 );
 
 
+	// UI
+
+	UI mainUI;
+
 	// Mouse 
 	enum MouseButtonEvent leftMouseButton;
 	enum MouseButtonEvent middleMouseButton;
 	enum MouseButtonEvent rightMouseButton;
-
 
 	// Main Loop
 	bool running = true;
@@ -162,11 +165,14 @@ int main() {
 				
 			}
 
-			
+			Vector2 mousePos = Vector2( 0.f, 0.f );
+			SDL_GetMouseState( &mousePos.x, &mousePos.y );
 
+			mainUI.setStatesOnInteractables( mousePos, leftMouseButton );
 
 		}
 		
+ 
 		// Auto-Closer
 		if ( shouldDeactivate ){
 			
@@ -183,8 +189,17 @@ int main() {
 		SDL_SetRenderDrawColor( renderer, 0, 0, 0, 255 );
 		SDL_RenderClear( renderer );
 
+
+		/** Start Rendering Pipeline Here*/
+
 		// Draws bg
 		SDL_SetRenderDrawColor( renderer, 255, 255, 255, 255 );
+
+		mainUI.drawAll();
+
+
+		/** End Rendering Pipeline Here */
+
 
 		// Renders display
 		SDL_RenderPresent( renderer );

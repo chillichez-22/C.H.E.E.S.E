@@ -47,10 +47,16 @@ set( shapes_sources
 )
 
 set( ui_sources 
+
     "cheese-engine/source/ui/ui.cpp"
 
     "cheese-engine/source/ui/button.cpp"
+    "cheese-engine/source/ui/checkbox.cpp"
+    "cheese-engine/source/ui/interactable.cpp"
     "cheese-engine/source/ui/slider.cpp"
+    "cheese-engine/source/ui/text.cpp"
+    "cheese-engine/source/ui/ui_element.cpp"
+    
 )
 
 

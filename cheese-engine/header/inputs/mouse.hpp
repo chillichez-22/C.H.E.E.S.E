@@ -1,7 +1,7 @@
 #pragma once
 
 /**
- * Enum to hold data about one of the mouse's buttons.
+ * @brief Enum to hold data about one of the mouse's buttons.
 */
 enum MouseButtonEvent { 
 

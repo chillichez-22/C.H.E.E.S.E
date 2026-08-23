@@ -1,13 +1,17 @@
 #pragma once
 
-#include <string>
+#include "ui_elements.hpp"
+
 #include "colour.hpp"
 #include "vector_2.hpp"
+
+#include <string>
+
 
 /**
  * @brief A Text box rendered as a UI Element.
  */
-class TextBox{
+class TextBox : public UIElement{
 
     std::string contents = ""; 
     

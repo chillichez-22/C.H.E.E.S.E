@@ -4,17 +4,18 @@
 #include "text.hpp"
 #include "interactable.hpp"
 
-#include <string>
-
 
 /**
  * @brief Abstract class for a button instance. 
  */
-class BaseButton : public Interactable{
+class BaseCheckbox : public Interactable{
 
 public:
 
-    virtual ~BaseButton() = default;
+    /**
+     * @brief Default destructor for the abstract class. 
+     */
+    virtual ~BaseCheckbox() = default;
 
 };
 
@@ -22,13 +23,15 @@ public:
  * @brief A general purpose button that does an action upon being clicked.
  */
 template <typename ShapeType> 
-class Button : public BaseButton{
+class Checkbox : public BaseCheckbox{
 
 private:
     
-    // Text
-    bool isUsingText = false;
-    TextBox renderText = NULL;
+    bool state = false; 
+
+    // Symbol
+    ColourF symbolColour;
+    char symbol;
 
 protected:
 
@@ -45,10 +48,10 @@ protected:
     ColourF selectedColour;
 
     // Shape
-    ShapeType buttonShape = NULL;
+    ShapeType buttonShape;
 
 public:
 
-    Button( ShapeType buttonShape );
+    Checkbox( ShapeType buttonShape );
 
 };

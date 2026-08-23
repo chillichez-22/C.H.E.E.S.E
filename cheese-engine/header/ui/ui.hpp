@@ -1,31 +1,63 @@
 #pragma once
 
-
 #include "button.hpp"
+#include "checkbox.hpp"
+#include "interactable.hpp"
 #include "slider.hpp"
 #include "text.hpp"
+#include "ui_elements.hpp"
+
 #include "vector_2.hpp"
 #include "mouse.hpp"
 
 #include <vector>
+#include <memory>
 
 /**
  * @brief A UI page for the project, holding UI elements such as: interactables, text and other. 
  */
-struct UI{
+class UI{
+
+private:
 
     // Elements
-    std::vector<SquareButton> squareButtons;
-    std::vector<CircleButton> circleButtons;
+    std::vector<UIElement*> elements;
+    std::vector<Interactable*> interactables;
 
-    std::vector<SquareCheckbox> squareCheckboxes;
-    std::vector<CircleCheckbox> circleCheckboxes;
-
-    std::vector<Slider> sliders;
-
-    std::vector<TextBox> textBoxes;
+public:
 
     // Methods
+
+    /**
+     * @brief Destructor for the UI class.
+     * 
+     * @details Clears and releases all the memory associated with the `UI Elements` in the `elements` and `interactables` vectors.
+     */
+    ~UI();
+
+    
+
+    // Helpers
+
+    /**
+     * @brief Helper method to add interactables to the `interactables` vector.
+     * 
+     * @param *interactableObj Pointer to an `Interactable`
+     */
+    void addInteractables( Interactable* interactableObj ){
+        interactables.push_back( interactableObj );
+    }
+
+    
+    // UI Elements
+
+    /**
+     * @brief Draw call for every UI Element in the `elements` vector.
+     * 
+     */
+    void drawAll();
+    
+    // Interactables
 
     /**
      * @brief Checks for hovering over, pressing and holding on every interactable.
