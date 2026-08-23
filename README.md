@@ -7,19 +7,17 @@ Cheese is a custom 2D and 3D engine and renderer that I will build over the cour
 
 ## Why call it C.H.E.E.S.E ?
 
-It stands for "Chilli's Heuristical Enhanced Environment Simulation Engine".
+It stands for "Chilli's Heuristical Environmental Effects Simulation Engine".
 
 My online name-tag is "Chilli-Cheese" often shortened to "chillichez", and most people call me "Chilli" so I took the latter part of that name "Cheese" and gave it to the engine. 
 
 The first part comes from my online name of "Chilli".
 
-The second part "Heuristical" comes from the term heuristic ( meaning a good enough approximation ), as I hope the engine to one day be a heursitcal simulation of some of the real world. 
+The second part "Heuristical" comes from the term heuristic ( meaning a good enough approximation ), as I hope the engine to one day be a heuristical simulation of some of the real world. 
 
-The middle section "Enhanced" meaning to create complex scenes to render and apply realistic physics to.
+The latter part "Environmental Effects" as I hope for it to be a realistic simulation of a real-world environment and how different system effect it.  
 
-The latter part "Environment Simulation" as I hope for it to be a realistic simulation of a real-world environment.  
-
-With the last part "Engine" describing what it is, an engine of simulations.
+With the last part "Simulation Engine" describing what it is, an engine of simulations.
 
 
 ## Why did you decide to build it ?
@@ -96,9 +94,8 @@ Resources used so far:
 - Mingw-w64
 - GCC compiler for C++ ( GGC 15.2.0 ) 
 - CMake ( 4.3.3 )
-- C++ 201703 ( C++ 26 202400 )
+- C++ 26 ( 202400 )
 - SDL3 ( 3.4.10 )
 - GTest
-- 
 - Git & GitHub
 - VSCode Community
