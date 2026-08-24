@@ -82,12 +82,13 @@ Resources used so far:
 
 ##### Learning Materials
 
-- Real-Time Rendering 4 (EBook)
+- Real-Time Rendering 4 ( EBook )
 - [Divio's Grand Unified Theory of Documentation](https://docs.divio.com/documentation-system/) 
 - [Doxygen Commenting](https://www.doxygen.nl/manual/docblocks.html)
 - [Markdown Syntax](https://www.markdownguide.org)
 - [Markdown Tables](https://www.tablesgenerator.com/markdown_tables)
-- [Google's GTest for C++]()
+- [Google's GTest for C++](https://google.github.io/googletest/)
+- [UML Guide](https://www.uml-diagrams.org)
 
 ##### Technologies
 

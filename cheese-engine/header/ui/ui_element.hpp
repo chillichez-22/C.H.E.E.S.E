@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <SDL3/SDL.h>
 
 /**
  * @brief Abstract class for any UI Element to be rendered onto the screen as a part of a `UI`.
@@ -12,7 +13,9 @@ class UIElement{
 protected:
 
     std::string type;
-    bool isInteractable;
+    bool isInteractable = false;
+
+    void draw( SDL_Window* window, SDL_Renderer* renderer );
 
 public:
 
@@ -20,5 +23,6 @@ public:
      * @brief Default destructor for the abstract class. 
      */
     ~UIElement() = default;
+
 
 };

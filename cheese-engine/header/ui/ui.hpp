@@ -5,7 +5,7 @@
 #include "interactable.hpp"
 #include "slider.hpp"
 #include "text.hpp"
-#include "ui_elements.hpp"
+#include "ui_element.hpp"
 
 #include "vector_2.hpp"
 #include "mouse.hpp"
@@ -32,15 +32,24 @@ public:
      * @brief Destructor for the UI class.
      * 
      * @details Clears and releases all the memory associated with the `UI Elements` in the `elements` and `interactables` vectors.
+     * 
+     * @attention Note: This must not be default as the the UI needs to first, clear the HEAP of the UIElements, then remove each pointer inside both vectors
      */
-    ~UI();
+    ~UI() = default;
 
     
 
     // Helpers
 
     /**
-     * @brief Helper method to add interactables to the `interactables` vector.
+     * @brief Helper method to add a `UIElement` to the `elements` vector.
+     * 
+     * @param *elementObj Pointer to a `UIElement`
+     */
+    void addInteractables( UIElement* elementObj );
+
+    /**
+     * @brief Helper method to add an `Interactable` to the `interactables` vector.
      * 
      * @param *interactableObj Pointer to an `Interactable`
      */
@@ -55,7 +64,10 @@ public:
      * @brief Draw call for every UI Element in the `elements` vector.
      * 
      */
-    void drawAll();
+    void drawAll(        
+        SDL_Window* window, 
+        SDL_Renderer* renderer
+    );
     
     // Interactables
 
@@ -65,7 +77,10 @@ public:
      * @details Loops through all of the interactables only once, to save on loops.
      * 
      */
-    void setStatesOnInteractables( Vector2& MousePos, MouseButtonEvent& leftMouseButton );
+    void setStatesOnInteractables( 
+        Vector2& MousePos, 
+        MouseButtonEvent& leftMouseButton 
+    );
 
     /**
      * @brief Sets all interactables' `isPressed` state to false.

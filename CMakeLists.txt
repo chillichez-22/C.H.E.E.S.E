@@ -15,9 +15,20 @@ option( IS_TESTING "Enables the testing." OFF )
 
 # Finds engine source files
 
+set( collision_sources
+
+    "cheese-engine/source/collisions/collision_result.cpp"    
+)
+
 set( colour_sources 
 
     "cheese-engine/source/colour/colour.cpp"
+)
+
+set( font_sources
+
+    "cheese-engine/source/fonts/font.cpp"
+    "cheese-engine/source/fonts/ttf.cpp"
 )
 
 set( inputs_sources 
@@ -64,6 +75,7 @@ set( ui_sources
 add_library( engine
 
     # Source files ( Headers aren't necessary )
+    ${collision_sources}
     ${colour_sources}
     ${inputs_sources}
     ${maths_sources}
@@ -80,7 +92,9 @@ target_include_directories( engine
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header
     
         # Likes to misbehave without calling all individual header folders
+        ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/collisions
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/colour
+        ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/fonts
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/inputs
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/maths
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/shapes

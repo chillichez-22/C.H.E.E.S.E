@@ -45,6 +45,6 @@ protected:
 
 public:
 
-    Slider Slider( ShapeType buttonShape );
+    Slider( ShapeType buttonShape );
 
 };

@@ -168,7 +168,7 @@ int main() {
 			Vector2 mousePos = Vector2( 0.f, 0.f );
 			SDL_GetMouseState( &mousePos.x, &mousePos.y );
 
-			mainUI.setStatesOnInteractables( mousePos, leftMouseButton );
+			//mainUI.setStatesOnInteractables( mousePos, leftMouseButton );
 
 		}
 		
@@ -195,7 +195,7 @@ int main() {
 		// Draws bg
 		SDL_SetRenderDrawColor( renderer, 255, 255, 255, 255 );
 
-		mainUI.drawAll();
+		//mainUI.drawAll();
 
 
 		/** End Rendering Pipeline Here */
