@@ -7,7 +7,9 @@
 #include "collision_result.hpp"
 
 
-
+/**
+ * @brief Enum holding the different states an interactable can be in, relative to the mouse/pointer input.
+ */
 enum class PointerState{
 
     NONE = 0,     /**< Cursor is not interacting with this interactable.*/
@@ -24,7 +26,6 @@ enum class PointerState{
  * @details Allows children to have this as their pointer, thus allowing the children be added to the same vectors, and lists.
  */
 class Interactable : public UIElement{
-
     
 protected:
 

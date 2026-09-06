@@ -27,7 +27,6 @@ public:
 };
 
 
-
 /**
  * @brief A general purpose button that does an action upon being clicked.
  */
