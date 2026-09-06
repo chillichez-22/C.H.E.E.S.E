@@ -7,13 +7,13 @@ Cheese is a custom 2D and 3D engine and renderer that I will build over the cour
 
 ## Why call it C.H.E.E.S.E ?
 
-It stands for "Chilli's Heuristical Environmental Effects Simulation Engine".
+It stands for "Chilli's Heuristic Environmental Effects Simulation Engine".
 
 My online name-tag is "Chilli-Cheese" often shortened to "chillichez", and most people call me "Chilli" so I took the latter part of that name "Cheese" and gave it to the engine. 
 
 The first part comes from my online name of "Chilli".
 
-The second part "Heuristical" comes from the term heuristic ( meaning a good enough approximation ), as I hope the engine to one day be a heuristical simulation of some of the real world. 
+The second part "Heuristic" comes from the term heuristic ( meaning a good enough approximation ), as I hope the engine to one day be a heuristic simulation of some of the real world. 
 
 The latter part "Environmental Effects" as I hope for it to be a realistic simulation of a real-world environment and how different system effect it.  
 

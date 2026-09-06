@@ -57,7 +57,8 @@ int main() {
 		300, 
 		SDL_WINDOW_RESIZABLE
 	);
-	renderer = SDL_CreateRenderer( window, 
+	renderer = SDL_CreateRenderer( 
+		window, 
 		NULL 
 	);
 
@@ -186,6 +187,7 @@ int main() {
 		
 
 		// Clears screen with white
+
 		SDL_SetRenderDrawColor( renderer, 0, 0, 0, 255 );
 		SDL_RenderClear( renderer );
 
