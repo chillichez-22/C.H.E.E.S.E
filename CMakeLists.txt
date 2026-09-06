@@ -47,14 +47,23 @@ set( maths_sources
     "cheese-engine/source/maths/vector_4.cpp"
 )
 
-set( shapes_sources
+set( shapes_2d_sources
 
-    "cheese-engine/source/shapes/shape.cpp"
+    "cheese-engine/source/shapes_2d/shape_2d.cpp"
 
-    "cheese-engine/source/shapes/circle.cpp"
-    "cheese-engine/source/shapes/line.cpp"
-    "cheese-engine/source/shapes/rect.cpp"
-    "cheese-engine/source/shapes/tri.cpp"
+    "cheese-engine/source/shapes_2d/circle.cpp"
+    "cheese-engine/source/shapes_2d/line_2d.cpp"
+    "cheese-engine/source/shapes_2d/rect.cpp"
+    "cheese-engine/source/shapes_2d/tri.cpp"
+)
+
+set( shapes_3d_sources
+
+    "cheese-engine/source/shapes_3d/shape_3d.cpp"
+
+    "cheese-engine/source/shapes_3d/box.cpp"
+    "cheese-engine/source/shapes_3d/line_3d.cpp"
+    "cheese-engine/source/shapes_3d/sphere.cpp"
 )
 
 set( ui_sources 
@@ -79,7 +88,8 @@ add_library( engine
     ${colour_sources}
     ${inputs_sources}
     ${maths_sources}
-    ${shapes_sources}
+    ${shapes_2d_sources}
+    ${shapes_3d_sources}
     ${ui_sources}
 
 )
@@ -97,7 +107,8 @@ target_include_directories( engine
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/fonts
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/inputs
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/maths
-        ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/shapes
+        ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/shapes_2d
+        ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/shapes_3d
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/ui
 )
 

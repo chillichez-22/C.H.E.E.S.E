@@ -4,8 +4,8 @@
 #include "text.hpp"
 #include "interactable.hpp"
 
-#include "shape.hpp"
-#include "line.hpp"
+#include "shape_2d.hpp"
+#include "line_2d.hpp"
 #include "colour.hpp"
 
 /**
@@ -53,7 +53,7 @@ private:
 
 public:
 
-    Slider( 
+    LinearSlider( 
         ButtonShape buttonShape 
     );
 
@@ -94,18 +94,20 @@ public:
     float& getBorderWidth();
 
     bool& getIsUsingText();
-    BaseTextBox* getRenderText();
 
-    ShapeType* getShape();
+    //ShapeType* getShape();
     BaseButton* getButton();
     Line2D* getLine();
+
+    ColourF& getLineColour();
 
     float& getMinValue();
     float& getStartValue();
     float& getMaxValue();
-    float& getStartValue();
 
-    ColourF& getLineColour();
+    BaseTextBox* getMinValueText();
+    BaseTextBox* getStartValueText();
+    BaseTextBox* getMaxValueText();
 
     
     // Setters
@@ -119,13 +121,14 @@ public:
     void setBorderColour( ColourF& newColour );
     void setBorderWidth( float newWidth );
 
-    void setRenderText( BaseTextBox* newText );
 
-    void setShape( ShapeType* newShape );
+    //void setShape( ShapeType* newShape );
+
     void setButton( BaseButton* newButton );
     void setLine( Line2D* newLine );
 
     void setLineColour( ColourF& newColour );
+
     void setMinValueText( BaseTextBox* newText );
     void setStartValueText( BaseTextBox* newText );
     void setMaxValueText( BaseTextBox* newText );

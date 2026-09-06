@@ -2,7 +2,7 @@
 
 // Own Scope
 #include "circle.hpp"
-#include "line.hpp"
+#include "line_2d.hpp"
 #include "rect.hpp"
 #include "tri.hpp"
 

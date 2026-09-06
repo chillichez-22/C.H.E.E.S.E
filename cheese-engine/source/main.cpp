@@ -1,5 +1,8 @@
 #include "math.hpp"
-#include "shape.hpp"
+
+#include "shape_2d.hpp"
+#include "shape_3d.hpp"
+
 #include "mouse.hpp"
 #include "ui.hpp"
 
