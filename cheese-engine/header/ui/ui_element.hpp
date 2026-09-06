@@ -1,5 +1,6 @@
 #pragma once
 
+// External
 #include <string>
 #include <SDL3/SDL.h>
 

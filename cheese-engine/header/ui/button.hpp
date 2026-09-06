@@ -1,13 +1,18 @@
 #pragma once
 
-#include "interactable.hpp"
-#include "text.hpp"
+// External
+#include <string>
 
+// Outside Scope
 #include "colour.hpp"
 #include "vector_2.hpp"
 #include "collision_result.hpp"
 
-#include <string>
+// Own Scope
+#include "interactable.hpp"
+#include "text.hpp"
+
+
 
 
 /**

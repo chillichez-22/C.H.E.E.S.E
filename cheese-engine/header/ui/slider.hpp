@@ -1,12 +1,15 @@
 #pragma once
 
+// Outside Scope
+#include "shape_2d.hpp"
+#include "line_2d.hpp"
+#include "colour.hpp"
+
+// Own Scope
 #include "button.hpp"
 #include "text.hpp"
 #include "interactable.hpp"
 
-#include "shape_2d.hpp"
-#include "line_2d.hpp"
-#include "colour.hpp"
 
 /**
  * @brief Abstract class for a slider with an unspecified button, shape and orientation.

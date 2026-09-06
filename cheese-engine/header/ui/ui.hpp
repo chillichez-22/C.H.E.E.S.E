@@ -1,5 +1,14 @@
 #pragma once
 
+// External
+#include <vector>
+#include <memory>
+
+// Outside Scope
+#include "vector_2.hpp"
+#include "mouse.hpp"
+
+// Own Scope
 #include "button.hpp"
 #include "checkbox.hpp"
 #include "interactable.hpp"
@@ -7,11 +16,6 @@
 #include "text.hpp"
 #include "ui_element.hpp"
 
-#include "vector_2.hpp"
-#include "mouse.hpp"
-
-#include <vector>
-#include <memory>
 
 /**
  * @brief A UI page for the project, holding UI elements such as: interactables, text and other. 

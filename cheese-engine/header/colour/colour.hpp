@@ -14,10 +14,10 @@ struct ColourF : Colour
 {
     ColourF( float r, float g, float b, float a );
 
-    float r = 0;
-    float g = 0;
-    float b = 0;
-    float a = 0;
+    float r = 0.f;
+    float g = 0.f;
+    float b = 0.f;
+    float a = 0.f;
 };
 
 /**

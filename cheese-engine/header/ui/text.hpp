@@ -1,12 +1,16 @@
 #pragma once
 
-#include "ui_element.hpp"
+// External
+#include <string>
 
+// Outside Scope
 #include "colour.hpp"
 #include "vector_2.hpp"
 #include "ttf.hpp"  
 
-#include <string>
+// Own Scope
+#include "ui_element.hpp"
+
 
 /**
  * @brief Non-templated abstract class for any textbox with an undefined shape.
