@@ -9,4 +9,7 @@
  */
 class Shape{
 
+protected:
+
+    
 };
