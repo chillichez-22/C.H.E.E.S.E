@@ -55,11 +55,12 @@ set( shape_base_sources
 set( shapes_2d_sources
 
     "cheese-engine/source/shapes_2d/shape_2d.cpp"
-
-    "cheese-engine/source/shapes_2d/circle.cpp"
+    
+    "cheese-engine/source/shapes_2d/circle_2d.cpp"
     "cheese-engine/source/shapes_2d/line_2d.cpp"
-    "cheese-engine/source/shapes_2d/rect.cpp"
-    "cheese-engine/source/shapes_2d/tri.cpp"
+    "cheese-engine/source/shapes_2d/quad_2d.cpp"
+    "cheese-engine/source/shapes_2d/rect_2d.cpp"
+    "cheese-engine/source/shapes_2d/tri_2d.cpp"
 )
 
 set( shapes_3d_sources
