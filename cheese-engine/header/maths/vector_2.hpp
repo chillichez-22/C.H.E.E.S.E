@@ -13,6 +13,11 @@ struct Vector2{
     float y;
 
     /**
+     * @brief Default Constructor
+     */
+    Vector2();
+
+    /**
      * @brief Constructor for a new Vector2
      * 
      * @param x Float for the x component

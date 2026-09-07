@@ -18,7 +18,9 @@ public:
 
 public:
 
-    Circle2D( Vector2 centre, float radius );
+    Circle2D();
+    Circle2D( Vector2 circleCentre, float circleRadius );
+
     ~Circle2D() = default;
 
 

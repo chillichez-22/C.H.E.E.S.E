@@ -18,7 +18,9 @@ public:
 
 public:
 
+    Line2D();
     Line2D( Vector2 start, Vector2 end );
+    
     ~Line2D() = default;
 
     

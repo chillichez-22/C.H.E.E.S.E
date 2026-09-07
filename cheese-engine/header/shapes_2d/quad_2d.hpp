@@ -21,9 +21,10 @@ public:
 
 public:
 
-    Quad2D( Vector2 centre, std::array< Vector2, 4 > points );
+    Quad2D();
+    Quad2D( Vector2 pointOne, Vector2 pointTwo, Vector2 pointThree, Vector2 pointFour );
+    
     ~Quad2D() = default;
-
 
     /**
      * @brief Moves the `centre` of the `Quad2D` by the integers `x` and `y`.

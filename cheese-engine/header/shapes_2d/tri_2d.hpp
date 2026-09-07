@@ -21,6 +21,7 @@ public:
 
 public:
 
+    Tri2D();
     Tri2D( 
         Vector2 pointOne, 
         Vector2 pointTwo, 

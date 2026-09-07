@@ -17,7 +17,10 @@ public:
 
 public:
 
-    Rect2D( Vector2 centre, Vector2 size );
+    Rect2D();
+    
+    Rect2D( Vector2 rectCentre, Vector2 rectSize );
+
     ~Rect2D() = default;
 
 
