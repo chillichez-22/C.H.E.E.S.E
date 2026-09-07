@@ -8,6 +8,30 @@ Vector2::Vector2( float x, float y ){
     y = y;
 };
 
+
+// Comparison Operator Overloading
+
+bool Vector2::operator==( Vector2& vector ){
+
+    if ( x == vector.x && y == vector.y ){
+        
+        return true;
+    };
+
+    return false;
+}
+
+bool Vector2::operator!=( Vector2& vector ){
+
+    if ( x != vector.x && y != vector.y ){
+        
+        return true;
+    };
+
+    return false;
+}
+
+
 // Basic Operator Overloading
 
 Vector2 Vector2::operator+( Vector2& vector ){

@@ -28,6 +28,27 @@ struct Vector2{
     Vector2( float x, float y );
 
 
+    // Comparison Operator Overloading
+
+    /**
+     * @brief Returns the comparison of this + another `Vector2`.
+     * 
+     * @param vector Other vector to compare.
+     * 
+     * @return Comparison of the two vectors.
+     */
+    bool operator==( Vector2& vector );
+
+    /**
+     * @brief Returns the not comparison of this + another `Vector2`.
+     * 
+     * @param vector Other vector to compare.
+     * 
+     * @return Comparison of the two vectors.
+     */
+    bool operator!=( Vector2& vector );
+
+
     // Basic Operator Overloading
 
     /**
@@ -35,7 +56,7 @@ struct Vector2{
      * 
      * @param vector Other vector to add.
      * 
-     * @return Addition the two vectors.
+     * @return Addition of the two vectors.
      */
     Vector2 operator+( Vector2& vector );
 
@@ -44,7 +65,7 @@ struct Vector2{
      * 
      * @param vector Other vector to sub.
      * 
-     * @return Subtraction the two vectors.
+     * @return Subtraction of the two vectors.
      */
     Vector2 operator-( Vector2& vector );
 
