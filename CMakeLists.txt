@@ -47,6 +47,14 @@ set( maths_sources
     "cheese-engine/source/maths/vector_4.cpp"
 )
 
+set( rasteriser_sources
+    
+    "cheese-engine/source/rasteriser/rasteriser.cpp"
+
+    "cheese-engine/source/rasteriser/tri_rasteriser.cpp"
+
+)
+
 set( shape_base_sources
 
     "cheese-engine/source/shapes/shape.cpp"
@@ -94,6 +102,7 @@ add_library( engine
     ${colour_sources}
     ${inputs_sources}
     ${maths_sources}
+    ${rasteriser_sources}
     ${shape_base_sources}
     ${shapes_2d_sources}
     ${shapes_3d_sources}
@@ -114,6 +123,7 @@ target_include_directories( engine
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/fonts
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/inputs
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/maths
+        ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/rasteriser        
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/shapes
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/shapes_2d
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/shapes_3d
