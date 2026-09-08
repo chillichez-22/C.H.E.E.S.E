@@ -3,9 +3,9 @@
 
 Vector2::Vector2(){};
 
-Vector2::Vector2( float x, float y ){
-    x = x;
-    y = y;
+Vector2::Vector2( float newX, float newY ){
+    x = newX;
+    y = newY;
 };
 
 
@@ -109,6 +109,12 @@ void Vector2::operator^=( float& scale ){
 
 
 // Vector Maths
+
+float Vector2::gradient(  ){
+
+    return y / x;
+}
+
 
 float Vector2::magnitude(  ){
 

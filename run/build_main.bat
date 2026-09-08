@@ -7,4 +7,5 @@ cmake -S . -B build -G Ninja -D CMAKE_C_COMPILER=gcc -D CMAKE_CXX_COMPILER=g++ -
 
 cmake --build build
 
+Start "" "build/cheese-main.exe"
 PAUSE

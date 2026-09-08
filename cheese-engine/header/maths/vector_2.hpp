@@ -20,12 +20,12 @@ struct Vector2{
     /**
      * @brief Constructor for a new Vector2
      * 
-     * @param x Float for the x component
-     * @param y Float for the y component
+     * @param newX Float for the x component
+     * @param newY Float for the y component
      * 
      * @return `Vector2` new Vector2
      */
-    Vector2( float x, float y );
+    Vector2( float newX, float newY );
 
 
     // Comparison Operator Overloading
@@ -138,9 +138,16 @@ struct Vector2{
     // Vector Maths
 
     /**
-     * @brief Returns the magnitude of this Vector2s.
+     * @brief Returns the gradient of this Vector2.
      * 
-     * @return Float of the magnitude of the Vector2s.
+     * @return Float of the gradient of the Vector2.
+    */
+    float gradient();
+
+    /**
+     * @brief Returns the magnitude of this Vector2.
+     * 
+     * @return Float of the magnitude of the Vector2.
      */
     float magnitude();
 

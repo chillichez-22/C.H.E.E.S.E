@@ -9,3 +9,7 @@
 // External
 #include <cmath>
 
+float findCFromEOL( float m, float x, float y );
+
+float findXFromEOL( float y, float c, float m );
+int findXFromEOL( int y, float c, float m );

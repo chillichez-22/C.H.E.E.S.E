@@ -1,15 +1,23 @@
+
+// External
+#include <string>
+#include <iostream>
+#include <SDL3/SDL.h>
+
+// Outside Scope
 #include "math.hpp"
 
-#include "shape.hpp"
 #include "shape_2d.hpp"
+#include "tri_2d.hpp"
 #include "shape_3d.hpp"
 
 #include "mouse.hpp"
 #include "ui.hpp"
 
-#include <iostream>
-#include <SDL3/SDL.h>
-#include <string>
+#include "colour.hpp"
+
+#include "tri_rasteriser.hpp"
+
 
 int main() {
 
@@ -73,13 +81,31 @@ int main() {
 
 
 	// UI
-
 	UI mainUI;
+
 
 	// Mouse 
 	enum MouseButtonEvent leftMouseButton;
 	enum MouseButtonEvent middleMouseButton;
 	enum MouseButtonEvent rightMouseButton;
+
+
+	// Testing
+
+	int width;
+	int height;
+
+	SDL_GetWindowSize( window, &width, &height );
+
+	Vector2 pointOne =   Vector2( width * 0.5f, height * 0.4f );
+	Vector2 pointTwo =   Vector2( width * 0.3f, height * 0.7f );
+	Vector2 pointThree = Vector2( width * 0.7f, height * 0.7f );
+
+	Tri2D testTri = Tri2D( pointOne, pointTwo, pointThree );
+	ColourF testColour = ColourF( 255, 0, 0, 255 );
+
+	std::cerr << "Width: " << width << "\n";
+	std::cerr << "Height: " << height << "\n";
 
 	// Main Loop
 	bool running = true;
@@ -203,6 +229,10 @@ int main() {
 
 		//mainUI.drawAll();
 
+		RasteriseTri( renderer, testTri, testColour );
+
+		
+
 
 		/** End Rendering Pipeline Here */
 
@@ -223,9 +253,15 @@ int main() {
 			SDL_Delay( delayTime );
 		}
 
+		//running = false;
+
 	}
 
 	SDL_DestroyWindow( window );
 	SDL_Quit();
+
+
+	std::getchar(); 
+
 	return 0;
 }

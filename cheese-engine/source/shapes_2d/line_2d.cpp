@@ -12,3 +12,9 @@ Line2D::Line2D(
     startPoint = start;
     endPoint = end;
 };
+
+
+Vector2 Line2D::lineVector(){
+
+    return endPoint - startPoint;
+}

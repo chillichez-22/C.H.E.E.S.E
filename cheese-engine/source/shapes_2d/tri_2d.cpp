@@ -14,5 +14,7 @@ Tri2D::Tri2D(
     Vector2 pointTwo, 
     Vector2 pointThree ){
 
-    std::array< Vector2, 3 > points = { pointOne, pointTwo, pointThree };
+   points[0] = pointOne;
+   points[1] = pointTwo;
+   points[2] = pointThree;
 };
