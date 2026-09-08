@@ -13,52 +13,40 @@ void RasteriseTri(
     Vector2& one = tri.points[1];  /**< One index of the tri's points */
     Vector2& two = tri.points[2];  /**< Two index of the tri's points */
 
-    std::cerr << "|  Zero: [" << zero.x << ", " << zero.y << "]"<< "\n";
-    std::cerr <<  "|  One: [" << one.x << ", " << one.y << "]"<< "\n";
-    std::cerr <<  "|  Two: [" << two.x << ", " << two.y << "]"<< "\n";
-    
+
     // Step 1 
     
     std::array< Vector2, 3 > orderedPoints;
     orderPoints( orderedPoints, zero, one, two );
     
-    Vector2& top = orderedPoints[0];
-    Vector2& mid = orderedPoints[1];
-    Vector2& low = orderedPoints[2];
+    Vector2& top = orderedPoints[0];  /**< Top most point of the tri ( Lowest y value ) */
+    Vector2& mid = orderedPoints[1];  /**< Mid point of the tri ( Middle y value. OR Can be the same as the top/low, if the tri is a flat-top/bottom ) */
+    Vector2& low = orderedPoints[2];  /**< Lowest point of the tri ( Highest y value ) */
     
-    std::cerr << "|  | Ordered " << "\n";
-    std::cerr << "|  Top: [" << top.x << ", " << top.y << "]"<< "\n";
-    std::cerr << "|  Mid: [" << mid.x << ", " << mid.y << "]"<< "\n";
-    std::cerr << "|  Low: [" << low.x << ", " << low.y << "]"<< "\n";
 
     // Step 2
+
     // Since two of the points have the same y value. The tri has either a flat top, or flat bottom.
     // Therefore doesnt need to be split, and can skips steps: 3, 4
     if ( zero.y == one.y || one.y == two.y ){
 
-         std::cerr << "|  | Skipping Split" << "\n";
-
         // Step 5B
         scanTri( renderer, tri, solidColour );
-        std::cerr << "------Ended------------" << "\n";
+
     }
 
-    // Initially assumes we can skip: Step 3, 4
-    // This helps with code flow as we are not going back and forth between the steps.
     else{
-
-        std::cerr << "|  | Splitting Tris" << "\n";
 
         // Step 3 & 4
 
         std::array< Tri2D, 2 > splitTris;
-        SplitTri( splitTris, tri, top, mid, low ); /** < Check this actually returns a value, and not none. */
+        SplitTri( splitTris, tri, top, mid, low ); 
 
         // Step 5A
         for ( Tri2D* newTri = splitTris.begin(); newTri != splitTris.end(); ++newTri ){
 
             scanTri( renderer, *newTri, solidColour );
-            std::cerr << "------Ended------------" << "\n";
+            
         }
 
     }
@@ -77,8 +65,8 @@ void orderPoints(
     Vector2 mid = zero;
     Vector2 low = zero;
     
-    // Writing the if statement twice saves on storing the two points in memory, 
-    // and for looping over said list, like previously written to do. 
+    // Writing the if statement twice saves on storing the two points in memory. 
+    // And the same for looping, over said list; like previously written to do. 
     // However the compiler probably makes this faster anyway...
 
     if ( one.y < top.y ){
@@ -151,7 +139,9 @@ void scanTri(
     Tri2D& tri, 
     ColourI& solidColour ){
 
-    std::cerr << "|  Scanning tris" << "\n";
+    /*std::cerr << "|  Scanning tris" << "\n";*/
+
+    SDL_SetRenderDrawColor( renderer, solidColour.r, solidColour.g, solidColour.b, solidColour.a );
 
     // Orders
     std::array< Vector2, 3 > orderedPoints;
@@ -162,9 +152,11 @@ void scanTri(
     Vector2& mid = orderedPoints[1];
     Vector2& low = orderedPoints[2];    
 
+    /*
     std::cerr << "|  Top: [" << top.x << ", " << top.y << "]"<< "\n";
     std::cerr << "|  Mid: [" << mid.x << ", " << mid.y << "]"<< "\n";
     std::cerr << "|  Low: [" << low.x << ", " << low.y << "]"<< "\n";
+    */
     
     // Creates lines
     Line2D lineLeft;
@@ -201,12 +193,12 @@ void scanTri(
     int startX;
     int endX;
 
-    std::cerr << "|    Axis:" << "\n";
+    /*std::cerr << "|    Axis:" << "\n";*/
 
     for ( int y = top.y; y <= low.y; y++ ){
         
         
-        std::cerr << "|    Y: [" << y << "]" << "\n";
+        /*std::cerr << "|    Y: [" << y << "]" << "\n";*/
         
         startX = findXFromEOL( y, cLeft, mLeft );
         endX = findXFromEOL( y, cRight, mRight );
@@ -216,8 +208,7 @@ void scanTri(
             renderer,
             startX,
             endX,
-            y,
-            solidColour
+            y
         );
 
     }
@@ -228,34 +219,34 @@ void scanLine(
     SDL_Renderer* renderer,
     int startX,
     int endX,
-    int y,
-    ColourI& solidColour ){
+    int y ){
     
     int difference = endX - startX;
+
+    /*
     std::cerr << "|    | End: [" << endX << "]" << "\n";
     std::cerr << "|    | Start: [" << startX << "]" << "\n";
     std::cerr << "|    | Diff: [" << difference << "]" << "\n";
+    */
 
     std::vector< SDL_FPoint > points( difference );
-    
-    //std::cerr << "|    | StartX: [" << startX << "]"<< "\n";
 
     for ( int x = startX; x <= endX; x++ ){
         
-        //std::cerr << "|    | X: [" << x << "]"<< "\n";
+        /*std::cerr << "[" << x << "], ";*/
 
         points.push_back( SDL_FPoint( x, y ) );
     }
 
-    //std::cerr << "|    EndX: [" << endX << "]"<< "\n";
+
     bool worked;
-    worked = SDL_RenderPoints( renderer, points.data(), difference );
+    worked = SDL_RenderPoints( renderer, points.data(), points.size() );
 
     if ( !worked ){
-        std::cerr << "|    |  Failed to render! " << "\n";
+        std::cerr << "Failed to render the tri! " << "\n";
         SDL_GetError();
 
-        throw std::logic_error("Failed to render!");
+        throw std::logic_error("Failed to render a tri using `SDL_RenderPoints!");
         
     }
 

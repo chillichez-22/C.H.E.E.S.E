@@ -42,5 +42,4 @@ void scanLine(
     SDL_Renderer* renderer,
     int startX,
     int endX,
-    int y,
-    ColourI& solidColour );
+    int y );
