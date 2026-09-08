@@ -18,7 +18,7 @@
 void RasteriseTri( 
     SDL_Renderer* renderer,
     Tri2D& tri, 
-    ColourF& solidColour );
+    ColourI& solidColour );
 
 void orderPoints(
     std::array< Vector2, 3 >& orderedPoints,
@@ -36,11 +36,11 @@ void SplitTri(
 void scanTri( 
     SDL_Renderer* renderer,
     Tri2D& tri, 
-    ColourF& solidColour );
+    ColourI& solidColour );
 
 void scanLine( 
     SDL_Renderer* renderer,
     int startX,
     int endX,
     int y,
-    ColourF& solidColour );
+    ColourI& solidColour );

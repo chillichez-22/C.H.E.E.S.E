@@ -102,7 +102,7 @@ int main() {
 	Vector2 pointThree = Vector2( width * 0.7f, height * 0.7f );
 
 	Tri2D testTri = Tri2D( pointOne, pointTwo, pointThree );
-	ColourF testColour = ColourF( 255, 0, 0, 255 );
+	ColourI testColour = ColourI( 255, 0, 0, 255 );
 
 	std::cerr << "Width: " << width << "\n";
 	std::cerr << "Height: " << height << "\n";

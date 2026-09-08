@@ -9,10 +9,10 @@ ColourF::ColourF( float r, float g, float b, float a ){
     a = a;
 }
 
-ColourI::ColourI( int r, int g, int b, int a ){
+ColourI::ColourI( int red, int green, int blue, int alpha ){
 
-    r = r;
-    g = g;
-    b = b;
-    a = a;
+    r = red;
+    g = green;
+    b = blue;
+    a = alpha;
 }

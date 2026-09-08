@@ -1,10 +1,11 @@
 #include "tri_rasteriser.hpp"
 
+#include <stdexcept>
 
 void RasteriseTri( 
     SDL_Renderer* renderer,
     Tri2D& tri, 
-    ColourF& solidColour ){
+    ColourI& solidColour ){
 
     std::cerr << "| Running tri rasteriser" << "\n";
     
@@ -148,7 +149,7 @@ void SplitTri(
 void scanTri( 
     SDL_Renderer* renderer,
     Tri2D& tri, 
-    ColourF& solidColour ){
+    ColourI& solidColour ){
 
     std::cerr << "|  Scanning tris" << "\n";
 
@@ -228,7 +229,7 @@ void scanLine(
     int startX,
     int endX,
     int y,
-    ColourF& solidColour ){
+    ColourI& solidColour ){
     
     int difference = endX - startX;
     std::cerr << "|    | End: [" << endX << "]" << "\n";
@@ -247,8 +248,15 @@ void scanLine(
     }
 
     //std::cerr << "|    EndX: [" << endX << "]"<< "\n";
+    bool worked;
+    worked = SDL_RenderPoints( renderer, points.data(), difference );
 
-    SDL_RenderPoints( renderer, points.data(), difference );
+    if ( !worked ){
+        std::cerr << "|    |  Failed to render! " << "\n";
+        SDL_GetError();
 
+        throw std::logic_error("Failed to render!");
+        
+    }
 
 }

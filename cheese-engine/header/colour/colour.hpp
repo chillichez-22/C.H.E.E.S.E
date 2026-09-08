@@ -12,12 +12,12 @@ struct Colour{
  */
 struct ColourF : Colour
 {
-    ColourF( float r, float g, float b, float a );
+    ColourF( float r, float g, float b, float a = 1.0f );
 
-    float r = 0.f;
-    float g = 0.f;
-    float b = 0.f;
-    float a = 0.f;
+    float r;
+    float g;
+    float b;
+    float a;
 };
 
 /**
@@ -25,10 +25,10 @@ struct ColourF : Colour
  */
 struct ColourI : Colour
 {
-    ColourI( int r, int g, int b, int a );
+    ColourI( int r, int g, int b, int a = 255 );
 
-    int r = 0;
-    int g = 0;
-    int b = 0;
-    int a = 0;
+    int r;
+    int g;
+    int b;
+    int a;
 };
