@@ -28,7 +28,6 @@ void orderPoints(
 
 void SplitTri( 
     std::array< Tri2D, 2 >& splitTris,
-    Tri2D& tri, 
     Vector2& top,
     Vector2& mid,
     Vector2& low );

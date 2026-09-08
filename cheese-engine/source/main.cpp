@@ -97,9 +97,14 @@ int main() {
 
 	SDL_GetWindowSize( window, &width, &height );
 
-	Vector2 pointOne =   Vector2( width * 0.5f, height * 0.7f );
-	Vector2 pointTwo =   Vector2( width * 0.3f, height * 0.4f );
-	Vector2 pointThree = Vector2( width * 0.7f, height * 0.4f );
+	// Vector2 pointOne = Vector2( width * 0.5f, height * 0.4f );
+	// Vector2 pointTwo =   Vector2( width * 0.3f, height * 0.7f );
+	// Vector2 pointThree =   Vector2( width * 0.7f, height * 0.7f );
+
+	Vector2 pointOne =   Vector2( width * 0.5f, height * 0.4f );
+	Vector2 pointTwo =   Vector2( width * 0.3f, height * 0.7f );
+	Vector2 pointThree = Vector2( width * 0.7f, height * 0.9f );
+
 
 	Tri2D testTri = Tri2D( pointOne, pointTwo, pointThree );
 	ColourI testColour = ColourI( 255, 0, 0, 255 );
@@ -231,8 +236,6 @@ int main() {
 
 		RasteriseTri( renderer, testTri, testColour );
 
-		
-
 
 		/** End Rendering Pipeline Here */
 
@@ -253,7 +256,7 @@ int main() {
 			SDL_Delay( delayTime );
 		}
 
-		//running = false;
+		running = true;
 
 	}
 

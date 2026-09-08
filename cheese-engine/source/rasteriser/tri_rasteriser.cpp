@@ -7,44 +7,40 @@ void RasteriseTri(
     Tri2D& tri, 
     ColourI& solidColour ){
 
-    std::cerr << "| Running tri rasteriser" << "\n";
+    /*std::cerr << "| Running tri rasteriser" << "\n";*/
     
     Vector2& zero = tri.points[0]; /**< Zero index of the tri's points */
     Vector2& one = tri.points[1];  /**< One index of the tri's points */
     Vector2& two = tri.points[2];  /**< Two index of the tri's points */
-
-
-    // Step 1 
     
-    std::array< Vector2, 3 > orderedPoints;
-    orderPoints( orderedPoints, zero, one, two );
-    
-    Vector2& top = orderedPoints[0];  /**< Top most point of the tri ( Lowest y value ) */
-    Vector2& mid = orderedPoints[1];  /**< Mid point of the tri ( Middle y value. OR Can be the same as the top/low, if the tri is a flat-top/bottom ) */
-    Vector2& low = orderedPoints[2];  /**< Lowest point of the tri ( Highest y value ) */
-    
+    /*
+    std::cerr << "Zero: [" << zero.x << ", " << zero.y << "] \n";
+    std::cerr <<  "One: [" << one.x << ", " << one.y << "] \n";
+    std::cerr <<  "Two: [" << two.x << ", " << two.y << "] \n\n";
+    */
 
-    // Step 2
+    // Step 1
 
     // Since two of the points have the same y value. The tri has either a flat top, or flat bottom.
     // Therefore doesnt need to be split, and can skips steps: 3, 4
     if ( zero.y == one.y || one.y == two.y ){
 
-        // Step 5B
+        // Step 4B
         scanTri( renderer, tri, solidColour );
 
     }
 
     else{
 
-        // Step 3 & 4
+        // Step 2 & 3
 
         std::array< Tri2D, 2 > splitTris;
-        SplitTri( splitTris, tri, top, mid, low ); 
+        SplitTri( splitTris, zero, one, two ); 
 
-        // Step 5A
+        // Step 4A
         for ( Tri2D* newTri = splitTris.begin(); newTri != splitTris.end(); ++newTri ){
 
+            std::cerr << "New Tri " << "\n";
             scanTri( renderer, *newTri, solidColour );
             
         }
@@ -62,37 +58,25 @@ void orderPoints(
     // Step 1 
 
     Vector2 top = zero;
-    Vector2 mid = zero;
-    Vector2 low = zero;
+    Vector2 mid = one;
+    Vector2 low = two;
     
-    // Writing the if statement twice saves on storing the two points in memory. 
-    // And the same for looping, over said list; like previously written to do. 
-    // However the compiler probably makes this faster anyway...
-
-    if ( one.y < top.y ){
-
-        top = one;
-    }
-    else if ( one.y > low.y ){
-
-        low = one;
-    }
-    else{
-
-        mid = one;
-    }
-    
-    if ( two.y < top.y ){
+    if ( top.y > low.y ){
 
         top = two;
+        low = zero;
     }
-    else if ( two.y > low.y ){
 
-        low = two;
-    }
-    else{
+    if ( top.y > mid.y ){
 
+        top = one;
         mid = two;
+    }
+
+    if ( mid.y > low.y ){
+
+        mid = zero;
+        low = two;
     }
 
     orderedPoints[0] = top; 
@@ -104,11 +88,11 @@ void orderPoints(
 
 void SplitTri( 
     std::array< Tri2D, 2 >& splitTris,
-    Tri2D& tri, 
     Vector2& top,
     Vector2& mid,
     Vector2& low ){
     
+
     // Step 3
 
     Line2D line = Line2D( low, top );
@@ -125,10 +109,24 @@ void SplitTri(
 
     Vector2 splitPoint = Vector2( splitX, mid.y );
 
-    // Step 4
 
-    Tri2D triTop = Tri2D( top, mid, splitPoint );
-    Tri2D triLow = Tri2D( mid, low, splitPoint );
+    // Step 4
+    
+    Tri2D triTop;
+    Tri2D triLow; 
+    
+    // Preserves the winding order
+    if ( mid.x < splitPoint.x ){
+        
+        triTop = Tri2D( top, mid, splitPoint );
+        triLow = Tri2D( splitPoint, mid, low );
+    }
+    else{
+
+        triTop = Tri2D( top, splitPoint, mid );
+        triLow = Tri2D( mid, splitPoint, low );
+    }
+    
 
     splitTris = { triTop, triLow };
 
@@ -143,20 +141,9 @@ void scanTri(
 
     SDL_SetRenderDrawColor( renderer, solidColour.r, solidColour.g, solidColour.b, solidColour.a );
 
-    // Orders
-    std::array< Vector2, 3 > orderedPoints;
-
-    orderPoints( orderedPoints, tri.points[0], tri.points[1], tri.points[2] );
-
-    Vector2& top = orderedPoints[0];
-    Vector2& mid = orderedPoints[1];
-    Vector2& low = orderedPoints[2];    
-
-    /*
-    std::cerr << "|  Top: [" << top.x << ", " << top.y << "]"<< "\n";
-    std::cerr << "|  Mid: [" << mid.x << ", " << mid.y << "]"<< "\n";
-    std::cerr << "|  Low: [" << low.x << ", " << low.y << "]"<< "\n";
-    */
+    Vector2& zero = tri.points[0]; /**< Zero index of the tri's points */
+    Vector2& one = tri.points[1];  /**< One index of the tri's points */
+    Vector2& two = tri.points[2];  /**< Two index of the tri's points */
     
     // Creates lines
     Line2D lineLeft;
@@ -168,20 +155,49 @@ void scanTri(
     float cLeft;
     float cRight;
     
-    // Top-Flat tri
-    if ( top.y == mid.y ){
+    /**
+     * Zero is always the highest point.
+     * Two is always the lowest point.
+     * 
+     * On top-flat tris: 
+     * - Zero or One is the top point. 
+     * - Two is the low point.
+     *  
+     *      1---------[0]^
+     *       \       /
+     *        \     /
+     *         \   /
+     *          \ /
+     *          [2]v
+     * 
+     * 
+     * On bottom-flat tris:
+     * - Zero is the top point
+     * - Two or One is the low point.
+     * 
+     *           [0]^
+     *           / \
+     *          /   \
+     *         /     \
+     *        /       \
+     *       1--------[2]v
+     * 
+     */
 
-        lineLeft = Line2D( top, low );
-        lineRight = Line2D( low, mid );
+    // Top-Flat tri
+    if ( zero.y == one.y ){
+
+        lineLeft = Line2D( one, two );
+        lineRight = Line2D( two, zero );
 
     }
     // Bottom-Flat tri
     else{
 
-        /** NOTE: Swapped these two around */
-        lineLeft = Line2D( low, top ); 
-        lineRight = Line2D( top, mid );
+        lineLeft = Line2D( zero, one );
+        lineRight = Line2D( two, zero );
     }
+    
 
     mLeft = lineLeft.lineVector().gradient();
     mRight = lineRight.lineVector().gradient();
@@ -195,7 +211,7 @@ void scanTri(
 
     /*std::cerr << "|    Axis:" << "\n";*/
 
-    for ( int y = top.y; y <= low.y; y++ ){
+    for ( int y = zero.y; y <= two.y; y++ ){
         
         
         /*std::cerr << "|    Y: [" << y << "]" << "\n";*/
