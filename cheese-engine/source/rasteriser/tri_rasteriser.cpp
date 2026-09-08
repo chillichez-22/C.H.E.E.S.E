@@ -9,17 +9,24 @@ void RasteriseTri(
 
     /*std::cerr << "| Running tri rasteriser" << "\n";*/
     
-    Vector2& zero = tri.points[0]; /**< Zero index of the tri's points */
-    Vector2& one = tri.points[1];  /**< One index of the tri's points */
-    Vector2& two = tri.points[2];  /**< Two index of the tri's points */
+    Vector2 zero = tri.points[0]; /**< Zero index of the tri's points */
+    Vector2 one = tri.points[1];  /**< One index of the tri's points */
+    Vector2 two = tri.points[2];  /**< Two index of the tri's points */
     
     /*
     std::cerr << "Zero: [" << zero.x << ", " << zero.y << "] \n";
     std::cerr <<  "One: [" << one.x << ", " << one.y << "] \n";
     std::cerr <<  "Two: [" << two.x << ", " << two.y << "] \n\n";
     */
+   
+   // Step 1
+   
+    std::array< Vector2, 3 > orderedPoints;
+    orderPoints( orderedPoints, zero, one, two );
 
-    // Step 1
+    zero = orderedPoints[0];
+    one =  orderedPoints[1];
+    two =  orderedPoints[2];
 
     // Since two of the points have the same y value. The tri has either a flat top, or flat bottom.
     // Therefore doesnt need to be split, and can skips steps: 3, 4
@@ -55,7 +62,6 @@ void orderPoints(
     Vector2& one,
     Vector2& two ){
 
-    // Step 1 
 
     Vector2 top = zero;
     Vector2 mid = one;
@@ -93,7 +99,7 @@ void SplitTri(
     Vector2& low ){
     
 
-    // Step 3
+    // Step 2
 
     Line2D line = Line2D( low, top );
 
@@ -110,12 +116,12 @@ void SplitTri(
     Vector2 splitPoint = Vector2( splitX, mid.y );
 
 
-    // Step 4
+    // Step 3
     
     Tri2D triTop;
     Tri2D triLow; 
     
-    // Preserves the winding order
+    // Preserves the winding order for the new tris
     if ( mid.x < splitPoint.x ){
         
         triTop = Tri2D( top, mid, splitPoint );

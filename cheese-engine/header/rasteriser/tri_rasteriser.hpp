@@ -20,11 +20,13 @@ void RasteriseTri(
     Tri2D& tri, 
     ColourI& solidColour );
 
+
 void orderPoints(
     std::array< Vector2, 3 >& orderedPoints,
     Vector2& zero,
     Vector2& one,
     Vector2& two );
+
 
 void SplitTri( 
     std::array< Tri2D, 2 >& splitTris,
@@ -32,11 +34,13 @@ void SplitTri(
     Vector2& mid,
     Vector2& low );
 
+
 void scanTri( 
     SDL_Renderer* renderer,
     Tri2D& tri, 
     ColourI& solidColour );
 
+    
 void scanLine( 
     SDL_Renderer* renderer,
     int startX,
