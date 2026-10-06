@@ -1,5 +1,125 @@
 #include "vector_3.hpp"
 
+
+Vector3::Vector3(){};
+
+Vector3::Vector3( float newX, float newY, float newZ ){
+
+    x = newX;
+    y = newY;
+    z = newZ;
+};
+
+
+// Comparison Operator Overloading
+
+bool Vector3::operator==( Vector3& vector ){
+
+    if ( x == vector.x && y == vector.y && z == vector.z ){
+        
+        return true;
+    };
+
+    return false;
+}
+
+bool Vector3::operator!=( Vector3& vector ){
+
+    if ( x != vector.x && y != vector.y && z != vector.z ){
+        
+        return true;
+    };
+
+    return false;
+}
+
+
+// Basic Operator Overloading
+
+Vector3 Vector3::operator+( Vector3& vector ){
+
+    return Vector3(
+        x + vector.x,
+        y + vector.y,
+        z + vector.z
+    );
+};
+
+Vector3 Vector3::operator-( Vector3& vector ){
+
+    return Vector3(
+        x - vector.x,
+        y - vector.y,
+        z - vector.z
+    );
+};
+
+Vector3 Vector3::operator*( Vector3& vector ){
+
+    return Vector3(
+        x * vector.x,
+        y * vector.y,
+        z * vector.z
+    );
+};
+
+Vector3 Vector3::operator/( Vector3& vector ){
+
+    return Vector3(
+        x / vector.x,
+        y / vector.y,
+        z / vector.z
+    );
+};
+
+Vector3 Vector3::operator^( float& scale ){
+
+    return Vector3(
+        powf(x, scale),
+        powf(y, scale),
+        powf(z, scale)
+    );
+};
+
+
+// Assignment Operator Overloading
+
+void Vector3::operator+=( Vector3& vector ){
+
+    x += vector.x;
+    y += vector.y;
+    z += vector.z;
+};
+
+void Vector3::operator-=( Vector3& vector ){
+
+    x -= vector.x;
+    y -= vector.y;
+    z -= vector.z;
+};
+
+void Vector3::operator*=( Vector3& vector ){
+
+    x *= vector.x;
+    y *= vector.y;
+    z *= vector.z;
+};
+
+void Vector3::operator/=( Vector3& vector ){
+
+    x /= vector.x;
+    y /= vector.y;
+    z /= vector.z;
+};
+
+void Vector3::operator^=( float& scale ){
+
+    x = powf( x, scale );
+    y = powf( y, scale );
+    z = powf( z, scale );
+};
+
+
 // Vector Basic
 
 Vector3 add( Vector3& vectorOne, Vector3& vectorTwo ){
