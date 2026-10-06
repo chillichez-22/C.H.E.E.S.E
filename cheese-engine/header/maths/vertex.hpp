@@ -17,6 +17,28 @@ struct Vertex2D{
     Vector2 pos;
     Vector2 uv;
     ColourI colour;
+
+    /**
+     * @brief Default Constructor 
+     */
+    Vertex2D();
+
+    /**
+     * @brief Constructor for a 2D vertex.
+     * 
+     * @attention This is a `2D` vertex, it cannot be used for a 3D shape. For 3D shapes use `Vertex3D`
+     * 
+     * @param posCoord 2D Position co-ordinate of the vertex.
+     * @param uvCoord UV co-ordinate for a texture.
+     * @param colourValue Colour value for this vertex. ( This is used to lerp between each of a shape's corner, to produce its albedo value )
+     * 
+     * @returns `Vertex2D` Vertex with a position, normal, uv, and colour value.
+     */
+    Vertex2D( 
+        Vector2 posCoord,  
+        Vector2 uvCoord, 
+        ColourI colourValue 
+    );
 };
 
 /**
@@ -28,4 +50,26 @@ struct Vertex3D{
     Vector3 normal;
     Vector2 uv;
     ColourI colour;
+
+    /**
+     * @brief Default Constructor 
+     */
+    Vertex3D();
+
+    /**
+     * @brief Constructor for a 3D vertex.
+     * 
+     * @param posCoord 3D Position co-ordinate of the vertex.
+     * @param normalVec Normal of the vertex.
+     * @param uvCoord UV co-ordinate for a texture.
+     * @param colourValue Colour value for this vertex. ( This is used to lerp between each of a shape's corner, to produce its albedo value )
+     * 
+     * @returns `Vertex3D` Vertex with a position, normal, uv, and colour value.
+     */
+    Vertex3D( 
+        Vector3 posCoord, 
+        Vector3 normalVec, 
+        Vector2 uvCoord, 
+        ColourI colourValue 
+    );
 };

@@ -1,13 +1,22 @@
 #include "colour.hpp"
 
 
-ColourF::ColourF( float r, float g, float b, float a ){
+// ColourF
 
-    r = r;
-    g = g;
-    b = b;
-    a = a;
+ColourF::ColourF(){};
+
+ColourF::ColourF( float red, float green, float blue, float alpha ){
+
+    r = red;
+    g = green;
+    b = blue;
+    a = alpha;
 }
+
+
+// ColourI
+
+ColourI::ColourI(){};
 
 ColourI::ColourI( int red, int green, int blue, int alpha ){
 

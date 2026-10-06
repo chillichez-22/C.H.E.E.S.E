@@ -12,7 +12,8 @@ struct Colour{
  */
 struct ColourF : Colour
 {
-    ColourF( float r, float g, float b, float a = 1.0f );
+    ColourF();
+    ColourF( float red, float green, float blue, float alpha = 1.0f );
 
     float r;
     float g;
@@ -25,7 +26,8 @@ struct ColourF : Colour
  */
 struct ColourI : Colour
 {
-    ColourI( int r, int g, int b, int a = 255 );
+    ColourI();
+    ColourI( int red, int green, int blue, int alpha = 255 );
 
     int r;
     int g;
