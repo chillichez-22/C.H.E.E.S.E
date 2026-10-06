@@ -59,6 +59,20 @@ struct RayHit2D{
     Vector2 collision; /**< Collision point of the ray hit.*/
     Vector2 uv; /**< UV coord of the ray hit. */
     float t; /**< Scalar value from the ray, for the hit */
+
+    /**
+     * @brief Default Constructor
+     */
+    RayHit2D();
+
+    /**
+     * @brief Constructor for a successfull 2d ray hit with another shape.
+     * 
+     * @param collisionPoint Point of collision with the shape.
+     * @param uvCoord Coordinate for the UV value.
+     * @param tValue T value of the scalar distance, for the collision's point along the ray's direction.
+     */
+    RayHit2D( Vector2 collisionPoint, Vector2 uvCoord, float tValue );
 };
 
 struct RayHit3D{
@@ -66,4 +80,21 @@ struct RayHit3D{
     Vector3 collision; /**< Collision point of the ray hit.*/
     Vector2 uv; /**< UV coord of the ray hit. */
     float t; /**< Scalar value from the ray, for the hit.*/
+
+
+    /**
+     * @brief Default Constructor
+     */
+    RayHit3D();
+
+    /**
+     * @brief Constructor for a successfull 3d ray hit with another shape.
+     * 
+     * @param collisionPoint Point of collision with the shape.
+     * @param uvCoord Coordinate for the UV value.
+     * @param tValue T value of the scalar distance, for the collision's point along the ray's direction.
+     * 
+     * @returns `RayHit3D` New RayHit3D
+     */
+    RayHit3D( Vector3 collisionPoint, Vector2 uvCoord, float tValue );
 };
