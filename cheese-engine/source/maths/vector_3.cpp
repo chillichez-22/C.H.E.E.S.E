@@ -122,46 +122,46 @@ void Vector3::operator^=( float& scale ){
 
 // Vector Basic
 
-Vector3 Vector3::add( Vector3& vectorOne, Vector3& vectorTwo ){
+Vector3 Vector3::add( Vector3& otherVector ){
 
     Vector3 newVector3 = { 
-        vectorOne.x + vectorTwo.x, 
-        vectorOne.y + vectorTwo.y, 
-        vectorOne.z + vectorTwo.z  
+        x + otherVector.x, 
+        y + otherVector.y, 
+        z + otherVector.z  
     };
     return newVector3;
 }
 
-Vector3 Vector3::sub( Vector3& vectorOne, Vector3& vectorTwo ){
+Vector3 Vector3::sub( Vector3& otherVector ){
 
-    // VectorTwo and VectorOne are in the reversed order, since thats the most commonly used
+    // OtherVector and this vector are in the reversed order, since that's the most commonly used
     // way for a vector subtraction
     Vector3 newVector3 = { 
-        vectorTwo.x - vectorOne.x, 
-        vectorTwo.y - vectorOne.y,
-        vectorTwo.z - vectorOne.z  
+        otherVector.x - x, 
+        otherVector.y - y,
+        otherVector.z - z  
     };
     return newVector3;
 }
 
-Vector3 Vector3::multiply( Vector3& vectorOne, Vector3& vectorTwo ){
+Vector3 Vector3::multiply( Vector3& otherVector ){
     
     Vector3 newVector3 = { 
-        vectorOne.x * vectorTwo.x, 
-        vectorOne.y * vectorTwo.y,
-        vectorOne.z * vectorTwo.z  
+        x * otherVector.x, 
+        y * otherVector.y,
+        z * otherVector.z  
     };
     return newVector3;
 }
 
-Vector3 Vector3::divide( Vector3& vectorOne, Vector3& vectorTwo ){
+Vector3 Vector3::divide( Vector3& otherVector ){
 
-    // VectorTwo and VectorOne are in the reversed order, since thats the most commonly used
+    // OtherVector and this vector are in the reversed order, since that's the most commonly used
     // way for a vector division
     Vector3 newVector3 = { 
-        vectorTwo.x / vectorOne.x, 
-        vectorTwo.y / vectorOne.y,
-        vectorTwo.z / vectorOne.z  
+        otherVector.x / x, 
+        otherVector.y / y,
+        otherVector.z / z  
     };
     return newVector3;
 }
@@ -169,39 +169,39 @@ Vector3 Vector3::divide( Vector3& vectorOne, Vector3& vectorTwo ){
 
 // Vector Math
 
-float Vector3::magnitude( Vector3& vector ){
+float Vector3::magnitude(){
 
     return sqrtf(
-        vector.x * vector.x + 
-        vector.y * vector.y +
-        vector.z * vector.z 
+        x * x + 
+        y * y +
+        z * z 
     );
 }
 
-Vector3 Vector3::scale( Vector3& vector, float factor ){
+Vector3 Vector3::scale( float factor ){
 
     Vector3 newVector = {
-        vector.x * factor,
-        vector.y * factor,
-        vector.z * factor
+        x * factor,
+        y * factor,
+        z * factor
     };
 
     return newVector;
 }
 
-Vector3 Vector3::scaleTo( Vector3& vector, float factor ){
+Vector3 Vector3::scaleTo( float factor ){
 
-    Vector3 unitVector = unit( vector );
+    Vector3 unitVector = unit();
 
-    return scale( unitVector, factor );
+    return scale( factor );
 }
 
-Vector3 Vector3::unit( Vector3& vector ){
+Vector3 Vector3::unit(){
 
     Vector3 newVector = {
-        vector.x / magnitude( vector ),
-        vector.y / magnitude( vector ),
-        vector.z / magnitude( vector )
+        x / magnitude(),
+        y / magnitude(),
+        z / magnitude()
     };
     
     return newVector;
@@ -210,20 +210,20 @@ Vector3 Vector3::unit( Vector3& vector ){
 
 // Vector Rotations
 
-Vector3 Vector3::angleDegrees( Vector3& vector ){
+Vector3 Vector3::angleDegrees(){
 
-    Vector3 radians = angleRadians( vector );
-    return scale( radians, (180 / M_PI) );
+    Vector3 radians = angleRadians();
+    return radians.scale( (180 / M_PI) );
 
 }
 
-Vector3 Vector3::angleRadians( Vector3& vector ){
+Vector3 Vector3::angleRadians(){
 
-    float vectorMagnitude = magnitude( vector );
+    float vectorMagnitude = magnitude();
 
-    float alpha = acosf( vector.x / vectorMagnitude );
-    float beta = acosf( vector.y / vectorMagnitude );
-    float gamma = acosf( vector.z / vectorMagnitude );
+    float alpha = acosf( x / vectorMagnitude );
+    float beta = acosf( y / vectorMagnitude );
+    float gamma = acosf( z / vectorMagnitude );
 
     Vector3 angleVector = {
         alpha,
