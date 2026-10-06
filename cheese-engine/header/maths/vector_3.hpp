@@ -265,3 +265,12 @@ struct Vector3{
 float dot( Vector3& vectorOne, Vector3& vectorTwo );
 
 
+/**
+ * @brief Returns the cross product of the inputted Vector3s.
+ * 
+ * @param vectorOne First vector.
+ * @param vectorTwo Second vector.
+ * 
+ * @return Vector3 of the cross product of the Vector3s.
+ */
+Vector3 cross( Vector3& vectorOne, Vector3& vectorTwo );
