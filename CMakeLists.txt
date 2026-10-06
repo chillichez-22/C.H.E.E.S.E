@@ -41,10 +41,13 @@ set( maths_sources
 
     "cheese-engine/source/maths/math.cpp"
 
+    "cheese-engine/source/maths/interpolation.cpp"
     "cheese-engine/source/maths/matrix.cpp"
+    "cheese-engine/source/maths/ray.cpp"
     "cheese-engine/source/maths/vector_2.cpp"
     "cheese-engine/source/maths/vector_3.cpp"
     "cheese-engine/source/maths/vector_4.cpp"
+    "cheese-engine/source/maths/vertex.cpp"
 )
 
 set( rasteriser_sources
