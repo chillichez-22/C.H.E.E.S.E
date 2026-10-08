@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstdint>
 
 struct Colour{
 
@@ -29,8 +30,8 @@ struct ColourI : Colour
     ColourI();
     ColourI( int red, int green, int blue, int alpha = 255 );
 
-    int r;
-    int g;
-    int b;
-    int a;
+    uint8_t r;
+    uint8_t g;
+    uint8_t b;
+    uint8_t a;
 };

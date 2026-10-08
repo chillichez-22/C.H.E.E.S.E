@@ -76,60 +76,61 @@ struct Vertex3D{
     );
 };
 
-struct vertexBuffer2D{
+
+// struct vertexBuffer2D{
 
 
-    std::vector< Vertex2D > buffer; /**<Buffer of vertexes */
+//     std::vector< Vertex2D > buffer; /**<Buffer of vertexes */
 
-    /**
-     * @brief Creates an empty vertexBuffer2D
-     * 
-     * @returns `vertexBuffer2D` New empty vertex buffer.
-     */
-    vertexBuffer2D(){};
+//     /**
+//      * @brief Creates an empty vertexBuffer2D
+//      * 
+//      * @returns `vertexBuffer2D` New empty vertex buffer.
+//      */
+//     vertexBuffer2D(){};
 
-    /**
-     * @brief Create a new vertexBuffer2D.
-     * 
-     * @param buffer List of `vertex2D` to initialise the buffer with.
-     * 
-     * @returns `vertexBuffer2D` New vertex buffer filled with the `buffer`. 
-     */
-    vertexBuffer2D( std::vector< Vertex2D > vertexBuffer ): buffer( vertexBuffer ){};;
+//     /**
+//      * @brief Create a new vertexBuffer2D.
+//      * 
+//      * @param buffer List of `vertex2D` to initialise the buffer with.
+//      * 
+//      * @returns `vertexBuffer2D` New vertex buffer filled with the `buffer`. 
+//      */
+//     vertexBuffer2D( std::vector< Vertex2D > vertexBuffer ): buffer( vertexBuffer ){};;
 
-    /**
-     * @brief Returns the number of items in the buffer.
-     * 
-     * @returns `int` Number of items in the buffer.
-     */
-    int count();
-};
+//     /**
+//      * @brief Returns the number of items in the buffer.
+//      * 
+//      * @returns `int` Number of items in the buffer.
+//      */
+//     int count();
+// };
 
-struct vertexBuffer3D{
+// struct vertexBuffer3D{
 
 
-    std::vector< Vertex3D > buffer; /**<Buffer of vertexes */
+//     std::vector< Vertex3D > buffer; /**<Buffer of vertexes */
 
-    /**
-     * @brief Creates an empty vertexBuffer3D
-     * 
-     * @returns `vertexBuffer3D` New empty vertex buffer.
-     */
-    vertexBuffer3D(){};
+//     /**
+//      * @brief Creates an empty vertexBuffer3D
+//      * 
+//      * @returns `vertexBuffer3D` New empty vertex buffer.
+//      */
+//     vertexBuffer3D(){};
 
-    /**
-     * @brief Create a new vertexBuffer3D.
-     * 
-     * @param buffer List of `vertex3D` to initialise the buffer with.
-     * 
-     * @returns `vertexBuffer3D` New vertex buffer filled with the `buffer`. 
-     */
-    vertexBuffer3D( std::vector< Vertex3D > vertexBuffer ): buffer( vertexBuffer ){};
+//     /**
+//      * @brief Create a new vertexBuffer3D.
+//      * 
+//      * @param buffer List of `vertex3D` to initialise the buffer with.
+//      * 
+//      * @returns `vertexBuffer3D` New vertex buffer filled with the `buffer`. 
+//      */
+//     vertexBuffer3D( std::vector< Vertex3D > vertexBuffer ): buffer( vertexBuffer ){};
 
-    /**
-     * @brief Returns the number of items in the buffer.
-     * 
-     * @returns `int` Number of items in the buffer.
-     */
-    int count();
-};
+//     /**
+//      * @brief Returns the number of items in the buffer.
+//      * 
+//      * @returns `int` Number of items in the buffer.
+//      */
+//     int count();
+// };

@@ -2,20 +2,36 @@
 // External
 #include <string>
 #include <iostream>
+#include <cstdint>
 #include <SDL3/SDL.h>
 
+
 // Outside Scope
-#include "math.hpp"
-
-#include "shape_2d.hpp"
-#include "tri_2d.hpp"
-#include "shape_3d.hpp"
-
-#include "mouse.hpp"
-#include "ui.hpp"
 
 #include "colour.hpp"
 
+// Maths
+#include "math.hpp"
+
+// Math Data-Types
+#include "buffer.hpp"
+#include "vector_2.hpp"
+#include "vector_3.hpp"
+#include "vertex.hpp"
+
+// Shapes
+#include "shape_2d.hpp"
+#include "tri_2d.hpp"
+
+#include "shape_3d.hpp"
+#include "tri_3d.hpp"
+
+// Inputs & UI
+#include "mouse.hpp"
+#include "ui.hpp"
+
+// Rendering
+#include "rendering.hpp"
 #include "tri_rasteriser.hpp"
 
 
@@ -33,9 +49,9 @@ int main() {
 	std::cout << "CPP version: " << __cplusplus << "\n";
 	std::cout << "SDL3 version: " << SDL_GetVersion() << "\n";
 
-	/*
-	// Displays, and Window Selection
 
+	// Displays, and Window Selection
+	/*
 	SDL_DisplayID* displays;
 	int displayCount;
 	int targetDisplay = 2;
@@ -45,6 +61,7 @@ int main() {
 	std::cout << "Display count: " << displayCount << "\n";
 	std::cout << "First Display: " << displays[0] << "\n";
 	*/
+
 
 	// FPS & Performance
 
@@ -81,14 +98,21 @@ int main() {
 
 
 	// UI
+
 	UI mainUI;
 
 
 	// Mouse 
+	
 	enum MouseButtonEvent leftMouseButton;
 	enum MouseButtonEvent middleMouseButton;
 	enum MouseButtonEvent rightMouseButton;
 
+
+	// Rendering
+
+	buffer vertexBuffer = buffer<ObjectVertex>();
+	buffer indexBuffer = buffer<uint32_t>();
 
 	// Testing
 
@@ -97,19 +121,29 @@ int main() {
 
 	SDL_GetWindowSize( window, &width, &height );
 
-	// Vector2 pointOne = Vector2( width * 0.5f, height * 0.4f );
-	// Vector2 pointTwo =   Vector2( width * 0.3f, height * 0.7f );
-	// Vector2 pointThree =   Vector2( width * 0.7f, height * 0.7f );
+	Vector3 pointOne = Vector3( width * 0.5f, height * 0.4f, 1 );
+	Vector3 pointTwo = Vector3( width * 0.3f, height * 0.7f, 1 );
+	Vector3 pointThree = Vector3( width * 0.7f, height * 0.9f, 1 );
 
-	Vector2 pointOne = Vector2( width * 0.5f, height * 0.4f );
-	Vector2 pointTwo =   Vector2( width * 0.3f, height * 0.7f );
-	Vector2 pointThree =   Vector2( width * 0.7f, height * 0.9f );
+	Tri3D testTri = Tri3D( pointOne, pointTwo, pointThree );
 
-	Tri2D testTri = Tri2D( pointOne, pointTwo, pointThree );
-	ColourI testColour = ColourI( 255, 0, 0, 255 );
+	/* Loads vertex data */
 
-	std::cerr << "Width: " << width << "\n";
-	std::cerr << "Height: " << height << "\n";
+	ColourI red = ColourI( 255, 0, 0 ); /** */
+	ColourI green = ColourI( 0, 255, 0 );
+	ColourI blue = ColourI( 255, 0, 255 );
+
+	Vector2 emptyUV = Vector2( 0, 0 );
+
+	ObjectVertex vertexOne =   ObjectVertex( testTri.points[0], emptyUV, red );
+	ObjectVertex vertexTwo =   ObjectVertex( testTri.points[1], emptyUV, green );
+	ObjectVertex vertexThree = ObjectVertex( testTri.points[2], emptyUV, blue );
+
+	// Adds vertex data to both index and vertex buffers
+	indexBuffer.push_back( vertexBuffer.push_back( vertexOne ) );
+	indexBuffer.push_back( vertexBuffer.push_back( vertexTwo ) );
+	indexBuffer.push_back( vertexBuffer.push_back( vertexThree ) );
+	
 
 	// Main Loop
 	bool running = true;
@@ -231,9 +265,9 @@ int main() {
 		// Draws bg
 		SDL_SetRenderDrawColor( renderer, 255, 255, 255, 255 );
 
-		//mainUI.drawAll();
 
-		RasteriseTri( renderer, testTri, testColour );
+
+		
 
 
 		/** End Rendering Pipeline Here */

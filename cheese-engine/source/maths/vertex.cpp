@@ -29,12 +29,12 @@ Vertex3D::Vertex3D( Vector3 posCoord, Vector3 normalVec, Vector2 uvCoord, Colour
 
 // VertexBuffer
 
-int vertexBuffer2D::count(){
+// int vertexBuffer2D::count(){
 
-    return buffer.size();
-};
+//     return buffer.size();
+// };
 
-int vertexBuffer3D::count(){
+// int vertexBuffer3D::count(){
 
-    return buffer.size();
-};
+//     return buffer.size();
+// };

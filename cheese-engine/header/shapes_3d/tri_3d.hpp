@@ -2,6 +2,7 @@
 
 // External
 #include <array>
+#include <cstdint>
 
 // Outside Scope
 #include "vector_3.hpp"
@@ -16,16 +17,16 @@ struct Tri3D : public Shape3D{
 
 public:
 
-    Vector3 centre;
-    std::array< Vector3, 3 > points;
+    std::array< Vector3&, 3 > points;
 
 public:
 
     Tri3D();
+    
     Tri3D( 
-        Vector3 pointOne, 
-        Vector3 pointTwo, 
-        Vector3 pointThree 
+        Vector3& vectorOne, 
+        Vector3& vectorTwo, 
+        Vector3& vectorThree 
     );
 
     ~Tri3D() = default;
