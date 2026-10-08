@@ -33,3 +33,8 @@ int vertexBuffer2D::count(){
 
     return buffer.size();
 };
+
+int vertexBuffer3D::count(){
+
+    return buffer.size();
+};
