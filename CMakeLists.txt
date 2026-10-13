@@ -55,8 +55,8 @@ set( rendering_sources
     
     "cheese-engine/source/rendering/rendering.cpp"
     
-    #"cheese-engine/source/rendering/vertex_shader.cpp"
-    #"cheese-engine/source/rendering/tri_rasteriser.cpp"
+    "cheese-engine/source/rendering/vertex_shader.cpp"
+    "cheese-engine/source/rendering/tri_rasteriser.cpp"
     #"cheese-engine/source/rasteriser/quad_rasteriser.cpp"
 )
 

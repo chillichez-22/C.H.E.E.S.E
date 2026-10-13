@@ -78,10 +78,10 @@ int main() {
 	// SDL Window Setup
 
 	SDL_Window* window;
-	SDL_Renderer* renderer;
+	SDL_Renderer* renderer; 
 	
 	window = SDL_CreateWindow(
-		"Coding? No... No.. No.. Im taking a break, defo.",//"C.H.E.E.S.E - SDL3", 
+		"C.H.E.E.S.E - SDL3", 
 		500, 
 		300, 
 		SDL_WINDOW_RESIZABLE
@@ -126,19 +126,23 @@ int main() {
 	Vector3 pointOne = Vector3( width * 0.5f, height * 0.4f, 1 );
 	Vector3 pointTwo = Vector3( width * 0.3f, height * 0.7f, 1 );
 	Vector3 pointThree = Vector3( width * 0.7f, height * 0.9f, 1 );
-
+	
+	std::cout << "testTri" << "\n";
 	Tri3D testTri = Tri3D( pointOne, pointTwo, pointThree );
-
+	
 	ColourI red = ColourI( 255, 0, 0 ); /** */
 	ColourI green = ColourI( 0, 255, 0 );
 	ColourI blue = ColourI( 255, 0, 255 );
 	
 	Vector2 emptyUV = Vector2( 0, 0 );
-
+	
 	/** Loads vertex data */
-
+	
+	std::cout << "vertexOne" << "\n";
 	ObjectVertex vertexOne =   ObjectVertex( testTri.points[0], emptyUV, red );
+	std::cout << "vertexTwo" << "\n";
 	ObjectVertex vertexTwo =   ObjectVertex( testTri.points[1], emptyUV, green );
+	std::cout << "vertexThree" << "\n";
 	ObjectVertex vertexThree = ObjectVertex( testTri.points[2], emptyUV, blue );
 
 	// Adds vertex data to both index and vertex buffers
@@ -293,7 +297,7 @@ int main() {
 			SDL_Delay( delayTime );
 		}
 
-		running = true;
+		//running = true;
 
 	}
 

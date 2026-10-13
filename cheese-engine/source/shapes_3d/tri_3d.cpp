@@ -10,5 +10,5 @@ Tri3D::Tri3D(
 
    points[0] = vectorOne;
    points[1] = vectorTwo;
-   points[3] = vectorThree;
+   points[2] = vectorThree;
 };

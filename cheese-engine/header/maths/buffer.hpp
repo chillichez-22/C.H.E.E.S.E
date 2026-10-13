@@ -33,7 +33,7 @@ public:
 
         data.push_back( item );
 
-        uint32_t end = size() ;
+        uint32_t end = size() - 1;
 
         return end;
     }
