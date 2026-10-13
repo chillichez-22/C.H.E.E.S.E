@@ -81,7 +81,7 @@ int main() {
 	SDL_Renderer* renderer;
 	
 	window = SDL_CreateWindow(
-		"C.H.E.E.S.E - SDL3", 
+		"Coding? No... No.. No.. Im taking a break, defo.",//"C.H.E.E.S.E - SDL3", 
 		500, 
 		300, 
 		SDL_WINDOW_RESIZABLE
@@ -111,8 +111,10 @@ int main() {
 
 	// Rendering
 
-	buffer vertexBuffer = buffer<ObjectVertex>();
-	buffer indexBuffer = buffer<uint32_t>();
+	buffer vertexBuffer = buffer<ObjectVertex>(); /**< Buffer object for raw vertex data loaded in from 3D objects and models */
+	buffer indexBuffer = buffer<uint32_t>();      /**< Buffer object for indexes to make primitives for 3D polygons */
+
+	const unsigned int topologyVertexCount = 3;   /**< Vertex count, to make up the primitives in a vertex buffer */
 
 	// Testing
 
@@ -127,28 +129,30 @@ int main() {
 
 	Tri3D testTri = Tri3D( pointOne, pointTwo, pointThree );
 
-	/* Loads vertex data */
-
 	ColourI red = ColourI( 255, 0, 0 ); /** */
 	ColourI green = ColourI( 0, 255, 0 );
 	ColourI blue = ColourI( 255, 0, 255 );
-
+	
 	Vector2 emptyUV = Vector2( 0, 0 );
+
+	/** Loads vertex data */
 
 	ObjectVertex vertexOne =   ObjectVertex( testTri.points[0], emptyUV, red );
 	ObjectVertex vertexTwo =   ObjectVertex( testTri.points[1], emptyUV, green );
 	ObjectVertex vertexThree = ObjectVertex( testTri.points[2], emptyUV, blue );
 
 	// Adds vertex data to both index and vertex buffers
+
 	indexBuffer.push_back( vertexBuffer.push_back( vertexOne ) );
 	indexBuffer.push_back( vertexBuffer.push_back( vertexTwo ) );
 	indexBuffer.push_back( vertexBuffer.push_back( vertexThree ) );
 	
 
 	// Main Loop
+
 	bool running = true;
 
-	bool shouldDeactivate = true;
+	bool shouldDeactivate = false;
 	uint64_t deactivationStopwatch = 0;
 	uint64_t deactivationTime = 5000;
 

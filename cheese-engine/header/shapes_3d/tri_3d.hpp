@@ -17,7 +17,7 @@ struct Tri3D : public Shape3D{
 
 public:
 
-    std::array< Vector3&, 3 > points;
+    std::array< Vector3, 3 > points = std::array< Vector3, 3 >();
 
 public:
 

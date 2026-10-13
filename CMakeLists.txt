@@ -41,6 +41,7 @@ set( maths_sources
 
     "cheese-engine/source/maths/math.cpp"
 
+    "cheese-engine/source/maths/buffer.cpp"
     "cheese-engine/source/maths/interpolation.cpp"
     "cheese-engine/source/maths/matrix.cpp"
     "cheese-engine/source/maths/ray.cpp"
@@ -52,11 +53,11 @@ set( maths_sources
 
 set( rendering_sources
     
-    "cheese-engine/source/rasteriser/rendering.cpp"
-
-    "cheese-engine/source/rasteriser/input_assembler.cpp"
-    "cheese-engine/source/rasteriser/tri_rasteriser.cpp"
-
+    "cheese-engine/source/rendering/rendering.cpp"
+    
+    #"cheese-engine/source/rendering/vertex_shader.cpp"
+    #"cheese-engine/source/rendering/tri_rasteriser.cpp"
+    #"cheese-engine/source/rasteriser/quad_rasteriser.cpp"
 )
 
 set( shape_base_sources
@@ -82,6 +83,7 @@ set( shapes_3d_sources
     "cheese-engine/source/shapes_3d/box.cpp"
     "cheese-engine/source/shapes_3d/line_3d.cpp"
     "cheese-engine/source/shapes_3d/sphere.cpp"
+    "cheese-engine/source/shapes_3d/tri_3d.cpp"
 )
 
 set( ui_sources 
