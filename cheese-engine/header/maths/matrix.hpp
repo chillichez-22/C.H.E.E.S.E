@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <array>
 
 #include "vector_3.hpp"
 #include "vector_4.hpp"
@@ -10,7 +11,13 @@
 /** 
  * @brief Abstract matrix parent class
  */
-class Matrix{};
+class Matrix{
+
+protected:
+    uint8_t rows;
+    uint8_t cols;
+
+};
 
 /** 
  * @brief Abstract float matrix parent class
@@ -102,18 +109,42 @@ public:
 
     MatrixF(){};
 
+    // Getters
+
     /**
-     * @brief Returns an array of a pointers, to values, at the row, of `index`.
+     * @brief Returns an array of a pointers to values at row `index`.
      * 
-     * @details This is not done in the `BaseMatrixF` because the `cols` is not a const, and `template( uint_8 col )` is not defined there.
+     * @details This is not done in the `BaseMatrixF` because the `cols` is not a const,
+     *          and `template( uint_8 col )` is not defined there.
      * 
      * @param index Index of the row to retrieve the values of.
      * 
-     * @returns `array< float*, (columnCount) >`
+     * @returns `array< float*, (columnCount) >` Array of pointers to values in row `index`
      */
     std::array< float*, col > getRow( uint8_t index );
 
+     /**
+     * @brief Returns an array of a pointers to values at column `index`.
+     * 
+     * @details This is not done in the `BaseMatrixF` because the `rows` is not a const,
+     *          and `template( uint_8 row )` is not defined there.
+     * 
+     * @param index Index of the column to retrieve the values of.
+     * 
+     * @returns `array< float*, (rowCount) >` Array of pointers to values in column `index`
+     */
     std::array< float*, row > getCol( uint8_t index );
+
+    // Multiply
+
+    /**
+     * @brief Returns a matrix and matrix multiplication. ( NewMatrix = This X otherMatrix )
+     *  
+     * @param matrix Matrix to multiply to this.
+     * 
+     * @returns `BaseMatrixF` New matrix.
+     */
+    BaseMatrixF multiplyMatrix( BaseMatrixF matrix );
     
 };
 
@@ -121,6 +152,7 @@ public:
 /**
  * @brief An integer matrix of unspecified size. 
  * 
+ * @attention Use `Matrix3x3I` or `Matrix4x4I` whenever possible, since they are faster for multiplications
  */
 template <uint8_t row, uint8_t col>
 class MatrixI: BaseMatrixI{
@@ -136,6 +168,43 @@ public:
 
     MatrixI(){};
     
+    // Getters
+    
+    /**
+     * @brief Returns an array of a pointers to values at row `index`.
+     * 
+     * @details This is not done in the `BaseMatrixI` because the `cols` is not a const,
+     *          and `template( uint_8 col )` is not defined there.
+     * 
+     * @param index Index of the row to retrieve the values of.
+     * 
+     * @returns `array< int*, (columnCount) >` Array of pointers to values in row `index`
+     */
+    std::array< int*, col > getRow( uint8_t index );
+
+     /**
+     * @brief Returns an array of a pointers to values at column `index`.
+     * 
+     * @details This is not done in the `BaseMatrixI` because the `rows` is not a const,
+     *          and `template( uint_8 row )` is not defined there.
+     * 
+     * @param index Index of the column to retrieve the values of.
+     * 
+     * @returns `array< int*, (rowCount) >` Array of pointers to values in column `index`
+     */
+    std::array< int*, row > getCol( uint8_t index );
+
+
+    // Multiply
+
+    /**
+     * @brief Returns a matrix and matrix multiplication. ( NewMatrix = This X otherMatrix )
+     *  
+     * @param matrix Matrix to multiply to this.
+     * 
+     * @returns `BaseMatrixI` New matrix.
+     */
+    BaseMatrixI multiplyMatrix( BaseMatrixI matrix );
 
 };
 
@@ -186,16 +255,6 @@ public:
      */
     Matrix3x3F multiplyMatrix3x3( Matrix3x3F matrix );
 
-    /**
-     * @brief Returns a 3x3 matrix and matrix multiplication. ( NewMatrix = This X otherMatrix )
-     * 
-     * @attention Use `multiplyMatrix3x3` for 3X3 matrix multiplications
-     * 
-     * @param matrix Matrix to multiply to this.
-     * 
-     * @returns `Matrix3x3F` New 3x3 matrix.
-     */
-    Matrix3x3F multiplyMatrix( BaseMatrixF matrix );
 };
 
 /**
@@ -243,132 +302,5 @@ public:
      */
     Matrix4x4F multiplyMatrix4x4( Matrix4x4F matrix );
 
-    /**
-     * @brief Returns a 4x4 matrix and matrix multiplication. ( NewMatrix = This X otherMatrix )
-     * 
-     * @attention Use `multiplyMatrix4x4F` for 4X4 matrix multiplications
-     * 
-     * @param matrix Matrix to multiply to this.
-     * 
-     * @returns `Matrix4x4F` New 4x4 matrix.
-     */
-    Matrix4x4F multiplyMatrix( BaseMatrixF matrix );
-
 };
 
-
-// Int Matrices
-
-/**
- * @brief A int matrix of 3 X 3 size. 
- * 
- */
-class Matrix3x3I: BaseMatrixI{
-
-private:
-
-    uint8_t rows = 3;
-    uint8_t cols = 3;
-
-    /** Stores the matrix data in a 1D int array.  */
-    std::array< int, 9 > data = { 
-        1, 0, 0, 
-        0, 1, 0,
-        0, 0, 1
-    };
-
-public:
-
-    Matrix3x3I(){};
-    
-
-    // Multiplication
-
-    /**
-     * @brief Returns a 3x3 matrix and vector3 multiplication. ( NewMatrix = This X Vector3 )
-     * 
-     * @param vector Vector to multiply to this 
-     * 
-     * @returns `Matrix3x3I` New 3x3 matrix.
-     */
-    Matrix3x3I multiplyVector( Vector3 vector );
-
-    /**
-     * @brief Returns a 3x3 matrix and 3x3 matrix multiplication. ( NewMatrix = This X other3x3Matrix )
-     * 
-     * @param matrix 3x3 Matrix to multiply to this.
-     * 
-     * @returns `Matrix3x3I` New 3x3 matrix.
-     */
-    Matrix3x3I multiplyMatrix3x3( Matrix3x3I matrix );
-
-    /**
-     * @brief Returns a 3x3 matrix and matrix multiplication. ( NewMatrix = This X otherMatrix )
-     * 
-     * @attention Use `multiplyMatrix3x3` for 3X3 matrix multiplications
-     * 
-     * @param matrix Matrix to multiply to this.
-     * 
-     * @returns `Matrix3x3I` New 3x3 matrix.
-     */
-    Matrix3x3I multiplyMatrix( BaseMatrixI matrix );
-
-};
-
-/**
- * @brief A int matrix of 4 X 4 size. 
- * 
- */
-class Matrix4x4I: BaseMatrixI{
-
-private:
-
-    uint8_t rows = 4;
-    uint8_t cols = 4;
-
-    /** Stores the matrix data in a 1D int array.  */
-    std::array< float, 16 > data = { 
-        1.0, 0.0, 0.0, 0.0, 
-        0.0, 1.0, 0.0, 0.0,
-        0.0, 0.0, 1.0, 0.0,
-        0.0, 0.0, 0.0, 1.0
-    };
-
-
-public:
-
-    Matrix4x4I(){};
-    
-
-    // Multiplication
-
-    /**
-     * @brief Returns a 4x4 matrix and vector4 multiplication. ( NewMatrix = This X Vector4 )
-     * 
-     * @param vector Vector to multiply to this 
-     * 
-     * @returns `Matrix4x4I` New 4x4 matrix.
-     */
-    Matrix4x4I multiplyVector( Vector4 vector );
-
-    /**
-     * @brief Returns a 4x4 matrix and 4x4 matrix multiplication. ( NewMatrix = This X other4x4Matrix )
-     * 
-     * @param matrix 4x4 Matrix to multiply to this.
-     * 
-     * @returns `Matrix4x4I` New 4x4 matrix.
-     */
-    Matrix4x4I multiplyMatrix4x4( Matrix4x4I matrix );
-
-    /**
-     * @brief Returns a 4x4 matrix and matrix multiplication. ( NewMatrix = This X otherMatrix )
-     * 
-     * @attention Use `multiplyMatrix4x4I` for 4X4 matrix multiplications
-     * 
-     * @param matrix Matrix to multiply to this.
-     * 
-     * @returns `Matrix4x4I` New 4x4 matrix.
-     */
-    Matrix4x4I multiplyMatrix( BaseMatrixI matrix );
-
-};
