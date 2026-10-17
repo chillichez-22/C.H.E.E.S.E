@@ -1,24 +1,76 @@
 #pragma once
 
+#include <iostream>
 #include <cstdint>
 #include <array>
+#include <cmath> 
 
 #include "vector_3.hpp"
 #include "vector_4.hpp"
 
-
+/**
+ * @brief 
+ * A matrix class used to hold data in a fixed size.
+ * 
+ * Can be any size upto: `255` rows by `255` columns.
+ * 
+ * Initialises a zero'ed matrix; initially filling with 0s.
+ * 
+ * @attention 
+ * For 3 by 3 matrices use `Matrix3x3< valueType >` instead.
+ * 
+ * For 4 by 4 matrices use `Matrix4x4< valueType >` instead.
+ * 
+ * As these are both more efficient and faster when doing vector, and matrix multiplying.
+ * 
+ * 
+ * @tparam valueType Type of the values in the matrix e.g( float, int ).
+ * @tparam rowCount Number of rows for the matrix.
+ * @tparam colCount Number of columns for the matrix.
+ * 
+ */
 template< typename valueType, uint8_t rowCount, uint8_t colCount >
 class Matrix{
 
 private:
 
+    uint8_t rows = rowCount;
+    uint8_t cols = colCount;
+
     std::array< valueType, rowCount * colCount > data{};
 
 public:
+    
+    /**
+     * @brief Default constructor
+     */
+    Matrix(){};
 
-    uint8_t rows;
-    uint8_t cols;
+    ~Matrix() = default;
 
+
+    // Getters
+
+    /**
+     * @brief Returns the number of rows in the matrix.
+     * 
+     * @returns `uint8_t` Number of rows.
+     */
+    uint8_t getRows(){
+        
+        return rows;
+    };
+
+    /**
+     * @brief Returns the number of columns in the matrix.
+     * 
+     * @returns `uint8_t` Number of columns.
+     */
+    uint8_t getCols(){
+
+        return cols;
+    };
+    
     
     /**
      * @brief Retrieves the integer value at matrix pos `indexRow`, `indexCol`.
@@ -30,10 +82,10 @@ public:
      */
     valueType get( uint8_t indexRow, uint8_t indexCol ){
 
-        return data[ indexRow * ( rows - 1 ) + ( cols - 1 ) ]
+        return data[ indexRow * ( rows - 1 ) + ( cols - 1 ) ];
     };
 
-        /**
+    /**
      * @brief Retrieves the integer value at array index `index`.
      * 
      * @param indexRow Raw array index
@@ -42,35 +94,38 @@ public:
      */
     valueType getRaw( uint8_t index ){
 
-        return data[ index ]
+        return data[ index ];
     };
     
+
+    // Setters
+
     /**
      * @brief Sets the value of the matrix pos `indexRow`, `indexCol` to `value`.
      * 
      * @param indexRow Row index
      * @param indexCol Column index
      * @param value New value to set
+     * 
      */
     void set( uint8_t indexRow, uint8_t indexCol, valueType value ){
 
         data[ indexRow * ( rows - 1 ) + ( cols - 1 ) ] = value;
     };
 
-        /**
+    /**
      * @brief Sets the value of the array index `index` to `value`.
      * 
-     * @param indexRow Raw array index
-     * 
+     * @param indexRow Array index
      * @param value New value to set
+     * 
      */
-    void setRaw( uint8_t indexRow, valueType value ){
+    void setRaw( uint8_t index, valueType value ){
 
         data[ index ] = value;
     };
 
 
-     
     // Multiply
 
     /**
@@ -94,14 +149,14 @@ public:
     Matrix< valueType, rowCount, otherColCount > multiply( Matrix< otherType, colCount, otherColCount > otherMatrix ){    
         
         // Checks if the matrices are compatible
-        if ( cols != otherMatrix.rows ){
+        if ( cols != otherMatrix.getRows() ){
 
             //throw new Error(`Cannot multiply matrices have differing sizes: thisRow: ${this.rows}, otherCols: ${otherMatrix.cols}`);
             std::cerr << "\n";
         }
 
         // Since: ( R, C ) x ( C, K ) = ( R, K )
-        Matrix< valueType, rows, otherMatrix.cols > resultMatrix{};
+        Matrix< valueType, rows, otherColCount > resultMatrix{};
 
         valueType sum = 0;
 
@@ -109,12 +164,13 @@ public:
         for ( uint8_t aRowIndex = 0; aRowIndex < rows; aRowIndex++ ){
 
             // Repeats for each column in B
-            for ( uint8_t bColIndex = 0; bColIndex < otherMatrix.cols; bColIndex++ ){
+            for ( uint8_t bColIndex = 0; bColIndex < otherColCount; bColIndex++ ){
 
                 sum  = 0;
 
                 // Goes down B's rows, and across A's Columns
-                for ( uint8_t bRowIndex = 0; bRowIndex < otherMatrix.rows; bRowIndex++){
+                // `cols` is used as the bRows = ACols
+                for ( uint8_t bRowIndex = 0; bRowIndex < cols; bRowIndex++){
 
                     sum += get( aRowIndex, bRowIndex ) * otherMatrix.get( bRowIndex, bColIndex );
                 }
@@ -126,24 +182,32 @@ public:
         return resultMatrix;
     };
 
+
 };
 
 
 // Specified sized Matrices
 
 /**
- * @brief A matrix of 3 X 3 size. 
+ * @brief 
+ * A matrix of 3 X 3 size.
  * 
+ * Initialises as an identity matrix, with 1 along the left -> right diagonal.
+ *
+ * @details 
+ * Values are set to float 1.0 originally, if the `valueType` can't support that type conversion, the matrix will crash.
+ * 
+ * @tparam valueType Type of the values in the matrix e.g( float, int )
  */
 template< typename valueType >
-class Matrix3x3 : Matrix{
+class Matrix3x3 : public Matrix< valueType, 3, 3 >{
 
 private:
 
     uint8_t rows = 3;
     uint8_t cols = 3;
 
-    /** Stores the matrix data in a 1D float array.  */
+    /** Stores the matrix data in a 1D `valueType` array.  */
     std::array< valueType, 9 > data = { 
         1.0, 0.0, 0.0, 
         0.0, 1.0, 0.0,
@@ -152,8 +216,16 @@ private:
 
 public:
 
-    Matrix3x3< valueType >(){};
-    
+    // Keeps original `multiply`, so this class can use both.
+    using Matrix<valueType, 3, 3>::multiply;
+
+
+    /** 
+     * @brief Default constructor
+     */
+    Matrix3x3(){};
+
+    ~Matrix3x3() = default;
 
     // Multiplication
 
@@ -162,9 +234,19 @@ public:
      * 
      * @param vector Vector to multiply to this 
      * 
-     * @returns `Matrix3x3< valueType >` New 3x3 matrix.
+     * @returns `Vector3` New vector3 translated by this matrix.
      */
-    Matrix3x3< valueType > multiplyVector( Vector3 vector );
+    Vector3 multiplyVector( Vector3 vector ){
+
+        Vector3 resultVector = Vector3( 0.f, 0.f, 0.f );
+
+        resultVector.x = ( this->getRaw(0) * vector.x + this->getRaw(1) * vector.y + this->getRaw(2) * vector.z );
+        resultVector.y = ( this->getRaw(3) * vector.x + this->getRaw(4) * vector.y + this->getRaw(5) * vector.z );
+        resultVector.z = ( this->getRaw(6) * vector.x + this->getRaw(7) * vector.y + this->getRaw(8) * vector.z );
+
+        return resultVector;
+    };
+
 
     /**
      * @brief Returns a 3x3 matrix and 3x3 matrix multiplication. ( NewMatrix = This X other3x3Matrix )
@@ -192,36 +274,44 @@ public:
         8 = 6*2 + 7*5 + 8*8
         */
 
-        resultantMatrix.setRaw( 0, (getRaw( 0 ) * matrix.getRaw( 0 )) + (getRaw( 1 ) * matrix.getRaw( 3 )) + (getRaw( 2 ) * matrix.getRaw( 6 )) )
-        resultantMatrix.setRaw( 1, (getRaw( 0 ) * matrix.getRaw( 1 )) + (getRaw( 1 ) * matrix.getRaw( 4 )) + (getRaw( 2 ) * matrix.getRaw( 7 )) )
-        resultantMatrix.setRaw( 2, (getRaw( 0 ) * matrix.getRaw( 2 )) + (getRaw( 1 ) * matrix.getRaw( 5 )) + (getRaw( 2 ) * matrix.getRaw( 8 )) )
+        resultantMatrix.setRaw( 0, (this->getRaw( 0 ) * matrix.getRaw( 0 )) + (this->getRaw( 1 ) * matrix.getRaw( 3 )) + (this->getRaw( 2 ) * matrix.getRaw( 6 )) );
+        resultantMatrix.setRaw( 1, (this->getRaw( 0 ) * matrix.getRaw( 1 )) + (this->getRaw( 1 ) * matrix.getRaw( 4 )) + (this->getRaw( 2 ) * matrix.getRaw( 7 )) );
+        resultantMatrix.setRaw( 2, (this->getRaw( 0 ) * matrix.getRaw( 2 )) + (this->getRaw( 1 ) * matrix.getRaw( 5 )) + (this->getRaw( 2 ) * matrix.getRaw( 8 )) );
 
-        resultantMatrix.setRaw( 3, (getRaw( 3 ) * matrix.getRaw( 0 )) + (getRaw( 4 ) * matrix.getRaw( 3 )) + (getRaw( 5 ) * matrix.getRaw( 6 )) )
-        resultantMatrix.setRaw( 4, (getRaw( 3 ) * matrix.getRaw( 1 )) + (getRaw( 4 ) * matrix.getRaw( 4 )) + (getRaw( 5 ) * matrix.getRaw( 7 )) )
-        resultantMatrix.setRaw( 5, (getRaw( 3 ) * matrix.getRaw( 2 )) + (getRaw( 4 ) * matrix.getRaw( 5 )) + (getRaw( 5 ) * matrix.getRaw( 8 )) )
+        resultantMatrix.setRaw( 3, (this->getRaw( 3 ) * matrix.getRaw( 0 )) + (this->getRaw( 4 ) * matrix.getRaw( 3 )) + (this->getRaw( 5 ) * matrix.getRaw( 6 )) );
+        resultantMatrix.setRaw( 4, (this->getRaw( 3 ) * matrix.getRaw( 1 )) + (this->getRaw( 4 ) * matrix.getRaw( 4 )) + (this->getRaw( 5 ) * matrix.getRaw( 7 )) );
+        resultantMatrix.setRaw( 5, (this->getRaw( 3 ) * matrix.getRaw( 2 )) + (this->getRaw( 4 ) * matrix.getRaw( 5 )) + (this->getRaw( 5 ) * matrix.getRaw( 8 )) );
 
-        resultantMatrix.setRaw( 6, (getRaw( 6 ) * matrix.getRaw( 0 )) + (getRaw( 7 ) * matrix.getRaw( 3 )) + (getRaw( 8 ) * matrix.getRaw( 6 )) )
-        resultantMatrix.setRaw( 7, (getRaw( 6 ) * matrix.getRaw( 1 )) + (getRaw( 7 ) * matrix.getRaw( 4 )) + (getRaw( 8 ) * matrix.getRaw( 7 )) )
-        resultantMatrix.setRaw( 8, (getRaw( 6 ) * matrix.getRaw( 2 )) + (getRaw( 7 ) * matrix.getRaw( 5 )) + (getRaw( 8 ) * matrix.getRaw( 8 )) )
+        resultantMatrix.setRaw( 6, (this->getRaw( 6 ) * matrix.getRaw( 0 )) + (this->getRaw( 7 ) * matrix.getRaw( 3 )) + (this->getRaw( 8 ) * matrix.getRaw( 6 )) );
+        resultantMatrix.setRaw( 7, (this->getRaw( 6 ) * matrix.getRaw( 1 )) + (this->getRaw( 7 ) * matrix.getRaw( 4 )) + (this->getRaw( 8 ) * matrix.getRaw( 7 )) );
+        resultantMatrix.setRaw( 8, (this->getRaw( 6 ) * matrix.getRaw( 2 )) + (this->getRaw( 7 ) * matrix.getRaw( 5 )) + (this->getRaw( 8 ) * matrix.getRaw( 8 )) );
 
         return resultantMatrix;
     };
 
+
 };
 
 /**
- * @brief A float matrix of 4 X 4 size. 
+ * @brief 
+ * A matrix of 4 X 4 size.
  * 
+ * Initialises as an identity matrix, with 1 along the left -> right diagonal.
+ *
+ * @details 
+ * Values are set to float 1.0 originally, if the `valueType` can't support that type conversion, the matrix will crash.
+ * 
+ * @tparam valueType Type of the values in the matrix e.g( float, int )
  */
 template< typename valueType >
-class Matrix4x4 : Matrix{
+class Matrix4x4 : public Matrix< valueType, 4, 4 >{
 
 private:
 
     uint8_t rows = 4;
     uint8_t cols = 4;
 
-    /** Stores the matrix data in a 1D float array.  */
+    /** Stores the matrix data in a 1D `valueType` array.  */
     std::array< valueType, 16 > data = { 
         1.0, 0.0, 0.0, 0.0, 
         0.0, 1.0, 0.0, 0.0,
@@ -232,8 +322,94 @@ private:
 
 public:
 
-    Matrix4x4<valueType>(){};
+    // Keeps original `multiply`, so this class can use both. 
+    using Matrix<valueType, 4, 4>::multiply;
+
+    /**
+     * @brief Default constructor
+     */
+    Matrix4x4(){};
+
+
+    ~Matrix4x4() = default;
     
+
+    // Getters
+
+    /**
+     * @brief Returns the number of rows in the matrix.
+     * 
+     * @returns `uint8_t` Number of rows.
+     */
+    uint8_t getRows(){
+        
+        return rows;
+    };
+
+    /**
+     * @brief Returns the number of columns in the matrix.
+     * 
+     * @returns `uint8_t` Number of columns.
+     */
+    uint8_t getCols(){
+
+        return cols;
+    };
+
+
+    /**
+     * @brief Retrieves the integer value at matrix pos `indexRow`, `indexCol`.
+     * 
+     * @param indexRow Row index
+     * @param indexCol Column index
+     * 
+     * @return `valueType` Value at `indexRow`, `indexCol`
+     */
+    valueType get( uint8_t indexRow, uint8_t indexCol ){
+
+        return data[ indexRow * ( rows - 1 ) + ( cols - 1 ) ];
+    };
+
+    /**
+     * @brief Retrieves the integer value at array index `index`.
+     * 
+     * @param indexRow Raw array index
+     * 
+     * @return `valueType` Value at `index`
+     */
+    valueType getRaw( uint8_t index ){
+
+        return data[ index ];
+    };
+
+    
+    // Setters
+
+    /**
+     * @brief Sets the value of the matrix pos `indexRow`, `indexCol` to `value`.
+     * 
+     * @param indexRow Row index
+     * @param indexCol Column index
+     * @param value New value to set
+     * 
+     */
+    void set( uint8_t indexRow, uint8_t indexCol, valueType value ){
+
+        data[ indexRow * ( rows - 1 ) + ( cols - 1 ) ] = value;
+    };
+
+    /**
+     * @brief Sets the value of the array index `index` to `value`.
+     * 
+     * @param index Array index
+     * @param value New value to set
+     * 
+     */
+    void setRaw( uint8_t index, valueType value ){
+
+        data[ index ] = value;
+    };
+
 
     // Multiplication
 
@@ -244,7 +420,18 @@ public:
      * 
      * @returns `Vector4` New vector translated by this matrix.
      */
-    Vector4 multiplyVector( Vector4 vector );
+    Vector4 multiplyVector( Vector4 vector ){
+
+        Vector4 resultVector = Vector4( 0.f, 0.f, 0.f, 0.f );
+
+        resultVector.x = ( getRaw(0) * vector.x + getRaw(1) * vector.y + getRaw(2) * vector.z + getRaw(3) * vector.w );
+        resultVector.y = ( getRaw(4) * vector.x + getRaw(5) * vector.y + getRaw(6) * vector.z + getRaw(7) * vector.w );
+        resultVector.z = ( getRaw(8) * vector.x + getRaw(9) * vector.y + getRaw(10) * vector.z + getRaw(11) * vector.w );
+        resultVector.w = ( getRaw(12) * vector.x + getRaw(13) * vector.y + getRaw(14) * vector.z + getRaw(15) * vector.w );
+
+        return resultVector;
+    };
+
 
     /**
      * @brief Returns a 4x4 matrix and 4x4 matrix multiplication. ( NewMatrix = This X other4x4Matrix )
@@ -255,7 +442,7 @@ public:
      */
     template< typename otherType >
     Matrix4x4<valueType> multiply( Matrix4x4<otherType> matrix ){
-
+        
         Matrix4x4< valueType > resultantMatrix{};
 
         /*
@@ -285,25 +472,25 @@ public:
         15 = 12*3 + 13*7 + 14*11 + 15*15
         */
 
-        resultantMatrix.setRaw( 0,  (getRaw( 0 ) * matrix.getRaw( 0 )) + (getRaw( 1 ) * matrix.getRaw( 4 )) + (getRaw( 2 ) * matrix.getRaw( 8 ))  + (getRaw( 3 ) * matrix.getRaw( 12 )) )
-        resultantMatrix.setRaw( 1,  (getRaw( 0 ) * matrix.getRaw( 1 )) + (getRaw( 1 ) * matrix.getRaw( 5 )) + (getRaw( 2 ) * matrix.getRaw( 9 ))  + (getRaw( 3 ) * matrix.getRaw( 13 )) )
-        resultantMatrix.setRaw( 2,  (getRaw( 0 ) * matrix.getRaw( 2 )) + (getRaw( 1 ) * matrix.getRaw( 6 )) + (getRaw( 2 ) * matrix.getRaw( 10 )) + (getRaw( 3 ) * matrix.getRaw( 14 )) )
-        resultantMatrix.setRaw( 3,  (getRaw( 0 ) * matrix.getRaw( 3 )) + (getRaw( 1 ) * matrix.getRaw( 7 )) + (getRaw( 2 ) * matrix.getRaw( 11 )) + (getRaw( 3 ) * matrix.getRaw( 15 )) )
+        resultantMatrix.setRaw( 0,  (this->getRaw( 0 ) * matrix.getRaw( 0 )) + (this->getRaw( 1 ) * matrix.getRaw( 4 )) + (this->getRaw( 2 ) * matrix.getRaw( 8 ))  + (this->getRaw( 3 ) * matrix.getRaw( 12 )) );
+        resultantMatrix.setRaw( 1,  (this->getRaw( 0 ) * matrix.getRaw( 1 )) + (this->getRaw( 1 ) * matrix.getRaw( 5 )) + (this->getRaw( 2 ) * matrix.getRaw( 9 ))  + (this->getRaw( 3 ) * matrix.getRaw( 13 )) );
+        resultantMatrix.setRaw( 2,  (this->getRaw( 0 ) * matrix.getRaw( 2 )) + (this->getRaw( 1 ) * matrix.getRaw( 6 )) + (this->getRaw( 2 ) * matrix.getRaw( 10 )) + (this->getRaw( 3 ) * matrix.getRaw( 14 )) );
+        resultantMatrix.setRaw( 3,  (this->getRaw( 0 ) * matrix.getRaw( 3 )) + (this->getRaw( 1 ) * matrix.getRaw( 7 )) + (this->getRaw( 2 ) * matrix.getRaw( 11 )) + (this->getRaw( 3 ) * matrix.getRaw( 15 )) );
 
-        resultantMatrix.setRaw( 4,  (getRaw( 4 ) * matrix.getRaw( 0 )) + (getRaw( 5 ) * matrix.getRaw( 4 )) + (getRaw( 6 ) * matrix.getRaw( 8 ))  + (getRaw( 7 ) * matrix.getRaw( 12 )) )
-        resultantMatrix.setRaw( 5,  (getRaw( 4 ) * matrix.getRaw( 1 )) + (getRaw( 5 ) * matrix.getRaw( 5 )) + (getRaw( 6 ) * matrix.getRaw( 9 ))  + (getRaw( 7 ) * matrix.getRaw( 13 )) )
-        resultantMatrix.setRaw( 6,  (getRaw( 4 ) * matrix.getRaw( 2 )) + (getRaw( 5 ) * matrix.getRaw( 6 )) + (getRaw( 6 ) * matrix.getRaw( 10 )) + (getRaw( 7 ) * matrix.getRaw( 14 )) )
-        resultantMatrix.setRaw( 7,  (getRaw( 4 ) * matrix.getRaw( 3 )) + (getRaw( 5 ) * matrix.getRaw( 7 )) + (getRaw( 6 ) * matrix.getRaw( 11 )) + (getRaw( 7 ) * matrix.getRaw( 15 )) )
+        resultantMatrix.setRaw( 4,  (this->getRaw( 4 ) * matrix.getRaw( 0 )) + (this->getRaw( 5 ) * matrix.getRaw( 4 )) + (this->getRaw( 6 ) * matrix.getRaw( 8 ))  + (this->getRaw( 7 ) * matrix.getRaw( 12 )) );
+        resultantMatrix.setRaw( 5,  (this->getRaw( 4 ) * matrix.getRaw( 1 )) + (this->getRaw( 5 ) * matrix.getRaw( 5 )) + (this->getRaw( 6 ) * matrix.getRaw( 9 ))  + (this->getRaw( 7 ) * matrix.getRaw( 13 )) );
+        resultantMatrix.setRaw( 6,  (this->getRaw( 4 ) * matrix.getRaw( 2 )) + (this->getRaw( 5 ) * matrix.getRaw( 6 )) + (this->getRaw( 6 ) * matrix.getRaw( 10 )) + (this->getRaw( 7 ) * matrix.getRaw( 14 )) );
+        resultantMatrix.setRaw( 7,  (this->getRaw( 4 ) * matrix.getRaw( 3 )) + (this->getRaw( 5 ) * matrix.getRaw( 7 )) + (this->getRaw( 6 ) * matrix.getRaw( 11 )) + (this->getRaw( 7 ) * matrix.getRaw( 15 )) );
 
-        resultantMatrix.setRaw( 8,  (getRaw( 8 ) * matrix.getRaw( 0 )) + (getRaw( 9 ) * matrix.getRaw( 4 )) + (getRaw( 10 ) * matrix.getRaw( 8 )) + (getRaw( 11 ) * matrix.getRaw( 12 )) )
-        resultantMatrix.setRaw( 9,  (getRaw( 8 ) * matrix.getRaw( 1 )) + (getRaw( 9 ) * matrix.getRaw( 5 )) + (getRaw( 10 ) * matrix.getRaw( 9 )) + (getRaw( 11 ) * matrix.getRaw( 13 )) ) 
-        resultantMatrix.setRaw( 10, (getRaw( 8 ) * matrix.getRaw( 2 )) + (getRaw( 9 ) * matrix.getRaw( 6 )) + (getRaw( 10 ) * matrix.getRaw( 10 )) + (getRaw( 11 ) * matrix.getRaw( 14 )) )
-        resultantMatrix.setRaw( 11, (getRaw( 8 ) * matrix.getRaw( 3 )) + (getRaw( 9 ) * matrix.getRaw( 7 )) + (getRaw( 10 ) * matrix.getRaw( 11 )) + (getRaw( 11 ) * matrix.getRaw( 15 )) )
+        resultantMatrix.setRaw( 8,  (this->getRaw( 8 ) * matrix.getRaw( 0 )) + (this->getRaw( 9 ) * matrix.getRaw( 4 )) + (this->getRaw( 10 ) * matrix.getRaw( 8 )) + (this->getRaw( 11 ) * matrix.getRaw( 12 )) );
+        resultantMatrix.setRaw( 9,  (this->getRaw( 8 ) * matrix.getRaw( 1 )) + (this->getRaw( 9 ) * matrix.getRaw( 5 )) + (this->getRaw( 10 ) * matrix.getRaw( 9 )) + (this->getRaw( 11 ) * matrix.getRaw( 13 )) );
+        resultantMatrix.setRaw( 10, (this->getRaw( 8 ) * matrix.getRaw( 2 )) + (this->getRaw( 9 ) * matrix.getRaw( 6 )) + (this->getRaw( 10 ) * matrix.getRaw( 10 )) + (this->getRaw( 11 ) * matrix.getRaw( 14 )) );
+        resultantMatrix.setRaw( 11, (this->getRaw( 8 ) * matrix.getRaw( 3 )) + (this->getRaw( 9 ) * matrix.getRaw( 7 )) + (this->getRaw( 10 ) * matrix.getRaw( 11 )) + (this->getRaw( 11 ) * matrix.getRaw( 15 )) );
 
-        resultantMatrix.setRaw( 12, (getRaw( 12 ) * matrix.getRaw( 0 )) + (getRaw( 13 ) * matrix.getRaw( 4 )) + (getRaw( 14 ) * matrix.getRaw( 8 ))  + (getRaw( 15 ) * matrix.getRaw( 12 )) )
-        resultantMatrix.setRaw( 13, (getRaw( 12 ) * matrix.getRaw( 1 )) + (getRaw( 13 ) * matrix.getRaw( 5 )) + (getRaw( 14 ) * matrix.getRaw( 9 ))  + (getRaw( 15 ) * matrix.getRaw( 13 )) )
-        resultantMatrix.setRaw( 14, (getRaw( 12 ) * matrix.getRaw( 2 )) + (getRaw( 13 ) * matrix.getRaw( 6 )) + (getRaw( 14 ) * matrix.getRaw( 10 )) + (getRaw( 15 ) * matrix.getRaw( 14 )) )
-        resultantMatrix.setRaw( 15, (getRaw( 12 ) * matrix.getRaw( 3 )) + (getRaw( 13 ) * matrix.getRaw( 7 )) + (getRaw( 14 ) * matrix.getRaw( 11 )) + (getRaw( 15 ) * matrix.getRaw( 15 )) )
+        resultantMatrix.setRaw( 12, (this->getRaw( 12 ) * matrix.getRaw( 0 )) + (this->getRaw( 13 ) * matrix.getRaw( 4 )) + (this->getRaw( 14 ) * matrix.getRaw( 8 ))  + (this->getRaw( 15 ) * matrix.getRaw( 12 )) );
+        resultantMatrix.setRaw( 13, (this->getRaw( 12 ) * matrix.getRaw( 1 )) + (this->getRaw( 13 ) * matrix.getRaw( 5 )) + (this->getRaw( 14 ) * matrix.getRaw( 9 ))  + (this->getRaw( 15 ) * matrix.getRaw( 13 )) );
+        resultantMatrix.setRaw( 14, (this->getRaw( 12 ) * matrix.getRaw( 2 )) + (this->getRaw( 13 ) * matrix.getRaw( 6 )) + (this->getRaw( 14 ) * matrix.getRaw( 10 )) + (this->getRaw( 15 ) * matrix.getRaw( 14 )) );
+        resultantMatrix.setRaw( 15, (this->getRaw( 12 ) * matrix.getRaw( 3 )) + (this->getRaw( 13 ) * matrix.getRaw( 7 )) + (this->getRaw( 14 ) * matrix.getRaw( 11 )) + (this->getRaw( 15 ) * matrix.getRaw( 15 )) );
 
         return resultantMatrix;
     };
@@ -328,7 +515,16 @@ public:
      * 
      * @returns `Matrix4x4<valueType>` New matrix scaled.
      */
-    Matrix4x4<valueType> scale( valueType x, valueType y, valueType z );
+    Matrix4x4<valueType> scale( valueType x, valueType y, valueType z ){
+
+        Matrix4x4< valueType > resultantMatrix{};
+
+        resultantMatrix.setRaw( 0, getRaw(0) * x );
+        resultantMatrix.setRaw( 5, getRaw(5) * y );
+        resultantMatrix.setRaw( 10, getRaw(10) * z );
+
+        return resultantMatrix;
+    };
     
 
     /**
@@ -348,7 +544,16 @@ public:
      * 
      * @returns `Matrix4x4<valueType>` New matrix translated.
      */
-    Matrix4x4<valueType> translate( valueType x, valueType y, valueType z );
+    Matrix4x4<valueType> translate( valueType x, valueType y, valueType z ){
+
+        Matrix4x4< valueType > resultantMatrix{};
+
+        resultantMatrix.setRaw( 3, getRaw(3) * x );
+        resultantMatrix.setRaw( 7, getRaw(7) * y );
+        resultantMatrix.setRaw( 11, getRaw(11) * z );
+
+        return resultantMatrix;
+    };
 
 
     /**
@@ -362,13 +567,23 @@ public:
      * 
      * { 0, 0, 0, 1 }
      * 
-     * @param x X rotation 
-     * @param y Y rotation 
-     * @param z Z rotation 
+     * @param radians Rotation angle around x, in radians
      * 
      * @returns `Matrix4x4<valueType>` New matrix rotated.
      */
-    Matrix4x4<valueType> rotateX( float radians );
+    Matrix4x4<valueType> rotateX( float radians ){
+
+        Matrix4x4< valueType > resultantMatrix{};
+
+        resultantMatrix.setRaw( 5, ( getRaw(5) * cos( radians ) ) );
+        resultantMatrix.setRaw( 6, ( getRaw(6) * -1 * sin( radians ) ) );
+
+        resultantMatrix.setRaw( 9, ( getRaw(9) * sin( radians ) ) );
+        resultantMatrix.setRaw( 10, ( getRaw(10) * cos( radians ) ) );
+
+        return resultantMatrix;
+
+    };
 
     /**
      * @brief Rotates the matrix by the `radians` in the y direction.
@@ -381,13 +596,23 @@ public:
      * 
      * { 0, 0, 0, 1 }
      * 
-     * @param x X rotation 
-     * @param y Y rotation 
-     * @param z Z rotation 
+     * @param radians Rotation angle around y, in radians
      * 
      * @returns `Matrix4x4<valueType>` New matrix rotated.
      */
-    Matrix4x4<valueType> rotateY( float radians );
+    Matrix4x4<valueType> rotateY( float radians ){
+
+        Matrix4x4< valueType > resultantMatrix{};
+
+        resultantMatrix.setRaw( 0, ( getRaw(0) * cos( radians ) ) );
+        resultantMatrix.setRaw( 2, ( getRaw(2) * sin( radians ) ) );
+
+        resultantMatrix.setRaw( 8, ( getRaw(8) * -1 * sin( radians ) ) );
+        resultantMatrix.setRaw( 10, ( getRaw(10) * cos( radians ) ) );
+
+        return resultantMatrix;
+
+    };
 
     /**
      * @brief Rotates the matrix by the `radians` in the z direction.
@@ -400,13 +625,22 @@ public:
      * 
      * { 0, 0, 0, 1 }
      * 
-     * @param x X rotation 
-     * @param y Y rotation 
-     * @param z Z rotation 
+     * @param radians Rotation angle around z, in radians
      * 
      * @returns `Matrix4x4<valueType>` New matrix rotated.
      */
-    Matrix4x4<valueType> rotateZ( float radians );
+    Matrix4x4<valueType> rotateZ( float radians ){
+
+        Matrix4x4< valueType > resultantMatrix{};
+
+        resultantMatrix.setRaw( 0, ( getRaw(0) * cos( radians ) ) );
+        resultantMatrix.setRaw( 1, ( getRaw(1) * -1 * sin( radians ) ) );
+
+        resultantMatrix.setRaw( 4, ( getRaw(4) * sin( radians ) ) );
+        resultantMatrix.setRaw( 5, ( getRaw(5) * cos( radians ) ) );
+
+        return resultantMatrix;
+    };
 
 
 };

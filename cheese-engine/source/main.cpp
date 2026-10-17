@@ -18,6 +18,7 @@
 #include "vector_2.hpp"
 #include "vector_3.hpp"
 #include "vertex.hpp"
+#include "matrix.hpp"
 
 // Shapes
 #include "shape_2d.hpp"
@@ -67,7 +68,7 @@ int main() {
 
 	uint8_t fps = 60;
 	uint64_t ticksPerFrame = 1000 / fps; 
-	uint64_t elapsedFrame = 0;
+	uint64_t elapsedFrames = 0;
 
 	uint64_t startTime = 0;
 	uint64_t endTime = 0;
@@ -77,13 +78,16 @@ int main() {
 
 	// SDL Window Setup
 
+	unsigned int width = 500;
+	unsigned int height = 300;
+
 	SDL_Window* window;
 	SDL_Renderer* renderer; 
 	
 	window = SDL_CreateWindow(
 		"C.H.E.E.S.E - SDL3", 
-		500, 
-		300, 
+		width, 
+		height, 
 		SDL_WINDOW_RESIZABLE
 	);
 	renderer = SDL_CreateRenderer( 
@@ -116,12 +120,15 @@ int main() {
 
 	const unsigned int topologyVertexCount = 3;   /**< Vertex count, to make up the primitives in a vertex buffer */
 
+	Matrix4x4< float > objectMatrix; 		/**< Base object matrix for each object.  */
+	Matrix4x4< float > screenMatrix;		/**< Screen matrix for the camera translation. */
+	Matrix4x4< float > projectionMatrix;	/**< Projection matrix for the screen space translation. */
+
+	Vector4 cameraPos{ 0.f, 0.f, 0.f, 0.f }; 	/**< Centre of the camera.*/
+	Vector3 cameraDir{ 0.f, 0.f, -1.f}; 		/**< Direction the camera is facing */
+
+
 	// Testing
-
-	int width;
-	int height;
-
-	SDL_GetWindowSize( window, &width, &height );
 
 	Vector3 pointOne = Vector3( width * 0.5f, height * 0.4f, 1 );
 	Vector3 pointTwo = Vector3( width * 0.3f, height * 0.7f, 1 );
@@ -130,7 +137,7 @@ int main() {
 	std::cout << "testTri" << "\n";
 	Tri3D testTri = Tri3D( pointOne, pointTwo, pointThree );
 	
-	ColourI red = ColourI( 255, 0, 0 ); /** */
+	ColourI red = ColourI( 255, 0, 0 ); 
 	ColourI green = ColourI( 0, 255, 0 );
 	ColourI blue = ColourI( 255, 0, 255 );
 	
@@ -163,7 +170,7 @@ int main() {
 	while ( running ){
 
 		// FPS Management
-		elapsedFrame += 1;
+		elapsedFrames += 1;
 		startTime = SDL_GetTicks();
 
 		deltaTime = startTime - previousTime;
