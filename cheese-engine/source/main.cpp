@@ -116,7 +116,7 @@ int main() {
 	// Rendering
 
 	buffer vertexBuffer = buffer<ObjectVertex>(); /**< Buffer object for raw vertex data loaded in from 3D objects and models */
-	buffer indexBuffer = buffer<uint32_t>();      /**< Buffer object for indexes to make primitives for 3D polygons */
+	buffer indexBuffer = buffer<uint32_t>();      /**< Buffer object for indexes ( that point to the `vertexBuffer` ) to make objects */
 
 	const unsigned int topologyVertexCount = 3;   /**< Vertex count, to make up the primitives in a vertex buffer */
 
