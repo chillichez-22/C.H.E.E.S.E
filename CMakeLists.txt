@@ -25,17 +25,31 @@ set( colour_sources
     "cheese-engine/source/colour/colour.cpp"
 )
 
+set( components_sources 
+
+    "cheese-engine/source/components/component.cpp"
+
+    "cheese-engine/source/components/transform.cpp"
+)
+
+set( entity_sources 
+
+    "cheese-engine/source/entity/entity.cpp"
+    
+)
+
 set( font_sources
 
     "cheese-engine/source/fonts/font.cpp"
+
     "cheese-engine/source/fonts/ttf.cpp"
 )
+
 
 set( inputs_sources 
 
     "cheese-engine/source/inputs/mouse.cpp"
 )
-
 
 set( maths_sources
 
@@ -106,6 +120,8 @@ add_library( engine
     # Source files ( Headers aren't necessary )
     ${collision_sources}
     ${colour_sources}
+    ${components_sources}
+    ${entity_sources}
     ${inputs_sources}
     ${maths_sources}
     ${rendering_sources}
@@ -126,6 +142,8 @@ target_include_directories( engine
         # Likes to misbehave without calling all individual header folders
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/collisions
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/colour
+        ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/components
+        ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/entity
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/fonts
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/inputs
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/maths
