@@ -113,10 +113,10 @@ int main() {
 	enum MouseButtonEvent rightMouseButton;
 
 
-	// Rendering
+	// Rendering Setup
 
-	buffer vertexBuffer = buffer<ObjectVertex>(); /**< Buffer object for raw vertex data loaded in from 3D objects and models */
-	buffer indexBuffer = buffer<uint32_t>();      /**< Buffer object for indexes ( that point to the `vertexBuffer` ) to make objects */
+	buffer< ObjectVertex > vertexBuffer = buffer<ObjectVertex>(); /**< Buffer object for raw vertex data loaded in from 3D objects and models */
+	buffer< uint32_t > indexBuffer = buffer<uint32_t>();      /**< Buffer object for indexes ( that point to the `vertexBuffer` ) to make objects */
 
 	const unsigned int topologyVertexCount = 3;   /**< Vertex count, to make up the primitives in a vertex buffer */
 
@@ -124,8 +124,8 @@ int main() {
 	Matrix4x4< float > screenMatrix;		/**< Screen matrix for the camera translation. */
 	Matrix4x4< float > projectionMatrix;	/**< Projection matrix for the screen space translation. */
 
-	Vector4 cameraPos{ 0.f, 0.f, 0.f, 0.f }; 	/**< Centre of the camera.*/
-	Vector3 cameraDir{ 0.f, 0.f, -1.f}; 		/**< Direction the camera is facing */
+	Vector4 cameraPos{ 0.f, 0.f, 0.f, 0.f };	/**< Centre of the camera.*/
+	Vector3 cameraDir{ 0.f, 0.f, -1.f }; 		/**< Direction the camera is facing */
 
 
 	// Testing
