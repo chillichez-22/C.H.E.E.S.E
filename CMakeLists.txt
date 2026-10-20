@@ -38,6 +38,11 @@ set( entity_sources
     
 )
 
+set( file_sources
+
+    "cheese-engine/source/files/loading.cpp"
+)
+
 set( font_sources
 
     "cheese-engine/source/fonts/font.cpp"
@@ -51,18 +56,22 @@ set( inputs_sources
     "cheese-engine/source/inputs/mouse.cpp"
 )
 
+set( iterables_sources 
+
+    "cheese-engine/source/iterables/buffer.cpp"
+)
+
 set( maths_sources
 
     "cheese-engine/source/maths/math.cpp"
 
-    "cheese-engine/source/maths/buffer.cpp"
     "cheese-engine/source/maths/interpolation.cpp"
     "cheese-engine/source/maths/matrix.cpp"
     "cheese-engine/source/maths/ray.cpp"
     "cheese-engine/source/maths/vector_2.cpp"
     "cheese-engine/source/maths/vector_3.cpp"
     "cheese-engine/source/maths/vector_4.cpp"
-    "cheese-engine/source/maths/vertex.cpp"
+    #"cheese-engine/source/maths/vertex.cpp"
 )
 
 set( rendering_sources
@@ -122,7 +131,9 @@ add_library( engine
     ${colour_sources}
     ${components_sources}
     ${entity_sources}
+    ${files_sources}
     ${inputs_sources}
+    ${iterables_sources}
     ${maths_sources}
     ${rendering_sources}
     ${shape_base_sources}
@@ -144,8 +155,10 @@ target_include_directories( engine
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/colour
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/components
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/entity
+        ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/files
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/fonts
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/inputs
+        ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/iterables
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/maths
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/rendering        
         ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/shapes

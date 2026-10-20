@@ -17,7 +17,6 @@
 #include "buffer.hpp"
 #include "vector_2.hpp"
 #include "vector_3.hpp"
-#include "vertex.hpp"
 #include "matrix.hpp"
 
 // Shapes
@@ -30,6 +29,9 @@
 // Inputs & UI
 #include "mouse.hpp"
 #include "ui.hpp"
+
+// Loading
+#include "loading.hpp"
 
 // Rendering
 #include "rendering.hpp"
@@ -189,7 +191,7 @@ int main() {
 				
 				case SDL_EVENT_QUIT:{
 	
-					running = true;
+					running = false;
 					break;
 				}
 
