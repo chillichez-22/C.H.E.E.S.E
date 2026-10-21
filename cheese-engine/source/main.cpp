@@ -132,6 +132,8 @@ int main() {
 
 	// Testing
 
+	Entity testEntity;
+
 	Vector3 pointOne = Vector3( width * 0.5f, height * 0.4f, 1 );
 	Vector3 pointTwo = Vector3( width * 0.3f, height * 0.7f, 1 );
 	Vector3 pointThree = Vector3( width * 0.7f, height * 0.9f, 1 );
@@ -154,12 +156,19 @@ int main() {
 	std::cout << "vertexThree" << "\n";
 	ObjectVertex vertexThree = ObjectVertex( testTri.points[2], emptyUV, blue );
 
+	std::array< ObjectVertex, 3 > vertexList{ vertexOne, vertexTwo, vertexThree };
+
+	loadVertexData( testEntity, vertexList, vertexBuffer, indexBuffer );
+
+
+	/*
 	// Adds vertex data to both index and vertex Buffers
 
 	indexBuffer.push_back( vertexBuffer.push_back( vertexOne ) );
 	indexBuffer.push_back( vertexBuffer.push_back( vertexTwo ) );
 	indexBuffer.push_back( vertexBuffer.push_back( vertexThree ) );
-	
+	*/
+
 
 	// Main Loop
 
