@@ -117,8 +117,8 @@ int main() {
 
 	// Rendering Setup
 
-	buffer< ObjectVertex > vertexBuffer = buffer<ObjectVertex>(); /**< Buffer object for raw vertex data loaded in from 3D objects and models */
-	buffer< uint32_t > indexBuffer = buffer<uint32_t>();      /**< Buffer object for indexes ( that point to the `vertexBuffer` ) to make objects */
+	Buffer< ObjectVertex > vertexBuffer = Buffer<ObjectVertex>(); /**< Buffer object for raw vertex data loaded in from 3D objects and models */
+	Buffer< uint32_t > indexBuffer = Buffer<uint32_t>();      /**< Buffer object for indexes ( that point to the `vertexBuffer` ) to make objects */
 
 	const unsigned int topologyVertexCount = 3;   /**< Vertex count, to make up the primitives in a vertex buffer */
 
@@ -154,7 +154,7 @@ int main() {
 	std::cout << "vertexThree" << "\n";
 	ObjectVertex vertexThree = ObjectVertex( testTri.points[2], emptyUV, blue );
 
-	// Adds vertex data to both index and vertex buffers
+	// Adds vertex data to both index and vertex Buffers
 
 	indexBuffer.push_back( vertexBuffer.push_back( vertexOne ) );
 	indexBuffer.push_back( vertexBuffer.push_back( vertexTwo ) );

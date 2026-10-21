@@ -4,7 +4,7 @@
 #include <vector>
 
 template <typename bufferType>
-struct buffer{
+struct Buffer{
 
 private:
     
@@ -36,6 +36,25 @@ public:
         uint32_t end = size() - 1;
 
         return end;
+    }
+
+    /**
+     * @brief Combines another buffer to this, and places it at the end.
+     * 
+     * @param buffer Buffer of the same type, to combine into this.
+     * 
+     * @returns `uint32_t` Index where the buffer was combined.
+     */
+    uint32_t push_back( Buffer< bufferType > buffer ){
+
+        uint32_t startPoint = size();
+
+        for ( bufferType item : buffer ){
+
+            data.push_back( item );
+        }
+
+        return startPoint;
     }
 
 

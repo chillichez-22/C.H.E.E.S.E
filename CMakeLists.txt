@@ -131,7 +131,7 @@ add_library( engine
     ${colour_sources}
     ${components_sources}
     ${entity_sources}
-    ${files_sources}
+    ${file_sources}
     ${inputs_sources}
     ${iterables_sources}
     ${maths_sources}

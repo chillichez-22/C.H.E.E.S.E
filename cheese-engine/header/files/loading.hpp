@@ -23,8 +23,8 @@
  * @param entityPtr Pointer to the entity to load data into.
  * @param filepath String of the filepath to retrieve the data from.
  * @param vertexList List of vertices to add.
- * @param *vertexBufferPtr Pointer to the vertex buffer. 
- * @param *indexBufferPtr Pointer to the index buffer. 
+ * @param *vertexBufferPtr Pointer to the vertex Buffer. 
+ * @param *indexBufferPtr Pointer to the index Buffer. 
  * 
  * @returns `entityType` - Entity of type `entityType` with data from loading. 
  */
@@ -32,8 +32,8 @@ template< typename entityType >
 entityType* loadObject( 
     entityType* entityPtr, 
     std::string filepath, 
-    buffer< ObjectVertex >* vertexBuffer, 
-    buffer< uint32_t >* indexBuffer 
+    Buffer< ObjectVertex >* vertexBuffer, 
+    Buffer< uint32_t >* indexBuffer 
 ); 
 
 
@@ -45,8 +45,8 @@ entityType* loadObject(
  * 
  * @param entityPtr Pointer to the entity to assign data to.
  * @param vertexList List of vertices to add.
- * @param *vertexBufferPtr Pointer to the vertex buffer. 
- * @param *indexBufferPtr Pointer to the index buffer. 
+ * @param *vertexBufferPtr Pointer to the vertex Buffer. 
+ * @param *indexBufferPtr Pointer to the index Buffer. 
  * 
  * @returns `entityType` - Entity of type `entityType` with data from loading vertices. 
  */
@@ -54,8 +54,8 @@ template< typename entityType, uint32_t arraySize >
 entityType* loadVertexData( 
     entityType* entityPtr, 
     std::array< ObjectVertex, arraySize > vertexList,
-    buffer< ObjectVertex >* vertexBufferPtr, 
-    buffer< uint32_t >* indexBufferPtr 
+    Buffer< ObjectVertex >* vertexBufferPtr, 
+    Buffer< uint32_t >* indexBufferPtr 
 );
 
 
@@ -72,8 +72,8 @@ entityType* loadVertexData(
  * 
  */
 int32_t checkIfVertexInList( 
-    std::vector< ObjectVertex > vertexVec, 
-    std::vector< uint32_t > indexVec, 
+    Buffer< ObjectVertex > vertexVec, 
+    Buffer< uint32_t > indexVec, 
     ObjectVertex checkVertex 
 );
 

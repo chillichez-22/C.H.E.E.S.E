@@ -4,20 +4,20 @@ template< typename entityType, uint32_t arraySize >
 entityType* loadVertexData( 
     entityType* entityPtr, 
     std::array< ObjectVertex, arraySize > vertexList,
-    buffer< ObjectVertex >* vertexBufferPtr, 
-    buffer< uint32_t >* indexBufferPtr
+    Buffer< ObjectVertex >* vertexBufferPtr, 
+    Buffer< uint32_t >* indexBufferPtr
     ){
 
         
-    buffer< ObjectVertex > tempVertBuffer;
-    buffer< uint32_t > tempIndexBuffer;
+    Buffer< ObjectVertex > tempVertBuffer;
+    Buffer< uint32_t > tempIndexBuffer;
 
 
     // TODO: Have a cache to store last known vertices, then loop over this first to find a cache hit. 
     //       Then only if a cache hit is not found, we go back and check the main tempVertexBuffer for duplicates.
     //
-    // buffer< ObjectVertex, 4 > vertexCache; /** < Stores the last 4 vertices, as they may have been reused */
-    // buffer< uint32_t, 4 > indexCache; /** < Stores the last 4 indicies, as they may have been reused */
+    // Buffer< ObjectVertex, 4 > vertexCache; /** < Stores the last 4 vertices, as they may have been reused */
+    // Buffer< uint32_t, 4 > indexCache; /** < Stores the last 4 indicies, as they may have been reused */
 
 
 
@@ -46,15 +46,15 @@ entityType* loadVertexData(
     
     }
 
-    (*entity).vertexCount = tempIndexBuffer.size();
+    (*entityPtr).vertexCount = tempIndexBuffer.size();
 
-    // Sets the offsets before adding the new items to the buffers 
-    (*entity).vertexOffset = (*vertexBufferPtr).size();
-    (*entity).indexOffset = (*indexBufferPtr).size();
+    // Sets the offsets before adding the new items to the Buffers 
+    (*entityPtr).vertexOffset = (*vertexBufferPtr).size();
+    (*entityPtr).indexOffset = (*indexBufferPtr).size();
 
     (*vertexBufferPtr).push_back( tempVertBuffer );
     (*indexBufferPtr).push_back( tempIndexBuffer );
 
-    return entity;
+    return entityPtr;
 }
 
