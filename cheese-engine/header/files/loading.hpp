@@ -39,6 +39,27 @@ entityType& loadObject(
 
 
 /**
+ * @brief 
+ * Checks if the `checkVertex` is in the `vertexVec`. And if it is, returns its index from `indexVec`. 
+ * Otherwise returns `-1`
+ * 
+ * @param vertexVec Vector list that holds the vertices.
+ * @param indexVec Vector list that holds the indicies.
+ * @param checkVertex Vertex to check if inside the `vertexVec`.
+ * 
+ * @returns `int32_t` - index from `indexVec` if found. Otherwise `-1`.
+ * 
+ */
+int32_t checkIfVertexInList( 
+    Buffer< ObjectVertex > vertexVec, 
+    Buffer< uint32_t > indexVec, 
+    ObjectVertex checkVertex 
+);
+
+
+
+
+/**
  * @brief Loads the `vertexList` into the `vertexBufferPtr` and `indexBufferPtr`.
  * 
  * @tparam entityType Type of entity to load the data from. 
@@ -60,7 +81,7 @@ entityType& loadVertexData(
 
     if ( vertexList.size() == 0 ){
         
-        return entityPtr;
+        return entity;
     }
 
     Buffer< ObjectVertex > tempVertBuffer;
@@ -116,24 +137,6 @@ entityType& loadVertexData(
 
 
 
-
-/**
- * @brief 
- * Checks if the `checkVertex` is in the `vertexVec`. And if it is, returns its index from `indexVec`. 
- * Otherwise returns `-1`
- * 
- * @param vertexVec Vector list that holds the vertices.
- * @param indexVec Vector list that holds the indicies.
- * @param checkVertex Vertex to check if inside the `vertexVec`.
- * 
- * @returns `int32_t` - index from `indexVec` if found. Otherwise `-1`.
- * 
- */
-int32_t checkIfVertexInList( 
-    Buffer< ObjectVertex > vertexVec, 
-    Buffer< uint32_t > indexVec, 
-    ObjectVertex checkVertex 
-);
 
 
 

@@ -158,7 +158,7 @@ int main() {
 
 	std::array< ObjectVertex, 3 > vertexList{ vertexOne, vertexTwo, vertexThree };
 
-	loadVertexData( testEntity, vertexList, vertexBuffer, indexBuffer );
+	testEntity = loadVertexData( testEntity, vertexList, vertexBuffer, indexBuffer );
 
 
 	/*

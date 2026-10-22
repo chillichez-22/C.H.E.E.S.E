@@ -7,6 +7,7 @@
 
 class Entity{
 
+public:
     Transform3D transform;
 
     uint32_t vertexCount;   /**< Number of vertexes making up the object */

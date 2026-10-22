@@ -13,15 +13,6 @@ private:
 public:
 
 
-    // uint32_t& push_back( bufferType item );
-
-
-
-    // uint32_t& size( );
-
-    // bufferType& operator[]( uint32_t index );
-
-
     /**
      * @brief Adds to the buffer, and returns the index where it was placed.
      * 
@@ -49,9 +40,9 @@ public:
 
         uint32_t startPoint = size();
 
-        for ( bufferType item : buffer ){
+        for ( uint32_t i = 0; i < buffer.size(); i++ ){
 
-            data.push_back( item );
+            data.push_back( buffer[i] );
         }
 
         return startPoint;
@@ -79,7 +70,7 @@ public:
      */
     bufferType& operator[]( uint32_t index ){
         
-        return &( data[ index ] );
+        return data[ index ];
     }
 
 
