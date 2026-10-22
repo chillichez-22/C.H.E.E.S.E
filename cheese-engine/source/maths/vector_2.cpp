@@ -23,7 +23,7 @@ bool Vector2::operator==( Vector2& vector ){
 
 bool Vector2::operator!=( Vector2& vector ){
 
-    if ( x != vector.x && y != vector.y ){
+    if ( x != vector.x || y != vector.y ){
         
         return true;
     };

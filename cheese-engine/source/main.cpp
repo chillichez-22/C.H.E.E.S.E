@@ -156,6 +156,18 @@ int main() {
 	std::cout << "vertexThree" << "\n";
 	ObjectVertex vertexThree = ObjectVertex( testTri.points[2], emptyUV, blue );
 
+
+	bool doesVertexEqual = vertexOne == vertexTwo;
+	std::cout << "VertexEqual ( should be false or 0 ) : " << doesVertexEqual << "\n";
+
+	bool doesVectorEqual = pointOne == pointTwo;
+	std::cout << "VectorEqual ( should be false or 0 ) : " << doesVectorEqual << "\n";
+
+	bool doesColourEqual = red == green;
+	std::cout << "ColourEqual ( should be false or 0 ) : " << doesColourEqual << "\n";
+	
+
+
 	std::array< ObjectVertex, 3 > vertexList{ vertexOne, vertexTwo, vertexThree };
 
 	std::cout << vertexList[0] << vertexList[1] << vertexList[2] << "\n";
