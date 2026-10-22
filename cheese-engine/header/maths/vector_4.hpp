@@ -3,6 +3,9 @@
 // External
 #include <cmath>
 
+#include "vector_3.hpp"
+
+
 /**
  * @brief A vector of floats with 4 components: x, y, z, w.
  * 
@@ -13,6 +16,12 @@ struct Vector4{
     float y;
     float z;
     float w;
+
+    Vector4(){};
+
+    Vector4( Vector3 vector ): x( vector.x ), y( vector.y ), z( vector.z ), w( 1.0 ){};
+
+    Vector4( float xVal, float yVal, float zVal, float wVal ): x( xVal ), y( yVal ), z( zVal ), w( wVal ){};
 };
 
 

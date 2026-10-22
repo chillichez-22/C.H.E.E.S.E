@@ -35,6 +35,7 @@
 
 // Rendering
 #include "rendering.hpp"
+#include "vertex.hpp"
 #include "tri_rasteriser.hpp"
 
 
@@ -115,15 +116,17 @@ int main() {
 	enum MouseButtonEvent rightMouseButton;
 
 
-	// Rendering Setup
+	// Rendering
 
-	Buffer< ObjectVertex > vertexBuffer = Buffer<ObjectVertex>(); /**< Buffer object for raw vertex data loaded in from 3D objects and models */
-	Buffer< uint32_t > indexBuffer = Buffer<uint32_t>();      /**< Buffer object for indexes ( that point to the `vertexBuffer` ) to make objects */
+	Buffer< uint32_t > indexBuffer = Buffer<uint32_t>();			/**< Buffer object for indexes ( that point to the `vertexBuffer` ) */
+	Buffer< ObjectVertex > vertexBuffer = Buffer<ObjectVertex>();	/**< Buffer object for vertex data loaded in from 3D objects and models */
 
-	const unsigned int topologyVertexCount = 3;   /**< Vertex count, to make up the primitives in a vertex buffer */
+	const uint8_t topologyVertexSize = 3;   /**< Vertex count, to make up the primitives in a vertex buffer */
 
-	Matrix4x4< float > objectMatrix; 		/**< Base object matrix for each object.  */
-	Matrix4x4< float > screenMatrix;		/**< Screen matrix for the camera translation. */
+	// Defined at the rendering step instead: 
+	// Matrix4x4< float > objectMatrix;		/**< Base object matrix for each object.  */
+
+	Matrix4x4< float > viewMatrix;			/**< View matrix for the camera translation. */
 	Matrix4x4< float > projectionMatrix;	/**< Projection matrix for the screen space translation. */
 
 	Vector4 cameraPos{ 0.f, 0.f, 0.f, 0.f };	/**< Centre of the camera.*/
@@ -146,45 +149,43 @@ int main() {
 	ColourI blue = ColourI( 255, 0, 255 );
 	
 	Vector2 emptyUV = Vector2( 0, 0 );
+	Vector3 emptyNormal = Vector3( 0, 0, 0);
 	
 	/** Loads vertex data */
 	
 	std::cout << "vertexOne" << "\n";
-	ObjectVertex vertexOne =   ObjectVertex( testTri.points[0], emptyUV, red );
+	ObjectVertex vertexOne =   ObjectVertex( testTri.points[0], emptyNormal, emptyUV, red );
 	std::cout << "vertexTwo" << "\n";
-	ObjectVertex vertexTwo =   ObjectVertex( testTri.points[1], emptyUV, green );
+	ObjectVertex vertexTwo =   ObjectVertex( testTri.points[1], emptyNormal, emptyUV, green );
 	std::cout << "vertexThree" << "\n";
-	ObjectVertex vertexThree = ObjectVertex( testTri.points[2], emptyUV, blue );
+	ObjectVertex vertexThree = ObjectVertex( testTri.points[2], emptyNormal, emptyUV, blue );
 
-
+	/*
 	bool doesVertexEqual = vertexOne == vertexTwo;
 	std::cout << "VertexEqual ( should be false or 0 ) : " << doesVertexEqual << "\n";
 
 	bool doesVectorEqual = pointOne == pointTwo;
 	std::cout << "VectorEqual ( should be false or 0 ) : " << doesVectorEqual << "\n";
 
+	bool doesNormalEqual = emptyNormal == emptyNormal;
+	std::cout << "NormalEqual ( should be true or 1 ) : " << doesNormalEqual << "\n";
+
 	bool doesColourEqual = red == green;
 	std::cout << "ColourEqual ( should be false or 0 ) : " << doesColourEqual << "\n";
-	
+
+	bool doesUVEqual = emptyUV == emptyUV;
+	std::cout << "UVEqual ( should be true or 1 ) : " << doesUVEqual << "\n";
+	*/
 
 
 	std::array< ObjectVertex, 3 > vertexList{ vertexOne, vertexTwo, vertexThree };
 
-	std::cout << vertexList[0] << vertexList[1] << vertexList[2] << "\n";
+	//std::cout << vertexList[0] << vertexList[1] << vertexList[2] << "\n";
 
 	testEntity = loadVertexData( testEntity, vertexList, vertexBuffer, indexBuffer );
 
 	std::cout << "\n" << vertexBuffer.size() << " | " << vertexBuffer << "\n";
 	std::cout << "\n" << indexBuffer.size() << " | " << indexBuffer  << "\n";
-
-
-	/*
-	// Adds vertex data to both index and vertex Buffers
-
-	indexBuffer.push_back( vertexBuffer.push_back( vertexOne ) );
-	indexBuffer.push_back( vertexBuffer.push_back( vertexTwo ) );
-	indexBuffer.push_back( vertexBuffer.push_back( vertexThree ) );
-	*/
 
 
 	// Main Loop
@@ -309,7 +310,14 @@ int main() {
 		SDL_SetRenderDrawColor( renderer, 255, 255, 255, 255 );
 
 
-
+		renderEntity( 
+			testEntity,
+			topologyVertexSize,
+			viewMatrix,
+			projectionMatrix,
+			indexBuffer,
+			vertexBuffer
+		);
 		
 
 

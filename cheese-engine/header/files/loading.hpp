@@ -11,7 +11,7 @@
 
 #include "entity.hpp"
 
-#include "rendering.hpp"
+#include "vertex.hpp"
 
 
 

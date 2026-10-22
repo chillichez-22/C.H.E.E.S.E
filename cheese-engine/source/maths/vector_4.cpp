@@ -1,5 +1,7 @@
 #include "vector_4.hpp"
 
+
+
 // Vector Basic
 
 Vector4 add( Vector4& vectorOne, Vector4& vectorTwo ){
