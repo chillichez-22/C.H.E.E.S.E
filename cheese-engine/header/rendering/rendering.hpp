@@ -16,10 +16,12 @@
 #include "vector_3.hpp"
 #include "vector_4.hpp"
 #include "colour.hpp"
+#include "primitives.hpp"
 
 // Graphics pipeline
 #include "input_assembler.hpp"
 #include "vertex_shader.hpp" 
+#include "primitive_assembler.hpp"
 
 //....
 

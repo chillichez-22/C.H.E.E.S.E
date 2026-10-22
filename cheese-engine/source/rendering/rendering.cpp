@@ -72,7 +72,7 @@ void renderEntity(
 
             // Other shaders go here for now
         }
-
+        
 
     };
 

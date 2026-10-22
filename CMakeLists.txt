@@ -80,6 +80,8 @@ set( rendering_sources
     
     "cheese-engine/source/rendering/input_assembler.cpp"
     "cheese-engine/source/rendering/tri_rasteriser.cpp"
+    "cheese-engine/source/rendering/primitives.cpp"
+    "cheese-engine/source/rendering/primitive_assembler.cpp"
     "cheese-engine/source/rendering/vertex_shader.cpp"
     "cheese-engine/source/rendering/vertex.cpp"
     #"cheese-engine/source/rasteriser/quad_rasteriser.cpp"
@@ -109,6 +111,7 @@ set( shapes_3d_sources
     "cheese-engine/source/shapes_3d/line_3d.cpp"
     "cheese-engine/source/shapes_3d/sphere.cpp"
     "cheese-engine/source/shapes_3d/tri_3d.cpp"
+    "cheese-engine/source/shapes_3d/quad_3d.cpp"
 )
 
 set( ui_sources 
