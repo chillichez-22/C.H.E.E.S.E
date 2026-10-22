@@ -134,20 +134,3 @@ entityType& loadVertexData(
 
     return entity;
 }
-
-
-
-
-
-
-
-
-/**
- * @brief Removes duplicate vertex data from the `vertexList`
- * 
- * @details 
- * Maybe we can store this data in a cache somewhere, so we dont have to
- * de-duplicate the vertex list everytime we load an item ?
- */
-template< uint32_t newSize, uint32_t oldSize >
-std::array< ObjectVertex, newSize > deduplicateList( std::array< ObjectVertex, oldSize > vertexList );
