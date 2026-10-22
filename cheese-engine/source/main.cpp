@@ -158,7 +158,12 @@ int main() {
 
 	std::array< ObjectVertex, 3 > vertexList{ vertexOne, vertexTwo, vertexThree };
 
+	std::cout << vertexList[0] << vertexList[1] << vertexList[2] << "\n";
+
 	testEntity = loadVertexData( testEntity, vertexList, vertexBuffer, indexBuffer );
+
+	std::cout << "\n" << vertexBuffer.size() << " | " << vertexBuffer << "\n";
+	std::cout << "\n" << indexBuffer.size() << " | " << indexBuffer  << "\n";
 
 
 	/*

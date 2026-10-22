@@ -2,6 +2,7 @@
 
 // External
 #include <cmath>
+#include <iostream>
 
 /**
  * @brief A vector of floats with 2 components: x, y.
@@ -27,6 +28,23 @@ struct Vector2{
      */
     Vector2( float newX, float newY );
 
+
+    //Iostream
+
+    /**
+     * @brief Allows the use of `<iostream>` to print this object.
+     * 
+     * @param os Output stream object.
+     * @param obj Object to output into stream.
+     * 
+     * @returns `ostream` Output stream object. 
+     */
+    friend std::ostream& operator<<( std::ostream& os, const Vector2 obj ){
+
+        os << "{" << obj.x << "," << obj.y << "}";
+        
+        return os;
+    }
 
     // Comparison Operator Overloading
 

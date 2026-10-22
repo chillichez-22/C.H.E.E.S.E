@@ -33,3 +33,4 @@ bool ObjectVertex::operator!=( ObjectVertex vertex ){
 
     return true;
 }
+
