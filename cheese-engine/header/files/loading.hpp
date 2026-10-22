@@ -67,8 +67,8 @@ entityType& loadVertexData(
     Buffer< uint32_t > tempIndexBuffer;
 
 
-    // TODO: Have a cache to store last known vertices, then loop over this first to find a cache hit. 
-    //       Then only if a cache hit is not found, we go back and check the main tempVertexBuffer for duplicates.
+    // // TODO: Have a cache to store last known vertices, then loop over this first to find a cache hit. 
+    // //       Then only if a cache hit is not found, we go back and check the main tempVertexBuffer for duplicates.
     //
     // Buffer< ObjectVertex, 4 > vertexCache; /** < Stores the last 4 vertices, as they may have been reused */
     // Buffer< uint32_t, 4 > indexCache; /** < Stores the last 4 indicies, as they may have been reused */

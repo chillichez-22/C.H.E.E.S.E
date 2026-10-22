@@ -36,6 +36,28 @@ struct ObjectVertex{
         Vector2 uvCoord, 
         ColourI colourValue 
     ): pos( posCoord ), uv( uvCoord ), colour( colourValue ){};
+
+
+    // Comparison Operator Overloading
+
+    /**
+     * @brief Returns the comparison of this + another `ObjectVertex`.
+     * 
+     * @param vertex Other vertex to compare.
+     * 
+     * @return `bool` - Comparison of the two vertexes.
+     */
+    bool operator==( ObjectVertex vertex );
+
+    /**
+     * @brief Returns the inverse comparison of this + another `ObjectVertex`.
+     * 
+     * @param vertex Other vertex to compare.
+     * 
+     * @return `bool` - Comparison of the two vertexes.
+     */
+    bool operator!=( ObjectVertex vertex );
+    
 };
 
 

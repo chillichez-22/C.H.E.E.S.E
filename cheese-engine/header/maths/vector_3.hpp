@@ -42,7 +42,7 @@ struct Vector3{
     bool operator==( Vector3& vector );
 
     /**
-     * @brief Returns the not comparison of this + another `Vector3`.
+     * @brief Returns the inverse comparison of this + another `Vector3`.
      * 
      * @param vector Other vector to compare.
      * 
