@@ -123,7 +123,7 @@ int main() {
 
 	const uint8_t topologyVertexCount = 3; /**< Vertex count, to make up the primitives in a vertex buffer */
 
-	RenderSettings< topologyVertexCount > renderingSettings;
+	RenderSettings renderingSettings;
 
 	// Defined at the rendering step instead: 
 	// Matrix4x4< float > objectMatrix;		/**< Base object matrix for each object.  */

@@ -29,12 +29,12 @@
 /**
  * @brief Global settings for the renderer.
  * 
- * @tparam topologySize Vertex count of the primitives, ( typically 3, or 4 )
+ *
  */
-template< const uint8_t topologyVertexSize >
+
 struct RenderSettings
 {
-    const uint8_t topologySize = topologyVertexSize; /**< Vertex count of the primitives, how many vertexes to make one primitive */
+    //const uint8_t topologySize = topologyVertexSize; /**< Vertex count of the primitives, how many vertexes to make one primitive */
 };
 
 
@@ -63,7 +63,6 @@ struct RenderSettings
  * 
  * 
  */
-template< uint8_t topologyVertexSize >
 void renderEntity(
 
     const Entity& entity,
@@ -74,7 +73,7 @@ void renderEntity(
     const Buffer< uint32_t >& indexBuffer,
     const Buffer< ObjectVertex >& vertexBuffer,
 
-    const RenderSettings< topologyVertexSize >& settings
+    const RenderSettings& settings
 ){
 
 
@@ -116,34 +115,33 @@ void renderEntity(
 
     */
 
-    std::vector< WorldVertex > worldVertexStream;
-    std::vector< ScreenVertex > screenVertexStream;
+    std::array< WorldVertex, 3 > worldVertexStream;     /**< Holds a primitive for the world vertexes */
+    std::array< ScreenVertex, 3 > screenVertexStream;   /**< Holds a primitive for the screen vertexes */
 
-    Primitive< WorldVertex, topologyVertexSize > worldPrimitive;
-    Primitive< ScreenVertex, topologyVertexSize > screenPrimitive;
-    
-    for ( unsigned int i = 0; i < topologyVertexSize; i ++){
-        
-        worldVertexStream.push_back( WorldVertex() );
-        screenVertexStream.push_back( ScreenVertex() );
-        
-    }; 
+    Primitive< WorldVertex > worldPrimitive;
+    Primitive< ScreenVertex > screenPrimitive;
+
 
     // Splits the indexes into primitives, of size `settings.topologySize`
-    for ( unsigned int i = 0; i < ( entity.vertexCount / topologyVertexSize ); i + topologyVertexSize ){
+    for ( unsigned int i = 0; i < ( entity.vertexCount / 3 ); i + 3 ){
 
         // Loops over the vertexes in the primitives
-        for ( unsigned int v = 0; v < topologyVertexSize; v++ ){
+        for ( unsigned int v = 0; v < 3; v++ ){
 
+            /* Vertex Shader */
             worldVertexStream[v] = vs_calculateWorldVertex( vertexBuffer[ indexBuffer[ ( i + v ) + entity.indexOffset ] + entity.vertexOffset ], modelMatrix, viewMatrix ); 
             screenVertexStream[v] = vs_calculateScreenVertex( worldVertexStream[v], projectionMatrix  ); 
 
             // Other shaders go here for now
         }
         
+        /* Primitive Assembler */
+        worldPrimitive = pa_formPrimitive< WorldVertex >( worldVertexStream );
+        screenPrimitive = pa_formPrimitive< ScreenVertex >( screenVertexStream );
 
-        worldPrimitive = pa_formPrimitive< WorldVertex, topologyVertexSize >( worldVertexStream );
-        screenPrimitive = pa_formPrimitive< ScreenVertex, topologyVertexSize >( screenVertexStream );
+        /* Rasteriser*/
+
+
 
     };
 

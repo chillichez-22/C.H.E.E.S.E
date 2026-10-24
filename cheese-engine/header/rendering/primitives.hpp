@@ -5,10 +5,10 @@
 
 #include <array>
 
-template< typename vertexType, uint8_t vertexCount>
+template< typename vertexType >
 struct Primitive{
 
-    std::array< vertexType, vertexCount> vertices; /**< Vertexes making up the primitive */
+    std::array< vertexType, 3 > vertices; /**< Vertexes making up the primitive */
 
 };
 
