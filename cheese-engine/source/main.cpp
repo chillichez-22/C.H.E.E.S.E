@@ -121,7 +121,9 @@ int main() {
 	Buffer< uint32_t > indexBuffer = Buffer<uint32_t>();			/**< Buffer object for indexes ( that point to the `vertexBuffer` ) */
 	Buffer< ObjectVertex > vertexBuffer = Buffer<ObjectVertex>();	/**< Buffer object for vertex data loaded in from 3D objects and models */
 
-	const uint8_t topologyVertexSize = 3;   /**< Vertex count, to make up the primitives in a vertex buffer */
+	const uint8_t topologyVertexCount = 3; /**< Vertex count, to make up the primitives in a vertex buffer */
+
+	RenderSettings< topologyVertexCount > renderingSettings;
 
 	// Defined at the rendering step instead: 
 	// Matrix4x4< float > objectMatrix;		/**< Base object matrix for each object.  */
@@ -312,14 +314,12 @@ int main() {
 
 		renderEntity( 
 			testEntity,
-			topologyVertexSize,
 			viewMatrix,
 			projectionMatrix,
 			indexBuffer,
-			vertexBuffer
+			vertexBuffer,
+			renderingSettings
 		);
-		
-
 
 		/** End Rendering Pipeline Here */
 

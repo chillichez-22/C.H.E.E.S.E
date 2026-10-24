@@ -6,9 +6,9 @@
 #include <array>
 
 template< typename vertexType, uint8_t vertexCount>
-struct primitive{
+struct Primitive{
 
-    std::array< vertexType&, vertexCount> vertices; /**< Vertexes making up the primitive */
+    std::array< vertexType, vertexCount> vertices; /**< Vertexes making up the primitive */
 
 };
 
