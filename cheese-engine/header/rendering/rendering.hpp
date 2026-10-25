@@ -22,6 +22,7 @@
 #include "input_assembler.hpp"
 #include "vertex_shader.hpp" 
 #include "primitive_assembler.hpp"
+#include "rasteriser.hpp"
 
 //....
 
@@ -118,8 +119,10 @@ void renderEntity(
     std::array< WorldVertex, 3 > worldVertexStream;     /**< Holds a primitive for the world vertexes */
     std::array< ScreenVertex, 3 > screenVertexStream;   /**< Holds a primitive for the screen vertexes */
 
-    Primitive< WorldVertex > worldPrimitive;
-    Primitive< ScreenVertex > screenPrimitive;
+    Primitive< WorldVertex > worldPrimitive;    /**< Primitive tri for the world */
+    Primitive< ScreenVertex > screenPrimitive;  /**< Primitive tri for the screen */
+
+    std::vector< Vector2 > fragmentStream; /**< Holds 2D coords ( fragments ) */
 
 
     // Splits the indexes into primitives, of size `settings.topologySize`
@@ -140,7 +143,7 @@ void renderEntity(
         screenPrimitive = pa_formPrimitive< ScreenVertex >( screenVertexStream );
 
         /* Rasteriser*/
-
+        fragmentStream = ra_rasteriseTri( screenPrimitive );
 
 
     };

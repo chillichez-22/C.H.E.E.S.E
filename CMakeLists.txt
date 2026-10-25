@@ -79,6 +79,7 @@ set( rendering_sources
     "cheese-engine/source/rendering/rendering.cpp"
     
     "cheese-engine/source/rendering/input_assembler.cpp"
+    "cheese-engine/source/rendering/rasteriser.cpp"
     "cheese-engine/source/rendering/tri_rasteriser.cpp"
     "cheese-engine/source/rendering/primitives.cpp"
     "cheese-engine/source/rendering/primitive_assembler.cpp"

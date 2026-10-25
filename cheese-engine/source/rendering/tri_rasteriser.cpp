@@ -15,11 +15,11 @@ void RasteriseTri(
     
     /*
     std::cerr << "Zero: [" << zero.x << ", " << zero.y << "] \n";
-    std::cerr <<  "One: [" << one.x << ", " << one.y << "] \n";
-    std::cerr <<  "Two: [" << two.x << ", " << two.y << "] \n\n";
+    std::cerr <<  "One: [" << one.x  << ", " << one.y  << "] \n";
+    std::cerr <<  "Two: [" << two.x  << ", " << two.y  << "] \n\n";
     */
    
-   // Step 1
+    // Step 1
    
     std::array< Vector2, 3 > orderedPoints;
     orderPoints( orderedPoints, zero, one, two );
