@@ -22,6 +22,23 @@ struct Vector4{
     Vector4( Vector3 vector ): x( vector.x ), y( vector.y ), z( vector.z ), w( 1.0 ){};
 
     Vector4( float xVal, float yVal, float zVal, float wVal ): x( xVal ), y( yVal ), z( zVal ), w( wVal ){};
+
+    //Iostream
+
+    /**
+     * @brief Allows the use of `<iostream>` to print this object.
+     * 
+     * @param os Output stream object.
+     * @param obj Object to output into stream.
+     * 
+     * @returns `ostream` Output stream object. 
+     */
+    friend std::ostream& operator<<( std::ostream& os, const Vector4 obj ){
+
+        os << "{" << obj.x << "," << obj.y << "," << obj.z << "," << obj.w << "}";
+        
+        return os;
+    }
 };
 
 

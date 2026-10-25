@@ -77,6 +77,7 @@ void renderEntity(
     const RenderSettings& settings
 ){
 
+    //std::cout << "\n" << "Renderer Started...." << "\n";
 
     // Loads the model matrix data
 
@@ -122,33 +123,58 @@ void renderEntity(
     Primitive< WorldVertex > worldPrimitive;    /**< Primitive tri for the world */
     Primitive< ScreenVertex > screenPrimitive;  /**< Primitive tri for the screen */
 
-    std::vector< Vector2 > fragmentStream; /**< Holds 2D coords ( fragments ) */
+    Buffer< Vector2 > fragmentStream; /**< Holds 2D coords ( fragments ) */
 
-
+    //std::cout << "Vertex Count: " << entity.vertexCount << "\n";
+    
     // Splits the indexes into primitives, of size `settings.topologySize`
-    for ( unsigned int i = 0; i < ( entity.vertexCount / 3 ); i + 3 ){
+    for ( unsigned int i = 0; i <= ( entity.vertexCount / 3 ); i += 3 ){
+
+        // std::cout << "I: " << i << "\n";
+        // std::cout << "Stop Count: " << ( entity.vertexCount / 3 ) << "\n";
+        // std::cout << "Stop?: " << (i <= ( entity.vertexCount / 3 )) << "\n";
 
         // Loops over the vertexes in the primitives
         for ( unsigned int v = 0; v < 3; v++ ){
+
+            //std::cout << "V: " << v << "\n";
 
             /* Vertex Shader */
             worldVertexStream[v] = vs_calculateWorldVertex( vertexBuffer[ indexBuffer[ ( i + v ) + entity.indexOffset ] + entity.vertexOffset ], modelMatrix, viewMatrix ); 
             screenVertexStream[v] = vs_calculateScreenVertex( worldVertexStream[v], projectionMatrix  ); 
 
+
+            //std::cout << "World Vertex: " << v << " " << worldVertexStream[v] << "\n";
+            //std::cout << "Screen Vertex: " << v << " " << screenVertexStream[v] << "\n";
+
             // Other shaders go here for now
         }
-        
+
         /* Primitive Assembler */
+        //std::cout << "\n" << "Primitive Assembler" << "\n";
+
         worldPrimitive = pa_formPrimitive< WorldVertex >( worldVertexStream );
         screenPrimitive = pa_formPrimitive< ScreenVertex >( screenVertexStream );
 
-        /* Rasteriser*/
+        //std::cout << "worldPrimitive: " << worldPrimitive << "\n";
+        //std::cout << "screenPrimitive: " << screenPrimitive << "\n";
+
+
+        /* Rasteriser */
+        //std::cout << "\n" << "Rasteriser" << "\n";
+
         fragmentStream = ra_rasteriseTri( screenPrimitive );
 
+        //std::cout << "Fragment stream size: " << fragmentStream.size() << "\n";
 
+        /* Fragment Shader */
+        //std::cout << "\n" << "Rasteriser" << "\n";
+        
+
+        fragmentStream.clear();
     };
 
-
+    return;
 };
 
 

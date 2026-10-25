@@ -187,16 +187,16 @@ int main() {
 	testEntity = loadVertexData( testEntity, vertexList, vertexBuffer, indexBuffer );
 
 	std::cout << "\n" << vertexBuffer.size() << " | " << vertexBuffer << "\n";
-	std::cout << "\n" << indexBuffer.size() << " | " << indexBuffer  << "\n";
+	std::cout << "\n" << indexBuffer.size() << " | " << indexBuffer  << "\n\n";
 
 
 	// Main Loop
 
 	bool running = true;
 
-	bool shouldDeactivate = false;
+	bool shouldDeactivate = true;
 	uint64_t deactivationStopwatch = 0;
-	uint64_t deactivationTime = 5000;
+	uint64_t deactivationTime = 1000;
 
 	while ( running ){
 
@@ -311,7 +311,7 @@ int main() {
 		// Draws bg
 		SDL_SetRenderDrawColor( renderer, 255, 255, 255, 255 );
 
-
+		std::cout << "Rendering Entities...." << "\n";
 		renderEntity( 
 			testEntity,
 			viewMatrix,
@@ -340,13 +340,15 @@ int main() {
 			SDL_Delay( delayTime );
 		}
 
-		//running = true;
+		running = false;
+		break;
 
 	}
 
 	SDL_DestroyWindow( window );
 	SDL_Quit();
 
+	std::cout << "Total Frames: " << elapsedFrames << "\n";
 
 	std::getchar(); 
 

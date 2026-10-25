@@ -115,6 +115,26 @@ struct WorldVertex{
         Vector2 uvCoord, 
         ColourI colourValue 
     ): pos( posCoord ), normal( normalVec ), uv( uvCoord ), colour( colourValue ){};
+
+
+    // Iostream
+
+    /**
+     * @brief Allows the use of `<iostream>` to print this object.
+     * 
+     * Shows only the pos.
+     * 
+     * @param os Output stream object.
+     * @param obj Object to output into stream.
+     * 
+     * @returns `ostream` Output stream object. 
+     */
+    friend std::ostream& operator<<( std::ostream& os, const WorldVertex obj ){
+
+        os << (obj.pos);
+        
+        return os;
+    }
 };
 
 /**
@@ -142,4 +162,22 @@ struct ScreenVertex{
         Vector2 posCoord,  
         Vector2 uvCoord
     ): pos( posCoord ), uv( uvCoord ){};
+
+
+    /**
+     * @brief Allows the use of `<iostream>` to print this object.
+     * 
+     * Shows only the pos.
+     * 
+     * @param os Output stream object.
+     * @param obj Object to output into stream.
+     * 
+     * @returns `ostream` Output stream object. 
+     */
+    friend std::ostream& operator<<( std::ostream& os, const ScreenVertex obj ){
+
+        os << (obj.pos);
+        
+        return os;
+    }
 };

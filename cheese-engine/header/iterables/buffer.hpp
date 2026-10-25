@@ -33,6 +33,8 @@ public:
     }
 
 
+    // Data Input
+
     /**
      * @brief Adds to the buffer, and returns the index where it was placed.
      * 
@@ -68,29 +70,16 @@ public:
         return startPoint;
     }
 
-
     /**
-     * @brief Returns the amount of items in the buffer.
-     * 
-     * @returns `uint32_t` Number of items in the buffer.
+     * @brief Clears the entire buffer. 
      */
-    uint32_t size(){
+    void clear(){
 
-        uint32_t size = uint32_t( data.size() );
-        return size;
+        data.clear();
     }
 
-    /**
-     * @brief Returns the amount of items in the buffer.
-     * 
-     * @returns `const uint32_t` Number of items in the buffer.
-     */
-    const uint32_t size() const{
 
-        uint32_t size = uint32_t( data.size() );
-        return size;
-    }
-
+    // Data Retrieval
 
     /**
      * @brief Returns an item from the buffer, at the `index`.
@@ -115,6 +104,32 @@ public:
         
         return data[ index ];
     }
+
+
+    // Getters
+    
+    /**
+     * @brief Returns the amount of items in the buffer.
+     * 
+     * @returns `uint32_t` Number of items in the buffer.
+     */
+    uint32_t size(){
+
+        uint32_t size = uint32_t( data.size() );
+        return size;
+    }
+
+    /**
+     * @brief Returns the amount of items in the buffer.
+     * 
+     * @returns `const uint32_t` Number of items in the buffer.
+     */
+    const uint32_t size() const{
+
+        uint32_t size = uint32_t( data.size() );
+        return size;
+    }
+
 
 
 

@@ -1,12 +1,12 @@
 #include "rasteriser.hpp"
 
 
-std::vector< Vector2 > ra_rasteriseTri( 
+Buffer< Vector2 > ra_rasteriseTri( 
 
     Primitive< ScreenVertex >& screenTri
 ){
 
-    std::vector< Vector2 > fragmentStream;
+    Buffer< Vector2 > fragmentStream;
     
     // Orders points based on height
 
@@ -136,13 +136,13 @@ void ra_splitTri(
 
 void ra_scanTri(
 
-    std::vector< Vector2 >& fragmentStream,
+    Buffer< Vector2 >& fragmentStream,
     Tri2D& tri
 ){
 
-    Vector2& zero = tri.points[0]; /**< Zero index of the tri's points */
-    Vector2& one = tri.points[1];  /**< One index of the tri's points */
-    Vector2& two = tri.points[2];  /**< Two index of the tri's points */
+    Vector2& top = tri.points[0]; /**< Zero index of the tri's points */
+    Vector2& mid = tri.points[1];  /**< One index of the tri's points */
+    Vector2& low = tri.points[2];  /**< Two index of the tri's points */
     
     // Creates lines
     Line2D lineLeft;
@@ -156,17 +156,17 @@ void ra_scanTri(
     
 
     // Top-Flat tri
-    if ( zero.y == one.y ){
+    if ( top.y == mid.y ){
 
-        lineLeft = Line2D( one, two );
-        lineRight = Line2D( two, zero );
+        lineLeft = Line2D( mid, low );
+        lineRight = Line2D( low, top );
 
     }
     // Bottom-Flat tri
     else{
 
-        lineLeft = Line2D( zero, one );
-        lineRight = Line2D( two, zero );
+        lineLeft = Line2D( top, mid );
+        lineRight = Line2D( low, top );
     }
     
 
@@ -181,7 +181,7 @@ void ra_scanTri(
     int endX;
 
     // Scans downwards
-    for ( int y = zero.y; y <= two.y; y++ ){
+    for ( int y = top.y; y <= low.y; y++ ){
                 
         startX = findXFromEOL( y, cLeft, mLeft );
         endX = findXFromEOL( y, cRight, mRight );
@@ -200,7 +200,7 @@ void ra_scanTri(
 
 void ra_scanLine(
 
-    std::vector< Vector2 >& fragmentStream,
+    Buffer< Vector2 >& fragmentStream,
     int startX,
     int endX,
     int y 

@@ -10,6 +10,8 @@
 // Outside Scope
 #include "math.hpp"
 
+#include "buffer.hpp"
+
 #include "vector_2.hpp"
 #include "vector_3.hpp"
 #include "colour.hpp"
@@ -29,7 +31,7 @@
  * 
  * @return `vector< Vector2 >` List of fragments, 2d positions.
  */
-std::vector< Vector2 > ra_rasteriseTri( 
+Buffer< Vector2 > ra_rasteriseTri( 
 
     Primitive< ScreenVertex >& screenTri
 );
@@ -109,7 +111,7 @@ void ra_splitTri(
  * 
  */
 void ra_scanTri(
-    std::vector< Vector2 >& fragmentStream,
+    Buffer< Vector2 >& fragmentStream,
     Tri2D& tri
 );
 
@@ -125,7 +127,7 @@ void ra_scanTri(
  */
 void ra_scanLine(
 
-    std::vector< Vector2 >& fragmentStream,
+    Buffer< Vector2 >& fragmentStream,
     int startX,
     int endX,
     int y 
