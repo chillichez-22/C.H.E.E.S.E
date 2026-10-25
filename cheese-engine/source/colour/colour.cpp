@@ -57,6 +57,17 @@ bool ColourF::operator!=( ColourF colour ){
 }
 
 
+ColourF ColourF::operator+( ColourF colour ){
+
+    return ColourF{ (r + colour.r)/2.f, (g + colour.g)/2.f, (b + colour.b)/2.f, (a + colour.a)/2.f };
+}
+
+ColourF ColourF::operator*( float scale ){
+    
+    return ColourF{ r * scale, g * scale, b * scale, a * scale };
+};
+
+
 // ColourI
 
 ColourI::ColourI(){};
@@ -110,3 +121,13 @@ bool ColourI::operator!=( ColourI colour ){
 
     return true;
 }
+
+ColourI ColourI::operator+( ColourI colour ){
+
+    return ColourI{ uint8_t( (r + colour.r)/2 ), uint8_t( (g + colour.g)/2 ), uint8_t( (b + colour.b)/2 ), uint8_t( (a + colour.a)/2 ) };
+}
+
+ColourI ColourI::operator*( float scale ){
+    
+    return ColourI{ uint8_t(r * scale), uint8_t(g * scale), uint8_t(b * scale), uint8_t(a * scale) };
+};

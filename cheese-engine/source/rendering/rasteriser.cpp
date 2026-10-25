@@ -180,36 +180,30 @@ void ra_scanTri(
     int startX;
     int endX;
 
-    // Scans downwards
+    // Barycentric Co-ordinates
+
+    float determinant = 0.5* ( (mid.y - low.y)*(top.x - low.x) + (low.x - mid.x)*(top.y - low.y) ); /**< Area of ABC ( top, mid, low )*/
+
+    float u;
+    float v;
+
     for ( int y = top.y; y <= low.y; y++ ){
                 
         startX = findXFromEOL( y, cLeft, mLeft );
         endX = findXFromEOL( y, cRight, mRight );
 
-        ra_scanLine(
-            fragmentStream,
-            startX,
-            endX,
-            y
-        );
+        for ( int x = startX; x <= endX; x++ ){
+
+
+            u = ( (mid.y - low.y)*(x - low.x) + (low.x - mid.x)*(y - low.y)) / determinant;
+
+            v = ( (low.y - top.y)*(x - low.x) + (top.x - low.x)*(y - low.y)) / determinant;
+
+            // W omitted to save memory in the ram, can be found by doing: w = 1 - u - v
+
+            fragmentStream.push_back( Vector2( u, v ) );
+        }
 
     }
 
-};
-
-
-void ra_scanLine(
-
-    Buffer< Vector2 >& fragmentStream,
-    int startX,
-    int endX,
-    int y 
-){
-
-    for ( int x = startX; x <= endX; x++ ){
-        
-        fragmentStream.push_back( Vector2( x, y ) );
-    }
-
-    
 };

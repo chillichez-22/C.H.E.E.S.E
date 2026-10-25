@@ -1,6 +1,7 @@
 #include "interpolation.hpp"
 
 
+
 Vector3 calculateBarycentricCoords( Vector3 point, Tri3D tri ){
 
     Vector3 AB = tri.points[1] - tri.points[0];

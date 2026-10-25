@@ -71,20 +71,20 @@ set( maths_sources
     "cheese-engine/source/maths/vector_2.cpp"
     "cheese-engine/source/maths/vector_3.cpp"
     "cheese-engine/source/maths/vector_4.cpp"
-    #"cheese-engine/source/maths/vertex.cpp"
 )
 
 set( rendering_sources
     
     "cheese-engine/source/rendering/rendering.cpp"
     
+    "cheese-engine/source/rendering/fragment_shader.cpp"
     "cheese-engine/source/rendering/input_assembler.cpp"
     "cheese-engine/source/rendering/rasteriser.cpp"
-    "cheese-engine/source/rendering/tri_rasteriser.cpp"
     "cheese-engine/source/rendering/primitives.cpp"
     "cheese-engine/source/rendering/primitive_assembler.cpp"
     "cheese-engine/source/rendering/vertex_shader.cpp"
     "cheese-engine/source/rendering/vertex.cpp"
+    #"cheese-engine/source/rendering/tri_rasteriser.cpp"
     #"cheese-engine/source/rasteriser/quad_rasteriser.cpp"
 )
 

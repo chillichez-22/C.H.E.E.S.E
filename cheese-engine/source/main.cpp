@@ -36,7 +36,6 @@
 // Rendering
 #include "rendering.hpp"
 #include "vertex.hpp"
-#include "tri_rasteriser.hpp"
 
 
 int main() {
@@ -318,6 +317,7 @@ int main() {
 			projectionMatrix,
 			indexBuffer,
 			vertexBuffer,
+			renderer,
 			renderingSettings
 		);
 

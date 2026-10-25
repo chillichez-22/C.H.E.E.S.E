@@ -41,6 +41,31 @@ struct ColourF : Colour
      * @return `bool` - Comparison of the two colours.
      */
     bool operator!=( ColourF colour );
+
+
+    // Arithmetic Operator Overloading
+
+
+    /** 
+     * @brief Returns the combination of this and `colour` and halves the total.
+     * 
+     * @attention Halves the value of the combination, due to the max component value being 255.
+     * 
+     * @param colour Colour to combine to this.
+     * 
+     * @returns `ColourF` Combination of the colours.
+     */
+    ColourF operator+( ColourF colour );
+
+    /**
+     * @brief Returns the scale of this colour by the `scale`
+     * 
+     * @param scale Value to scale the colour by.
+     * 
+     * @returns `ColourF` - Colour scaled.
+     */
+    ColourF operator*( float scale );
+
 };
 
 /**
@@ -76,4 +101,27 @@ struct ColourI : Colour
      * @return `bool` - Comparison of the two colours.
      */
     bool operator!=( ColourI colour );
+
+
+    // Arithmetic Operator Overloading
+
+    /** 
+     * @brief Returns the combination of this and `colour` and halves the total.
+     * 
+     * @attention Halves the value of the combination, due to the max component value being 255.
+     * 
+     * @param colour Colour to combine to this.
+     * 
+     * @returns `ColourI` Combination of the colours.
+     */
+    ColourI operator+( ColourI colour );
+
+    /**
+     * @brief Returns the scale of this colour by the `scale`
+     * 
+     * @param scale Value to scale the colour by.
+     * 
+     * @returns `ColourI` - Colour scaled.
+     */
+    ColourI operator*( float scale );
 };

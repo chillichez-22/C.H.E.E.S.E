@@ -23,6 +23,7 @@
 #include "vertex_shader.hpp" 
 #include "primitive_assembler.hpp"
 #include "rasteriser.hpp"
+#include "fragment_shader.hpp"
 
 //....
 
@@ -74,6 +75,7 @@ void renderEntity(
     const Buffer< uint32_t >& indexBuffer,
     const Buffer< ObjectVertex >& vertexBuffer,
 
+    SDL_Renderer* renderer,
     const RenderSettings& settings
 ){
 
@@ -123,7 +125,9 @@ void renderEntity(
     Primitive< WorldVertex > worldPrimitive;    /**< Primitive tri for the world */
     Primitive< ScreenVertex > screenPrimitive;  /**< Primitive tri for the screen */
 
-    Buffer< Vector2 > fragmentStream; /**< Holds 2D coords ( fragments ) */
+    Buffer< Vector2 > fragmentStream; /**< Holds UV for the barycentric coords ( w is not stored as it can be found ) */
+    ColourI fragColour;     /**< Colour of the fragment */
+    Vector2 fragPos;        /**< 2D Position of the fragment in screen space */
 
     //std::cout << "Vertex Count: " << entity.vertexCount << "\n";
     
@@ -131,8 +135,6 @@ void renderEntity(
     for ( unsigned int i = 0; i <= ( entity.vertexCount / 3 ); i += 3 ){
 
         // std::cout << "I: " << i << "\n";
-        // std::cout << "Stop Count: " << ( entity.vertexCount / 3 ) << "\n";
-        // std::cout << "Stop?: " << (i <= ( entity.vertexCount / 3 )) << "\n";
 
         // Loops over the vertexes in the primitives
         for ( unsigned int v = 0; v < 3; v++ ){
@@ -142,7 +144,6 @@ void renderEntity(
             /* Vertex Shader */
             worldVertexStream[v] = vs_calculateWorldVertex( vertexBuffer[ indexBuffer[ ( i + v ) + entity.indexOffset ] + entity.vertexOffset ], modelMatrix, viewMatrix ); 
             screenVertexStream[v] = vs_calculateScreenVertex( worldVertexStream[v], projectionMatrix  ); 
-
 
             //std::cout << "World Vertex: " << v << " " << worldVertexStream[v] << "\n";
             //std::cout << "Screen Vertex: " << v << " " << screenVertexStream[v] << "\n";
@@ -168,8 +169,19 @@ void renderEntity(
         //std::cout << "Fragment stream size: " << fragmentStream.size() << "\n";
 
         /* Fragment Shader */
-        //std::cout << "\n" << "Rasteriser" << "\n";
-        
+        //std::cout << "\n" << "Fragment Shader" << "\n";
+
+        for ( unsigned int i = 0; i < fragmentStream.size(); i++ ){
+
+            fragPos = fs_findScreenCoord( fragmentStream[i], screenPrimitive );
+            
+            fragColour = fs_drawFragmentBase( fragmentStream[i], worldPrimitive, screenPrimitive );
+            
+
+            SDL_SetRenderDrawColor( renderer, fragColour.r, fragColour.g, fragColour.b, fragColour.a );      
+            SDL_RenderPoint( renderer, fragPos.x, fragPos.y );
+
+        }
 
         fragmentStream.clear();
     };

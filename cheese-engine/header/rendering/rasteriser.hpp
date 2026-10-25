@@ -29,7 +29,7 @@
  * @param worldTri Tri primitive in world space coords ( 4D/3D )
  * @param screenTri Tri primitive in screen space coords ( 2D )
  * 
- * @return `vector< Vector2 >` List of fragments, 2d positions.
+ * @return `vector< Vector2 >` List of UV lambdas, from the barycentric coords ( w not included ).
  */
 Buffer< Vector2 > ra_rasteriseTri( 
 
@@ -116,19 +116,3 @@ void ra_scanTri(
 );
 
 
-/**
- * @brief Scans a horizontal slice, split from the tri. 
- * 
- * @param fragmentStream List of 2d positions ( fragments )
- * @param startX Start value for x
- * @param endX End value for x
- * @param y Y value for the height of the line from `startX` to `endX`
- * 
- */
-void ra_scanLine(
-
-    Buffer< Vector2 >& fragmentStream,
-    int startX,
-    int endX,
-    int y 
-);
