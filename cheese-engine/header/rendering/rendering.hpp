@@ -152,13 +152,13 @@ void renderEntity(
         }
 
         /* Primitive Assembler */
-        //std::cout << "\n" << "Primitive Assembler" << "\n";
+        std::cout << "\n" << "Primitive Assembler" << "\n";
 
         worldPrimitive = pa_formPrimitive< WorldVertex >( worldVertexStream );
         screenPrimitive = pa_formPrimitive< ScreenVertex >( screenVertexStream );
 
-        //std::cout << "worldPrimitive: " << worldPrimitive << "\n";
-        //std::cout << "screenPrimitive: " << screenPrimitive << "\n";
+        std::cout << "worldPrimitive: " << worldPrimitive << "\n";
+        std::cout << "screenPrimitive: " << screenPrimitive << "\n";
 
 
         /* Rasteriser */
@@ -166,20 +166,29 @@ void renderEntity(
 
         fragmentStream = ra_rasteriseTri( screenPrimitive );
 
-        //std::cout << "Fragment stream size: " << fragmentStream.size() << "\n";
-
+        
         /* Fragment Shader */
-        //std::cout << "\n" << "Fragment Shader" << "\n";
-
+        std::cout << "\n" << "Fragment Shader" << "\n";
+        
+        std::cout << "Fragment stream size: " << fragmentStream.size() << "\n";
         for ( unsigned int i = 0; i < fragmentStream.size(); i++ ){
 
             fragPos = fs_findScreenCoord( fragmentStream[i], screenPrimitive );
-            
+
             fragColour = fs_drawFragmentBase( fragmentStream[i], worldPrimitive, screenPrimitive );
             
-
-            SDL_SetRenderDrawColor( renderer, fragColour.r, fragColour.g, fragColour.b, fragColour.a );      
+            SDL_SetRenderDrawColor( renderer, fragColour.r, fragColour.g, fragColour.b, fragColour.a );   
+            SDL_SetRenderDrawColor( renderer, 255, 0, 0, 255 );     
             SDL_RenderPoint( renderer, fragPos.x, fragPos.y );
+
+            // fragPos = fragmentStream[i];
+
+            // SDL_SetRenderDrawColor( renderer, 255, 0, 0, 255 );  
+            // SDL_RenderPoint( renderer, fragPos.x, fragPos.y );
+            
+
+            //std::cout << "fragPos" << fragPos << "\n";
+            //std::cout << " U + V + W: " << fragmentStream[i].x + fragmentStream[i].y + ( 1 - fragmentStream[i].x - fragmentStream[i].y ) << "\n";
 
         }
 

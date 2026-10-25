@@ -15,8 +15,8 @@ Buffer< Vector2 > ra_rasteriseTri(
     ra_orderPointsTri( orderedPoints, screenTri.vertices[0], screenTri.vertices[1], screenTri.vertices[2] );
 
     ScreenVertex top = orderedPoints[0];
-    ScreenVertex mid =  orderedPoints[1];
-    ScreenVertex low =  orderedPoints[2];
+    ScreenVertex mid = orderedPoints[1];
+    ScreenVertex low = orderedPoints[2];
 
 
     // Splitting of tris is skipped, if two of the points have the same y value. Since tri has either a flat-top, or flat-bottom.
@@ -182,22 +182,28 @@ void ra_scanTri(
 
     // Barycentric Co-ordinates
 
-    float determinant = 0.5* ( (mid.y - low.y)*(top.x - low.x) + (low.x - mid.x)*(top.y - low.y) ); /**< Area of ABC ( top, mid, low )*/
+    float determinant = ( (mid.y - low.y)*(top.x - low.x) + (low.x - mid.x)*(top.y - low.y) ); /**< Area of ABC ( top, mid, low )*/
 
     float u;
     float v;
+
+    float px;
+    float py;
 
     for ( int y = top.y; y <= low.y; y++ ){
                 
         startX = findXFromEOL( y, cLeft, mLeft );
         endX = findXFromEOL( y, cRight, mRight );
 
+        py = y + 0.5;
+
         for ( int x = startX; x <= endX; x++ ){
 
+            px = x + 0.5 ;
 
-            u = ( (mid.y - low.y)*(x - low.x) + (low.x - mid.x)*(y - low.y)) / determinant;
+            u = ( (mid.y - low.y)*( px - low.x) + (low.x - mid.x)*( py - low.y)) / determinant;
 
-            v = ( (low.y - top.y)*(x - low.x) + (top.x - low.x)*(y - low.y)) / determinant;
+            v = ( (low.y - top.y)*( px - low.x) + (top.x - low.x)*( py - low.y)) / determinant;
 
             // W omitted to save memory in the ram, can be found by doing: w = 1 - u - v
 

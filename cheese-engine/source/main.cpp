@@ -193,9 +193,11 @@ int main() {
 
 	bool running = true;
 
-	bool shouldDeactivate = true;
-	uint64_t deactivationStopwatch = 0;
-	uint64_t deactivationTime = 1000;
+	bool shouldRunOnce = true;		/**< Should the game only run the loop once? */
+
+	bool shouldDeactivate = false;		/**< Should the game set a timer to stop after a defined time has elapsed? */
+	uint64_t deactivationTime = 1000;	/**< Time to stop the game afterwards in milliseconds. */
+	uint64_t deactivationStopwatch = 0;	/**< (Dont Change Manually!) Current stopwatch time passed */
 
 	while ( running ){
 
@@ -220,7 +222,9 @@ int main() {
 				case SDL_EVENT_QUIT:{
 	
 					running = false;
-					break;
+
+					// Wont break immediately to prevent unintended side effects when closing the game
+					//break;
 				}
 
 				case SDL_EVENT_MOUSE_BUTTON_DOWN:{
@@ -286,18 +290,6 @@ int main() {
 
 		}
 		
- 
-		// Auto-Closer
-		if ( shouldDeactivate ){
-			
-			deactivationStopwatch += deltaTime;
-
-			if ( deactivationStopwatch >= deactivationTime ){
-				running = false;
-			}
-
-		}	
-		
 
 		// Clears screen with white
 
@@ -338,18 +330,42 @@ int main() {
 
 			uint64_t delayTime = ticksPerFrame - deltaTime;
 			SDL_Delay( delayTime );
+		}	
+
+
+		// Auto-Closers
+
+		if ( shouldDeactivate ){
+			
+			deactivationStopwatch += deltaTime;
+
+			if ( deactivationStopwatch >= deactivationTime ){
+				running = false;
+			}
+
 		}
-
-		running = false;
-		break;
-
+		if( shouldRunOnce ){
+			running = false;
+		}
+		
 	}
+
+	std::cout << "\n\n" << "---------------| End Data |---------------" << "\n";
+
+	std::cout << "Total Frames: " << elapsedFrames << "\n";
+
+	if (shouldRunOnce){ std::cout << "Run Only Once, due to shouldRunOnce" << "\n"; }
+	if (shouldDeactivate){ std::cout << "Stopped after " << deactivationTime << "seconds, due to shouldDeactivate" << "\n"; }
+
+	std::cout << "n" << "------------------------------------------" << "\n";
+
+	std::cout << "Press Any Key To Quit SDL... ";
+	std::getchar(); 
 
 	SDL_DestroyWindow( window );
 	SDL_Quit();
 
-	std::cout << "Total Frames: " << elapsedFrames << "\n";
-
+	std::cout << "Press Any Key To Close The Terminal... ";
 	std::getchar(); 
 
 	return 0;
