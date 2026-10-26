@@ -147,7 +147,7 @@ int main() {
 	
 	ColourI red = ColourI( 255, 0, 0 ); 
 	ColourI green = ColourI( 0, 255, 0 );
-	ColourI blue = ColourI( 255, 0, 255 );
+	ColourI blue = ColourI( 0, 0, 255 );
 	
 	Vector2 emptyUV = Vector2( 0, 0 );
 	Vector3 emptyNormal = Vector3( 0, 0, 0);
@@ -354,10 +354,10 @@ int main() {
 
 	std::cout << "Total Frames: " << elapsedFrames << "\n";
 
-	if (shouldRunOnce){ std::cout << "Run Only Once, due to shouldRunOnce" << "\n"; }
+	if (shouldRunOnce){ std::cout << "Ran only once, due to shouldRunOnce" << "\n"; }
 	if (shouldDeactivate){ std::cout << "Stopped after " << deactivationTime << "seconds, due to shouldDeactivate" << "\n"; }
 
-	std::cout << "n" << "------------------------------------------" << "\n";
+	std::cout << "------------------------------------------" << "\n";
 
 	std::cout << "Press Any Key To Quit SDL... ";
 	std::getchar(); 

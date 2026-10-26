@@ -22,8 +22,10 @@ Vector2 fs_findScreenCoord(
     Primitive< ScreenVertex >& screenPrimitive 
 ){
 
-    int x = int( ( fragUV.x * screenPrimitive.vertices[0].pos.x ) + ( fragUV.y * screenPrimitive.vertices[1].pos.x ) + ( (1 - fragUV.x - fragUV.y) * screenPrimitive.vertices[2].pos.x ) );
-    int y = int( ( fragUV.x * screenPrimitive.vertices[0].pos.y ) + ( fragUV.y * screenPrimitive.vertices[1].pos.y ) + ( (1 - fragUV.x - fragUV.y) * screenPrimitive.vertices[2].pos.y ) );
+    float w = 1.f - fragUV.x - fragUV.y;
+    
+    float x = floorf( ( fragUV.x * screenPrimitive.vertices[0].pos.x ) + ( fragUV.y * screenPrimitive.vertices[1].pos.x ) + ( w * screenPrimitive.vertices[2].pos.x ) );
+    float y = floorf( ( fragUV.x * screenPrimitive.vertices[0].pos.y ) + ( fragUV.y * screenPrimitive.vertices[1].pos.y ) + ( w * screenPrimitive.vertices[2].pos.y ) );
     
     return Vector2( x, y );
 }

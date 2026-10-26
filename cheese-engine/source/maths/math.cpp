@@ -12,5 +12,5 @@ float findXFromEOL( float y, float c, float m ){
 
 int findXFromEOL( int y, float c, float m ){
 
-    return int( ( y - c ) / m );
+    return (int)roundf( ( y - c ) / m );
 }

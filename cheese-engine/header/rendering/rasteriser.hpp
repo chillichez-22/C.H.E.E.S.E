@@ -107,12 +107,15 @@ void ra_splitTri(
  * 
  * 
  * @param fragmentStream List of 2d positions ( fragments )
- * @param tri Tri to scan
+ * @param tri Tri to scan 
+ * @param screnTri Screen tri, from the primitive assembler
  * 
  */
 void ra_scanTri(
-    Buffer< Vector2 >& fragmentStream,
-    Tri2D& tri
-);
 
+    Buffer< Vector2 >& fragmentStream,
+    Tri2D& tri,
+    Primitive< ScreenVertex >& screenTri
+
+);
 

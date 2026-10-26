@@ -178,7 +178,7 @@ void renderEntity(
             fragColour = fs_drawFragmentBase( fragmentStream[i], worldPrimitive, screenPrimitive );
             
             SDL_SetRenderDrawColor( renderer, fragColour.r, fragColour.g, fragColour.b, fragColour.a );   
-            SDL_SetRenderDrawColor( renderer, 255, 0, 0, 255 );     
+            //SDL_SetRenderDrawColor( renderer, 255, 0, 0, 255 );     
             SDL_RenderPoint( renderer, fragPos.x, fragPos.y );
 
             // fragPos = fragmentStream[i];

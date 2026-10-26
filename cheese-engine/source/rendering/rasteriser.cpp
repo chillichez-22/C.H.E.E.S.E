@@ -24,7 +24,7 @@ Buffer< Vector2 > ra_rasteriseTri(
 
         Tri2D tri = Tri2D( screenTri.vertices[0].pos, screenTri.vertices[1].pos, screenTri.vertices[2].pos );
 
-        ra_scanTri( fragmentStream, tri );
+        ra_scanTri( fragmentStream, tri, screenTri );
 
     }
 
@@ -37,10 +37,10 @@ Buffer< Vector2 > ra_rasteriseTri(
 
 
         // Top Tri
-        ra_scanTri( fragmentStream, splitTris[0] );
+        ra_scanTri( fragmentStream, splitTris[0], screenTri );
 
         // Bottom Tri
-        ra_scanTri( fragmentStream, splitTris[1] );
+        ra_scanTri( fragmentStream, splitTris[1], screenTri );
 
     }
 
@@ -137,7 +137,9 @@ void ra_splitTri(
 void ra_scanTri(
 
     Buffer< Vector2 >& fragmentStream,
-    Tri2D& tri
+    Tri2D& tri,
+    Primitive< ScreenVertex >& screenTri
+
 ){
 
     Vector2& top = tri.points[0]; /**< Zero index of the tri's points */
@@ -182,7 +184,11 @@ void ra_scanTri(
 
     // Barycentric Co-ordinates
 
-    float determinant = ( (mid.y - low.y)*(top.x - low.x) + (low.x - mid.x)*(top.y - low.y) ); /**< Area of ABC ( top, mid, low )*/
+    Vector2& zero = screenTri.vertices[0].pos;  /**< Zero index of the screen tri's points */
+    Vector2& one =  screenTri.vertices[1].pos;   /**< One index of the screen tri's points */
+    Vector2& two =  screenTri.vertices[2].pos;   /**< Two index of the screen tri's points */
+
+    float determinant = ( (one.y - two.y)*(zero.x - two.x) + (two.x - one.x)*(zero.y - two.y) ); /**< Area of ABC ( zero, one, two )*/
 
     float u;
     float v;
@@ -195,15 +201,17 @@ void ra_scanTri(
         startX = findXFromEOL( y, cLeft, mLeft );
         endX = findXFromEOL( y, cRight, mRight );
 
+        // Places y at the centre of the pixel
         py = y + 0.5;
 
         for ( int x = startX; x <= endX; x++ ){
 
-            px = x + 0.5 ;
+            // Places x at the centre of the pixel
+            px = x + 0.5;
 
-            u = ( (mid.y - low.y)*( px - low.x) + (low.x - mid.x)*( py - low.y)) / determinant;
+            u = ( (one.y - two.y)*( px - two.x) + (two.x - one.x)*( py - two.y)) / determinant;
 
-            v = ( (low.y - top.y)*( px - low.x) + (top.x - low.x)*( py - low.y)) / determinant;
+            v = ( (two.y - zero.y)*( px - two.x) + (zero.x - two.x)*( py - two.y)) / determinant;
 
             // W omitted to save memory in the ram, can be found by doing: w = 1 - u - v
 
