@@ -68,14 +68,15 @@ int main() {
 
 	// FPS & Performance
 
-	uint8_t fps = 60;
-	uint64_t ticksPerFrame = 1000 / fps; 
-	uint64_t elapsedFrames = 0;
+	uint8_t fps = 60;	/**< Frame rate of the game, how many frames to calculate per 1000 millisecs */
+	uint64_t secondsPerFrame = 1000 / fps; /** < How many milliseconds 1 frame will take, at the current `fps` */
+	uint64_t elapsedFrames = 0;	/**< Current number of frames passed */
 
-	uint64_t startTime = 0;
-	uint64_t endTime = 0;
-	uint64_t deltaTime = 0;
-	uint64_t previousTime = 0;
+	uint64_t previousTime = 0; 	/**< Start time of the last frame in milliseconds */
+	uint64_t startTime = 0;		/**< Start time of the current frame in milliseconds */
+	uint64_t endTime = 0;		/**< End time of the current frame in milliseconds */
+	uint64_t deltaTime = 0;		/**< Time taken to complete a frame ( Including the delay induced by the frame cap of `fps` ) */
+	uint8_t effectiveFps = 60;	/**< FPS of the game without delaying due to the frame cap of `fps` ( How quickly the game can go without the induced delay of the frame cap of `fps`)*/
 
 
 	// SDL Window Setup
@@ -86,11 +87,14 @@ int main() {
 	SDL_Window* window;
 	SDL_Renderer* renderer; 
 	
+	const char* title = "C.H.E.E.S.E - SDL3";
+	SDL_WindowFlags flags = SDL_WINDOW_RESIZABLE; // Use || (or) to add more flags. E.G: FLAG_1 || FLAG_2 || FLAG_3
+
 	window = SDL_CreateWindow(
-		"C.H.E.E.S.E - SDL3", 
+		title, 
 		width, 
 		height, 
-		SDL_WINDOW_RESIZABLE
+		flags
 	);
 	renderer = SDL_CreateRenderer( 
 		window, 
@@ -98,7 +102,7 @@ int main() {
 	);
 
 	SDL_SetWindowMinimumSize( window, 160, 100 );
-	SDL_SetWindowMaximumSize( window, 1920, 1200 );
+	SDL_SetWindowMaximumSize( window, 1920, 1080 );
 	
 	SDL_SetRenderVSync( renderer, 0 );
 
@@ -161,7 +165,9 @@ int main() {
 	std::cout << "vertexThree" << "\n";
 	ObjectVertex vertexThree = ObjectVertex( testTri.points[2], emptyNormal, emptyUV, blue );
 
-	/*
+	
+	/* Testing parity between vertexes... 
+
 	bool doesVertexEqual = vertexOne == vertexTwo;
 	std::cout << "VertexEqual ( should be false or 0 ) : " << doesVertexEqual << "\n";
 
@@ -189,24 +195,31 @@ int main() {
 	std::cout << "\n" << indexBuffer.size() << " | " << indexBuffer  << "\n\n";
 
 
+	// Debugging
+
+	bool shouldLimitRuns = true;	/**< Should the game only run the loop once? */
+	uint64_t totalRunLimit = 3;		/**< Number of runs */
+
+	bool shouldDeactivate = false;		/**< Should the game set a timer to stop after a defined time has elapsed? */
+	uint64_t deactivationStopwatch = 0;	/**< (Dont Change Manually!) Current stopwatch time passed */
+	uint64_t deactivationTime = secondsPerFrame * 3;	/**< Time to stop the game afterwards in milliseconds. */
+
+
 	// Main Loop
 
 	bool running = true;
-
-	bool shouldRunOnce = true;		/**< Should the game only run the loop once? */
-
-	bool shouldDeactivate = false;		/**< Should the game set a timer to stop after a defined time has elapsed? */
-	uint64_t deactivationTime = 1000;	/**< Time to stop the game afterwards in milliseconds. */
-	uint64_t deactivationStopwatch = 0;	/**< (Dont Change Manually!) Current stopwatch time passed */
 
 	while ( running ){
 
 		// FPS Management
 		elapsedFrames += 1;
+
+		previousTime = startTime;
 		startTime = SDL_GetTicks();
 
-		deltaTime = startTime - previousTime;
-		previousTime = startTime;
+		deltaTime = startTime - previousTime; /** Time it took last frame to complete */
+
+		std::cout << "FPS: " << (unsigned int)( 1000 / deltaTime ) << "\n";
 
 		// Poll events
 		SDL_Event event;
@@ -290,19 +303,17 @@ int main() {
 
 		}
 		
+		/* Rendering */
 
 		// Clears screen with white
-
 		SDL_SetRenderDrawColor( renderer, 0, 0, 0, 255 );
 		SDL_RenderClear( renderer );
-
-
-		/** Start Rendering Pipeline Here*/
 
 		// Draws bg
 		SDL_SetRenderDrawColor( renderer, 255, 255, 255, 255 );
 
-		std::cout << "Rendering Entities...." << "\n";
+
+		//std::cout << "Rendering Entities...." << "\n";
 		renderEntity( 
 			testEntity,
 			viewMatrix,
@@ -313,27 +324,30 @@ int main() {
 			renderingSettings
 		);
 
-		/** End Rendering Pipeline Here */
-
 
 		// Renders display
 		SDL_RenderPresent( renderer );
 		
 
-		// FPS Management
+		/* FPS Management */
 
 		endTime = SDL_GetTicks();
+
+		// Raw time it took this frame to finish its tasks, before delaying due to the frame cap of `fps`.
 		deltaTime = endTime - startTime;
 
-		// Cap FPS
-		if ( deltaTime < ticksPerFrame ){
+		effectiveFps = 1000 / deltaTime;
+		std::cout << "Effective FPS: " << (unsigned int)(effectiveFps) << "\n";
 
-			uint64_t delayTime = ticksPerFrame - deltaTime;
+		// Cap FPS
+		if ( deltaTime < secondsPerFrame ){
+
+			uint64_t delayTime = secondsPerFrame - deltaTime;
 			SDL_Delay( delayTime );
 		}	
 
 
-		// Auto-Closers
+		/* Auto-Closers */
 
 		if ( shouldDeactivate ){
 			
@@ -344,27 +358,39 @@ int main() {
 			}
 
 		}
-		if( shouldRunOnce ){
-			running = false;
+		if( shouldLimitRuns ){
+
+			if ( elapsedFrames >= totalRunLimit ){
+				running = false;
+			}
 		}
 		
+		// End of while( running )
 	}
 
+
+	/* Debugging */
+
+	// Prints debug info to the screen
 	std::cout << "\n\n" << "---------------| End Data |---------------" << "\n";
 
 	std::cout << "Total Frames: " << elapsedFrames << "\n";
 
-	if (shouldRunOnce){ std::cout << "Ran only once, due to shouldRunOnce" << "\n"; }
+	if (shouldLimitRuns){ std::cout << "Stopped after " << totalRunLimit << " frames, due to shouldLimitRuns" << "\n"; }
 	if (shouldDeactivate){ std::cout << "Stopped after " << deactivationTime << "seconds, due to shouldDeactivate" << "\n"; }
 
 	std::cout << "------------------------------------------" << "\n";
 
-	std::cout << "Press Any Key To Quit SDL... ";
-	std::getchar(); 
+	// Closes SDL
+	if ( shouldLimitRuns || shouldDeactivate ){
+		std::cout << "Press Any Key To Quit SDL... ";
+		std::getchar(); 
+	}
 
 	SDL_DestroyWindow( window );
 	SDL_Quit();
 
+	// Closes Terminal
 	std::cout << "Press Any Key To Close The Terminal... ";
 	std::getchar(); 
 

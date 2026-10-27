@@ -152,13 +152,13 @@ void renderEntity(
         }
 
         /* Primitive Assembler */
-        std::cout << "\n" << "Primitive Assembler" << "\n";
+        //std::cout << "\n" << "Primitive Assembler" << "\n";
 
         worldPrimitive = pa_formPrimitive< WorldVertex >( worldVertexStream );
         screenPrimitive = pa_formPrimitive< ScreenVertex >( screenVertexStream );
 
-        std::cout << "worldPrimitive: " << worldPrimitive << "\n";
-        std::cout << "screenPrimitive: " << screenPrimitive << "\n";
+        //std::cout << "worldPrimitive: " << worldPrimitive << "\n";
+        //std::cout << "screenPrimitive: " << screenPrimitive << "\n";
 
 
         /* Rasteriser */
@@ -168,9 +168,10 @@ void renderEntity(
 
         
         /* Fragment Shader */
-        std::cout << "\n" << "Fragment Shader" << "\n";
+        //std::cout << "\n" << "Fragment Shader" << "\n";
         
-        std::cout << "Fragment stream size: " << fragmentStream.size() << "\n";
+        //std::cout << "Fragment stream size: " << fragmentStream.size() << "\n";
+        
         for ( unsigned int i = 0; i < fragmentStream.size(); i++ ){
 
             fragPos = fs_findScreenCoord( fragmentStream[i], screenPrimitive );
