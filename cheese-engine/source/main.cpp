@@ -76,7 +76,7 @@ int main() {
 	uint64_t startTime = 0;		/**< Start time of the current frame in milliseconds */
 	uint64_t endTime = 0;		/**< End time of the current frame in milliseconds */
 	uint64_t deltaTime = 0;		/**< Time taken to complete a frame ( Including the delay induced by the frame cap of `fps` ) */
-	uint8_t effectiveFps = 60;	/**< FPS of the game without delaying due to the frame cap of `fps` ( How quickly the game can go without the induced delay of the frame cap of `fps`)*/
+	uint16_t effectiveFps = 60;	/**< Current FPS of the game without delaying due to the frame cap of `fps` ( Hypothetically, its highest FPS we can run at ) */
 
 
 	// SDL Window Setup
@@ -136,6 +136,8 @@ int main() {
 
 	Vector4 cameraPos{ 0.f, 0.f, 0.f, 0.f };	/**< Centre of the camera.*/
 	Vector3 cameraDir{ 0.f, 0.f, -1.f }; 		/**< Direction the camera is facing */
+
+	
 
 
 	// Testing
