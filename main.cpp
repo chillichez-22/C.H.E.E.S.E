@@ -148,7 +148,7 @@ int main() {
 
 	Entity testEntity;
 
-	Vector3 pointOne = Vector3( width * 0.5f, height * 0.4f, 10 );
+	Vector3 pointOne = Vector3( width * 0.5f, height * 0.4f, 1 );
 	Vector3 pointTwo = Vector3( width * 0.3f, height * 0.7f, 1 );
 	Vector3 pointThree = Vector3( width * 0.7f, height * 0.9f, 1 );
 	
@@ -162,13 +162,16 @@ int main() {
 	Vector2 emptyUV = Vector2( 0, 0 );
 	Vector3 emptyNormal = Vector3( 0, 0, 0);
 	
+
 	/** Loads vertex data */
 	
-	std::cout << "vertexOne" << "\n";
+	//std::cout << "vertexOne" << "\n";
 	ObjectVertex vertexOne =   ObjectVertex( testTri.points[0], emptyNormal, emptyUV, red );
-	std::cout << "vertexTwo" << "\n";
+
+	//std::cout << "vertexTwo" << "\n";
 	ObjectVertex vertexTwo =   ObjectVertex( testTri.points[1], emptyNormal, emptyUV, green );
-	std::cout << "vertexThree" << "\n";
+
+	//std::cout << "vertexThree" << "\n";
 	ObjectVertex vertexThree = ObjectVertex( testTri.points[2], emptyNormal, emptyUV, blue );
 
 	
@@ -193,18 +196,30 @@ int main() {
 
 	std::array< ObjectVertex, 3 > vertexList{ vertexOne, vertexTwo, vertexThree };
 
-	//std::cout << vertexList[0] << vertexList[1] << vertexList[2] << "\n";
+	std::cout << "Vertexes: " << vertexList[0] << vertexList[1] << vertexList[2] << "\n";
 
 	testEntity = loadVertexData( testEntity, vertexList, vertexBuffer, indexBuffer );
 
-	std::cout << "\n" << vertexBuffer.size() << " | " << vertexBuffer << "\n";
-	std::cout << "\n" << indexBuffer.size() << " | " << indexBuffer  << "\n\n";
+	//std::cout << "\n" << vertexBuffer.size() << " | " << vertexBuffer << "\n";
+	//std::cout << "\n" << indexBuffer.size() << " | " << indexBuffer  << "\n\n";
 
+	/* Testing Transform3D & Model Matrix*/
+
+	//Vector3 movementVector = Vector3( 100, 100, 0 );
+	Vector3 scaleVector = Vector3( 4, 1, 1 );
+
+	//std::cout << "transform pre: " << testEntity.transform << "\n";
+
+	//testEntity.transform.setPos( ( testEntity.transform.getPos() + movementVector) );
+	testEntity.transform.setScale( ( scaleVector) );
+
+	//std::cout << "transform post: " << testEntity.transform << "\n";
+	
 
 	// Debugging
 
 	bool shouldLimitRuns = true;	/**< Should the game only run the loop once? */
-	uint64_t totalRunLimit = 3;		/**< Number of runs */
+	uint64_t totalRunLimit = 1;		/**< Number of runs */
 
 	bool shouldDeactivate = false;		/**< Should the game set a timer to stop after a defined time has elapsed? */
 	uint64_t deactivationStopwatch = 0;	/**< (Dont Change Manually!) Current stopwatch time passed */
@@ -217,7 +232,7 @@ int main() {
 
 	while ( running ){
 
-		// FPS Management
+		/* FPS Management */
 		elapsedFrames += 1;
 
 		previousTime = startTime;
@@ -227,7 +242,8 @@ int main() {
 
 		std::cout << "FPS: " << (unsigned int)( 1000 / deltaTime ) << "\n";
 
-		// Poll events
+		/* Poll events */
+
 		SDL_Event event;
 
 		leftMouseButton = MouseButtonEvent::INACTIVE;
@@ -311,6 +327,20 @@ int main() {
 		
 		/* Rendering */
 
+		/*
+		viewMatrix = viewMatrix.scale( 
+			float( mainCamera.transform.scale[0] ),
+			float( mainCamera.transform.scale[1] ),
+			float( mainCamera.transform.scale[2] )
+		);
+		
+		viewMatrix = viewMatrix.translate(
+			float( mainCamera.transform.position[0] ),
+			float( mainCamera.transform.position[1] ),
+			float( mainCamera.transform.position[2] )
+		);
+		*/
+
 		projectionMatrix = calculatePerspectiveProjection( mainCamera.cameraViewVolume );
 
 		// Clears screen with white
@@ -364,7 +394,6 @@ int main() {
 			if ( deactivationStopwatch >= deactivationTime ){
 				running = false;
 			}
-
 		}
 		if( shouldLimitRuns ){
 
@@ -373,7 +402,7 @@ int main() {
 			}
 		}
 		
-		// End of while( running )
+		// End of while( running ){
 	}
 
 

@@ -85,27 +85,29 @@ void renderEntity(
 
     Matrix4x4<float> modelMatrix;
 
-
-    /* TODO: Make this work 
-
+    //std::cout << "pre model " << modelMatrix << "\n";
+    
     modelMatrix.scale( 
-        entity.transform.scale[0],
-        entity.transform.scale[1],
-        entity.transform.scale[2]
+        entity.transform.getScaleX(),
+        entity.transform.getScaleY(),
+        entity.transform.getScaleZ()
     );
-
+    
     modelMatrix.translate(
-        entity.transform.position[0],
-        entity.transform.position[1],
-        entity.transform.position[2]
+        entity.transform.getPosX(),
+        entity.transform.getPosY(),
+        entity.transform.getPosZ()
     );
-
+    
+    
+    /* TODO: Make this work 
+    
     modelMatrix.rotateX( entity.transform.rotation[0] );
     modelMatrix.rotateY( entity.transform.rotation[1] );
     modelMatrix.rotateZ( entity.transform.rotation[2] );
-
     */
-
+   
+    //std::cout << "post model " << modelMatrix << "\n";
 
     /*
     We do a 2 loops here to:
@@ -118,6 +120,8 @@ void renderEntity(
     ( E.G Full set of vertex and index buffers, full set of `worldVertex` data, full set of `screenVertex` data )
 
     */
+
+    Vector3 triCentre;
 
     std::array< WorldVertex, 3 > worldVertexStream;     /**< Holds a primitive for the world vertexes */
     std::array< ScreenVertex, 3 > screenVertexStream;   /**< Holds a primitive for the screen vertexes */
@@ -142,7 +146,7 @@ void renderEntity(
             worldVertexStream[v] = vs_calculateWorldVertex( vertexBuffer[ indexBuffer[ ( i + v ) + entity.indexOffset ] + entity.vertexOffset ], modelMatrix, viewMatrix ); 
             screenVertexStream[v] = vs_calculateScreenVertex( worldVertexStream[v], projectionMatrix  ); 
 
-            //std::cout << "World Vertex: " << v << " " << worldVertexStream[v] << "\n";
+            std::cout << "World Vertex: " << v << " " << worldVertexStream[v] << "\n";
             //std::cout << "Screen Vertex: " << v << " " << screenVertexStream[v] << "\n";
 
             // Other shaders go here for now
@@ -166,6 +170,8 @@ void renderEntity(
         
         /* Fragment Shader */
         //std::cout << "\n" << "Fragment Shader" << "\n";
+
+        std::cout << "Frag Stream size: " << fragmentStream.size() << "\n";
         
         for ( unsigned int i = 0; i < fragmentStream.size(); i++ ){
 

@@ -21,6 +21,8 @@
  * Transforms each of the vertices starting from `indexOffset` and ending at ( `indexOffset` + `vertexCount` ) in the `indexBuffer`, 
  * applying the `vertexOffset` to get the vertices from the `vertexBuffer`, and multiplying each one by the `modelMatrix` and `viewMatrix`.
  *
+ * @param triCentre Centre of this tri to rotate and scale the vertex around.
+ * 
  * @param vertex World vertex to transform into 2D coords.
  *
  * @param modelMatrix Object matrix for world position transform ( using the entity's `Transform3D` ), to apply to each vertex

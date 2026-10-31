@@ -227,6 +227,7 @@ public:
 
     ~Matrix3x3() = default;
 
+
     // Multiplication
 
     /**
@@ -292,6 +293,7 @@ public:
 
 };
 
+
 /**
  * @brief 
  * A matrix of 4 X 4 size.
@@ -333,6 +335,24 @@ public:
 
     ~Matrix4x4() = default;
     
+    /**
+     * @brief Allows the use of `<iostream>` to print this object.
+     * 
+     * @param os Output stream object.
+     * @param obj Object to output into stream.
+     * 
+     * @returns `ostream` Output stream object. 
+     */
+    friend std::ostream& operator<<( std::ostream& os, const Matrix4x4<valueType> obj ){
+
+        os << "Matrix4x4: \n";
+        os << "|" << obj.getRaw(0)  << "," << obj.getRaw(1)  << "," << obj.getRaw(2)  << "," << obj.getRaw(3)  << "|" << "\n";
+        os << "|" << obj.getRaw(4)  << "," << obj.getRaw(5)  << "," << obj.getRaw(6)  << "," << obj.getRaw(7)  << "|" << "\n";
+        os << "|" << obj.getRaw(8)  << "," << obj.getRaw(9)  << "," << obj.getRaw(10) << "," << obj.getRaw(11) << "|" << "\n";
+        os << "|" << obj.getRaw(12) << "," << obj.getRaw(13) << "," << obj.getRaw(14) << "," << obj.getRaw(15) << "|";
+        
+        return os;
+    }
 
     // Getters
 
@@ -347,6 +367,17 @@ public:
     };
 
     /**
+     * @brief Returns the const number of rows in the matrix.
+     * 
+     * @returns `const uint8_t` Number of rows.
+     */
+    const uint8_t getRows() const{
+        
+        return rows;
+    };
+
+
+    /**
      * @brief Returns the number of columns in the matrix.
      * 
      * @returns `uint8_t` Number of columns.
@@ -355,6 +386,17 @@ public:
 
         return cols;
     };
+
+    /**
+     * @brief Returns the const number of columns in the matrix.
+     * 
+     * @returns `const uint8_t` Number of columns.
+     */
+    const uint8_t getCols() const{
+
+        return cols;
+    };
+
 
 
     /**
@@ -371,6 +413,19 @@ public:
     };
 
     /**
+     * @brief Retrieves the const integer value at matrix pos `indexRow`, `indexCol`.
+     * 
+     * @param indexRow Row index
+     * @param indexCol Column index
+     * 
+     * @return `const valueType` Value at `indexRow`, `indexCol`
+     */
+    const valueType get( uint8_t indexRow, uint8_t indexCol ) const{
+
+        return data[ indexRow * ( rows - 1 ) + ( cols - 1 ) ];
+    };
+
+    /**
      * @brief Retrieves the integer value at array index `index`.
      * 
      * @param indexRow Raw array index
@@ -382,7 +437,19 @@ public:
         return data[ index ];
     };
 
-    
+    /**
+     * @brief Retrieves the const integer value at array index `index`.
+     * 
+     * @param indexRow Raw array index
+     * 
+     * @return `const valueType` Value at `index`
+     */
+    const valueType getRaw( uint8_t index ) const{
+ 
+        return data[ index ];
+    };
+
+
     // Setters
 
     /**
@@ -424,9 +491,9 @@ public:
 
         Vector4 resultVector = Vector4( 0.f, 0.f, 0.f, 0.f );
 
-        resultVector.x = ( getRaw(0) * vector.x + getRaw(1) * vector.y + getRaw(2) * vector.z + getRaw(3) * vector.w );
-        resultVector.y = ( getRaw(4) * vector.x + getRaw(5) * vector.y + getRaw(6) * vector.z + getRaw(7) * vector.w );
-        resultVector.z = ( getRaw(8) * vector.x + getRaw(9) * vector.y + getRaw(10) * vector.z + getRaw(11) * vector.w );
+        resultVector.x = ( getRaw(0)  * vector.x + getRaw(1)  * vector.y + getRaw(2)  * vector.z + getRaw(3)  * vector.w );
+        resultVector.y = ( getRaw(4)  * vector.x + getRaw(5)  * vector.y + getRaw(6)  * vector.z + getRaw(7)  * vector.w );
+        resultVector.z = ( getRaw(8)  * vector.x + getRaw(9)  * vector.y + getRaw(10) * vector.z + getRaw(11) * vector.w );
         resultVector.w = ( getRaw(12) * vector.x + getRaw(13) * vector.y + getRaw(14) * vector.z + getRaw(15) * vector.w );
 
         return resultVector;
@@ -515,20 +582,16 @@ public:
      * 
      * @returns `Matrix4x4<valueType>` New matrix scaled.
      */
-    Matrix4x4<valueType> scale( valueType x, valueType y, valueType z ){
+    void scale( valueType x, valueType y, valueType z ){
 
-        Matrix4x4< valueType > resultantMatrix{};
-
-        resultantMatrix.setRaw( 0, getRaw(0) * x );
-        resultantMatrix.setRaw( 5, getRaw(5) * y );
-        resultantMatrix.setRaw( 10, getRaw(10) * z );
-
-        return resultantMatrix;
+        setRaw( 0, getRaw(0) * x );
+        setRaw( 5, getRaw(5) * y );
+        setRaw( 10, getRaw(10) * z );
     };
     
 
     /**
-     * @brief Scales the matrix by the `x`, `y`, `z` values
+     * @brief Translates this matrix by the `x`, `y`, `z` values
      * 
      * { 0, 0, 0, X }
      * 
@@ -544,15 +607,11 @@ public:
      * 
      * @returns `Matrix4x4<valueType>` New matrix translated.
      */
-    Matrix4x4<valueType> translate( valueType x, valueType y, valueType z ){
-
-        Matrix4x4< valueType > resultantMatrix{};
-
-        resultantMatrix.setRaw( 3, getRaw(3) * x );
-        resultantMatrix.setRaw( 7, getRaw(7) * y );
-        resultantMatrix.setRaw( 11, getRaw(11) * z );
-
-        return resultantMatrix;
+    void translate( valueType x, valueType y, valueType z ){
+ 
+        setRaw( 3, getRaw(3) + x );
+        setRaw( 7, getRaw(7) + y );
+        setRaw( 11, getRaw(11) + z );
     };
 
 
@@ -573,15 +632,13 @@ public:
      */
     Matrix4x4<valueType> rotateX( float radians ){
 
-        Matrix4x4< valueType > resultantMatrix{};
+        setRaw( 5, ( getRaw(5) * cos( radians ) ) );
+        setRaw( 6, ( getRaw(6) * -1 * sin( radians ) ) );
 
-        resultantMatrix.setRaw( 5, ( getRaw(5) * cos( radians ) ) );
-        resultantMatrix.setRaw( 6, ( getRaw(6) * -1 * sin( radians ) ) );
+        setRaw( 9, ( getRaw(9) * sin( radians ) ) );
+        setRaw( 10, ( getRaw(10) * cos( radians ) ) );
 
-        resultantMatrix.setRaw( 9, ( getRaw(9) * sin( radians ) ) );
-        resultantMatrix.setRaw( 10, ( getRaw(10) * cos( radians ) ) );
-
-        return resultantMatrix;
+        return *this;
 
     };
 
@@ -602,15 +659,13 @@ public:
      */
     Matrix4x4<valueType> rotateY( float radians ){
 
-        Matrix4x4< valueType > resultantMatrix{};
+        setRaw( 0, ( getRaw(0) * cos( radians ) ) );
+        setRaw( 2, ( getRaw(2) * sin( radians ) ) );
 
-        resultantMatrix.setRaw( 0, ( getRaw(0) * cos( radians ) ) );
-        resultantMatrix.setRaw( 2, ( getRaw(2) * sin( radians ) ) );
+        setRaw( 8, ( getRaw(8) * -1 * sin( radians ) ) );
+        setRaw( 10, ( getRaw(10) * cos( radians ) ) );
 
-        resultantMatrix.setRaw( 8, ( getRaw(8) * -1 * sin( radians ) ) );
-        resultantMatrix.setRaw( 10, ( getRaw(10) * cos( radians ) ) );
-
-        return resultantMatrix;
+        return *this;
 
     };
 
@@ -631,15 +686,13 @@ public:
      */
     Matrix4x4<valueType> rotateZ( float radians ){
 
-        Matrix4x4< valueType > resultantMatrix{};
+        setRaw( 0, ( getRaw(0) * cos( radians ) ) );
+        setRaw( 1, ( getRaw(1) * -1 * sin( radians ) ) );
 
-        resultantMatrix.setRaw( 0, ( getRaw(0) * cos( radians ) ) );
-        resultantMatrix.setRaw( 1, ( getRaw(1) * -1 * sin( radians ) ) );
+        setRaw( 4, ( getRaw(4) * sin( radians ) ) );
+        setRaw( 5, ( getRaw(5) * cos( radians ) ) );
 
-        resultantMatrix.setRaw( 4, ( getRaw(4) * sin( radians ) ) );
-        resultantMatrix.setRaw( 5, ( getRaw(5) * cos( radians ) ) );
-
-        return resultantMatrix;
+        return *this;
     };
 
 

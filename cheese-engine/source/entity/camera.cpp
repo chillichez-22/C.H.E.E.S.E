@@ -9,9 +9,7 @@ Camera::Camera(
     float renderDist 
 ){
 
-    transform.position[0] = camPos.x;
-    transform.position[1] = camPos.y;
-    transform.position[2] = camPos.z;
+    transform.setPos( camPos );
 
     cameraViewVolume = Frustum( aspectRatio, fieldOfView, 0.1f, renderDist + 0.1f );
 
