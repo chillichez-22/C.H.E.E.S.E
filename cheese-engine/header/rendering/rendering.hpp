@@ -129,12 +129,9 @@ void renderEntity(
     ColourI fragColour;     /**< Colour of the fragment */
     Vector2 fragPos;        /**< 2D Position of the fragment in screen space */
 
-    //std::cout << "Vertex Count: " << entity.vertexCount << "\n";
     
     // Splits the indexes into primitives, of size `settings.topologySize`
     for ( unsigned int i = 0; i <= ( entity.vertexCount / 3 ); i += 3 ){
-
-        // std::cout << "I: " << i << "\n";
 
         // Loops over the vertexes in the primitives
         for ( unsigned int v = 0; v < 3; v++ ){
@@ -170,22 +167,17 @@ void renderEntity(
         /* Fragment Shader */
         //std::cout << "\n" << "Fragment Shader" << "\n";
         
-        //std::cout << "Fragment stream size: " << fragmentStream.size() << "\n";
-        
         for ( unsigned int i = 0; i < fragmentStream.size(); i++ ){
 
             fragPos = fs_findScreenCoord( fragmentStream[i], screenPrimitive );
 
             fragColour = fs_drawFragmentBase( fragmentStream[i], worldPrimitive, screenPrimitive );
             
+
             SDL_SetRenderDrawColor( renderer, fragColour.r, fragColour.g, fragColour.b, fragColour.a );   
-            //SDL_SetRenderDrawColor( renderer, 255, 0, 0, 255 );     
             SDL_RenderPoint( renderer, fragPos.x, fragPos.y );
 
-            // fragPos = fragmentStream[i];
 
-            // SDL_SetRenderDrawColor( renderer, 255, 0, 0, 255 );  
-            // SDL_RenderPoint( renderer, fragPos.x, fragPos.y );
             
 
             //std::cout << "fragPos" << fragPos << "\n";

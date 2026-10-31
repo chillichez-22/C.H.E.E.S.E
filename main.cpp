@@ -8,12 +8,14 @@
 
 // Outside Scope
 
-#include "colour.hpp"
+#include "entity.hpp"
+#include "camera.hpp"
+
+
 
 // Maths
 #include "math.hpp"
 
-// Math Data-Types
 #include "buffer.hpp"
 #include "vector_2.hpp"
 #include "vector_3.hpp"
@@ -34,7 +36,12 @@
 #include "loading.hpp"
 
 // Rendering
+
+#include "projection.hpp"
 #include "rendering.hpp"
+
+#include "view_volume.hpp"
+#include "colour.hpp"
 #include "vertex.hpp"
 
 
@@ -134,17 +141,14 @@ int main() {
 	Matrix4x4< float > viewMatrix;			/**< View matrix for the camera translation. */
 	Matrix4x4< float > projectionMatrix;	/**< Projection matrix for the screen space translation. */
 
-	Vector4 cameraPos{ 0.f, 0.f, 0.f, 0.f };	/**< Centre of the camera.*/
-	Vector3 cameraDir{ 0.f, 0.f, -1.f }; 		/**< Direction the camera is facing */
-
-	
+	Camera mainCamera = Camera( Vector3( 0, 0, 0 ), ( width / height ), 120.f, 100.f );		/** Main camera for the scene */
 
 
 	// Testing
 
 	Entity testEntity;
 
-	Vector3 pointOne = Vector3( width * 0.5f, height * 0.4f, 1 );
+	Vector3 pointOne = Vector3( width * 0.5f, height * 0.4f, 10 );
 	Vector3 pointTwo = Vector3( width * 0.3f, height * 0.7f, 1 );
 	Vector3 pointThree = Vector3( width * 0.7f, height * 0.9f, 1 );
 	
@@ -306,6 +310,8 @@ int main() {
 		}
 		
 		/* Rendering */
+
+		projectionMatrix = calculatePerspectiveProjection( mainCamera.cameraViewVolume );
 
 		// Clears screen with white
 		SDL_SetRenderDrawColor( renderer, 0, 0, 0, 255 );

@@ -10,6 +10,8 @@ set( components_sources
 set( entity_sources 
 
     "source/entity/entity.cpp"
+
+    "source/entity/camera.cpp"
     
 )
 
@@ -64,10 +66,12 @@ set( rendering_sources
     "source/rendering/fragment_shader.cpp"
     "source/rendering/input_assembler.cpp"
     "source/rendering/rasteriser.cpp"
-    "source/rendering/primitives.cpp"
     "source/rendering/primitive_assembler.cpp"
+    "source/rendering/primitives.cpp"
+    "source/rendering/projection.cpp"
     "source/rendering/vertex_shader.cpp"
     "source/rendering/vertex.cpp"
+    "source/rendering/view_volume.cpp"
 )
 
 set( shape_sources
