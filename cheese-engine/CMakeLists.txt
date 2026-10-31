@@ -60,18 +60,21 @@ set( physics_sources
 
 set( rendering_sources
     
-    "source/rendering/rendering.cpp"
-    
     "source/rendering/colour.cpp"
-    "source/rendering/fragment_shader.cpp"
-    "source/rendering/input_assembler.cpp"
-    "source/rendering/rasteriser.cpp"
-    "source/rendering/primitive_assembler.cpp"
     "source/rendering/primitives.cpp"
     "source/rendering/projection.cpp"
-    "source/rendering/vertex_shader.cpp"
     "source/rendering/vertex.cpp"
     "source/rendering/view_volume.cpp"
+
+    # Pipeline
+    "source/rendering/pipeline/fragment_shader.cpp"
+    "source/rendering/pipeline/input_assembler.cpp"
+    "source/rendering/pipeline/primitive_assembler.cpp"
+    "source/rendering/pipeline/rasteriser.cpp"
+    "source/rendering/pipeline/rendering.cpp"
+    "source/rendering/pipeline/vertex_shader.cpp"
+    
+    
 )
 
 set( shape_sources
@@ -156,6 +159,7 @@ target_include_directories( cheese-engine
         ${CMAKE_CURRENT_SOURCE_DIR}/header/physics/collision_3d
 
         ${CMAKE_CURRENT_SOURCE_DIR}/header/rendering   
+        ${CMAKE_CURRENT_SOURCE_DIR}/header/rendering/pipeline   
 
         ${CMAKE_CURRENT_SOURCE_DIR}/header/shapes
         ${CMAKE_CURRENT_SOURCE_DIR}/header/shapes/shapes_2d
