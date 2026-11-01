@@ -87,25 +87,28 @@ void renderEntity(
 
     //std::cout << "pre model " << modelMatrix << "\n";
     
-    modelMatrix.scale( 
+    modelMatrix = modelMatrix.scale( 
         entity.transform.getScaleX(),
         entity.transform.getScaleY(),
         entity.transform.getScaleZ()
     );
     
-    modelMatrix.translate(
+    //std::cout << "pre translation " << modelMatrix << "\n";
+
+    modelMatrix = modelMatrix.translate(
         entity.transform.getPosX(),
         entity.transform.getPosY(),
         entity.transform.getPosZ()
     );
     
-    
-    /* TODO: Make this work 
-    
-    modelMatrix.rotateX( entity.transform.rotation[0] );
-    modelMatrix.rotateY( entity.transform.rotation[1] );
-    modelMatrix.rotateZ( entity.transform.rotation[2] );
-    */
+    //std::cout << "pre rotation " << modelMatrix << "\n";
+
+    modelMatrix = modelMatrix.rotate( 
+        entity.transform.getRotationX(),
+        entity.transform.getRotationY(),
+        entity.transform.getRotationZ()
+    );
+
    
     //std::cout << "post model " << modelMatrix << "\n";
 
@@ -146,7 +149,7 @@ void renderEntity(
             worldVertexStream[v] = vs_calculateWorldVertex( vertexBuffer[ indexBuffer[ ( i + v ) + entity.indexOffset ] + entity.vertexOffset ], modelMatrix, viewMatrix ); 
             screenVertexStream[v] = vs_calculateScreenVertex( worldVertexStream[v], projectionMatrix  ); 
 
-            std::cout << "World Vertex: " << v << " " << worldVertexStream[v] << "\n";
+            //std::cout << "World Vertex: " << v << " " << worldVertexStream[v] << "\n";
             //std::cout << "Screen Vertex: " << v << " " << screenVertexStream[v] << "\n";
 
             // Other shaders go here for now
@@ -162,6 +165,10 @@ void renderEntity(
         //std::cout << "screenPrimitive: " << screenPrimitive << "\n";
 
 
+        /* Geometry Shader */
+        
+
+
         /* Rasteriser */
         //std::cout << "\n" << "Rasteriser" << "\n";
 
@@ -171,7 +178,7 @@ void renderEntity(
         /* Fragment Shader */
         //std::cout << "\n" << "Fragment Shader" << "\n";
 
-        std::cout << "Frag Stream size: " << fragmentStream.size() << "\n";
+        //std::cout << "Frag Stream size: " << fragmentStream.size() << "\n";
         
         for ( unsigned int i = 0; i < fragmentStream.size(); i++ ){
 
@@ -183,8 +190,6 @@ void renderEntity(
             SDL_SetRenderDrawColor( renderer, fragColour.r, fragColour.g, fragColour.b, fragColour.a );   
             SDL_RenderPoint( renderer, fragPos.x, fragPos.y );
 
-
-            
 
             //std::cout << "fragPos" << fragPos << "\n";
             //std::cout << " U + V + W: " << fragmentStream[i].x + fragmentStream[i].y + ( 1 - fragmentStream[i].x - fragmentStream[i].y ) << "\n";

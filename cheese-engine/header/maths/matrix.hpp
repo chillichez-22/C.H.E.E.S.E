@@ -333,8 +333,14 @@ public:
     Matrix4x4(){};
 
 
+    Matrix4x4( valueType fillValue ){
+        data.fill( fillValue );
+    };
+
+
     ~Matrix4x4() = default;
     
+
     /**
      * @brief Allows the use of `<iostream>` to print this object.
      * 
@@ -353,6 +359,8 @@ public:
         
         return os;
     }
+
+
 
     // Getters
 
@@ -424,6 +432,7 @@ public:
 
         return data[ indexRow * ( rows - 1 ) + ( cols - 1 ) ];
     };
+
 
     /**
      * @brief Retrieves the integer value at array index `index`.
@@ -563,7 +572,7 @@ public:
     };
 
 
-    // Matrix Movement
+    // Matrix Math
 
     /**
      * @brief Scales the matrix by the `x`, `y`, `z` values
@@ -580,13 +589,14 @@ public:
      * @param y Y scale 
      * @param z Z scale 
      * 
-     * @returns `Matrix4x4<valueType>` New matrix scaled.
      */
-    void scale( valueType x, valueType y, valueType z ){
+    Matrix4x4<valueType>& scale( valueType x, valueType y, valueType z ){
 
         setRaw( 0, getRaw(0) * x );
         setRaw( 5, getRaw(5) * y );
         setRaw( 10, getRaw(10) * z );
+
+        return *this;
     };
     
 
@@ -605,94 +615,56 @@ public:
      * @param y Y translation 
      * @param z Z translation 
      * 
-     * @returns `Matrix4x4<valueType>` New matrix translated.
+     * @returns `Matrix4x4<valueType>` New translate matrix.
      */
-    void translate( valueType x, valueType y, valueType z ){
+    Matrix4x4<valueType> translate( valueType x, valueType y, valueType z ){
  
         setRaw( 3, getRaw(3) + x );
         setRaw( 7, getRaw(7) + y );
         setRaw( 11, getRaw(11) + z );
+
+        return *this;
     };
 
 
     /**
-     * @brief Rotates the matrix by the `radians` in the x direction.
+     * @brief Rotates the matrix by the `radians`.
      * 
-     * { 1, 0, 0, 0 }
+     * @param x X rotation 
+     * @param y Y rotation 
+     * @param z Z rotation
      * 
-     * { 0, cos, -sin, 0 }
-     * 
-     * { 0, sin, cos, 0 }
-     * 
-     * { 0, 0, 0, 1 }
-     * 
-     * @param radians Rotation angle around x, in radians
-     * 
-     * @returns `Matrix4x4<valueType>` New matrix rotated.
+     * @returns `Matrix4x4<valueType>` New rotated matrix.
      */
-    Matrix4x4<valueType> rotateX( float radians ){
+    Matrix4x4<valueType> rotate( valueType x, valueType y, valueType z ){
 
-        setRaw( 5, ( getRaw(5) * cos( radians ) ) );
-        setRaw( 6, ( getRaw(6) * -1 * sin( radians ) ) );
+        Matrix4x4<valueType> rotX = Matrix4x4<valueType>();
+        Matrix4x4<valueType> rotY = Matrix4x4<valueType>();
+        Matrix4x4<valueType> rotZ = Matrix4x4<valueType>();
 
-        setRaw( 9, ( getRaw(9) * sin( radians ) ) );
-        setRaw( 10, ( getRaw(10) * cos( radians ) ) );
+        // X Rotation
+        rotX.setRaw(5, cos(x));  
+        rotX.setRaw(6, -sin(x));
+        rotX.setRaw(9, sin(x));  
+        rotX.setRaw(10, cos(x));
 
-        return *this;
+        // Y Rotation
+        rotY.setRaw(0, cos(y));
+        rotY.setRaw(2, sin(y));
+        rotY.setRaw(8, -sin(y));
+        rotY.setRaw(10, cos(y));
 
-    };
+        // Z Rotation
+        rotZ.setRaw(0, cos(z));
+        rotZ.setRaw(1, -sin(z));
+        rotZ.setRaw(4, sin(z));
+        rotZ.setRaw(5, cos(z));
 
-    /**
-     * @brief Rotates the matrix by the `radians` in the y direction.
-     * 
-     * { cos, 0, sin, 0 }
-     * 
-     * { 0, 1, 0, 0 }
-     * 
-     * { -sin, 0, cos, 0 }
-     * 
-     * { 0, 0, 0, 1 }
-     * 
-     * @param radians Rotation angle around y, in radians
-     * 
-     * @returns `Matrix4x4<valueType>` New matrix rotated.
-     */
-    Matrix4x4<valueType> rotateY( float radians ){
+       
+        Matrix4x4<valueType> combinedRotation = rotY.multiply(rotX).multiply(rotZ);
 
-        setRaw( 0, ( getRaw(0) * cos( radians ) ) );
-        setRaw( 2, ( getRaw(2) * sin( radians ) ) );
+        return this->multiply( combinedRotation );
 
-        setRaw( 8, ( getRaw(8) * -1 * sin( radians ) ) );
-        setRaw( 10, ( getRaw(10) * cos( radians ) ) );
-
-        return *this;
-
-    };
-
-    /**
-     * @brief Rotates the matrix by the `radians` in the z direction.
-     * 
-     * { cos, -sin, 0, 0 }
-     * 
-     * { sin, cos, 0, 0 }
-     * 
-     * { 0, 0, 1, 0 }
-     * 
-     * { 0, 0, 0, 1 }
-     * 
-     * @param radians Rotation angle around z, in radians
-     * 
-     * @returns `Matrix4x4<valueType>` New matrix rotated.
-     */
-    Matrix4x4<valueType> rotateZ( float radians ){
-
-        setRaw( 0, ( getRaw(0) * cos( radians ) ) );
-        setRaw( 1, ( getRaw(1) * -1 * sin( radians ) ) );
-
-        setRaw( 4, ( getRaw(4) * sin( radians ) ) );
-        setRaw( 5, ( getRaw(5) * cos( radians ) ) );
-
-        return *this;
     };
 
 

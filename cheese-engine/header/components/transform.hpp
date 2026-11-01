@@ -8,6 +8,7 @@
 #include <cstdint>
 #include <stdfloat>
 
+
 struct Transform3D : public Component{
 
 private:
@@ -39,6 +40,7 @@ public:
         
         return os;
     }
+
 
     // Getters
 
@@ -135,10 +137,8 @@ public:
      */
     float getScaleZ() const;
 
-
     
     // Setters
-
 
     // Position
 
@@ -154,22 +154,21 @@ public:
      * 
      * @param x New X axis position.
      */
-    void setPosX( float& x );
+    void setPosX( float x );
 
     /**
      * @brief Sets the position in the Y axis.
      * 
      * @param y New Y axis position.
      */
-    void setPosY( float& y );
+    void setPosY( float y );
 
     /**
      * @brief Sets the position in the Z axs.
      * 
      * @param z New Z axis position.
      */
-    void setPosZ( float& z );
-
+    void setPosZ( float z );
 
 
     // Rotate
@@ -186,21 +185,21 @@ public:
      * 
      * @param x New X axis angle in degrees.
      */
-    void setRotateX( float& degrees );
+    void setRotateX( float degrees );
 
     /**
      * @brief Sets the rotation in the Y axis.
      * 
      * @param Y New Y axis angle in degrees.
      */
-    void setRotateY( float& degrees );
+    void setRotateY( float degrees );
 
     /**
      * @brief Sets the rotation in the Z axis.
      * 
      * @param z New Z axis angle in degrees.
      */
-    void setRotateZ( float& degrees );
+    void setRotateZ( float degrees );
 
 
     // Scale
@@ -217,21 +216,21 @@ public:
      * 
      * @param x New X axis scale.
      */
-    void setScaleX( float& x );
+    void setScaleX( float x );
 
     /**
      * @brief Sets the scale in the Y axis.
      * 
      * @param Y New Y axis scale.
      */
-    void setScaleY( float& y );
+    void setScaleY( float y );
 
     /**
      * @brief Sets the scale in the Z axis.
      * 
      * @param z New Z axis scale.
      */
-    void setScaleZ( float& z );
+    void setScaleZ( float z );
 
 
 };

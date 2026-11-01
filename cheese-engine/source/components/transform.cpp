@@ -91,6 +91,11 @@ float Transform3D::getScaleZ() const{
 
 // Position
 
+/**
+ * Setter for the position's x,y,z values using a `Vector3`.
+ * 
+ * @param positionVector Vector to set the position.
+ */
 void Transform3D::setPos( Vector3 positionVector){
 
     positionList[0] = std::float64_t( positionVector.x );
@@ -98,17 +103,32 @@ void Transform3D::setPos( Vector3 positionVector){
     positionList[2] = std::float64_t( positionVector.z );
 };
 
-void Transform3D::setPosX( float& x){
+/**
+ * @brief Setter for the position's x value.
+ * 
+ * @param x X value to set.
+ */
+void Transform3D::setPosX( float x ){
 
     positionList[0] = std::float64_t( x );
 };
 
-void Transform3D::setPosY( float& y){
+/**
+ * @brief Setter for the position's y value.
+ * 
+ * @param y Y value to set.
+ */
+void Transform3D::setPosY( float y ){
 
     positionList[1] = std::float64_t( y );
 };
 
-void Transform3D::setPosZ( float& z){
+/**
+ * @brief Setter for the position's z value.
+ * 
+ * @param z Z value to set.
+ */
+void Transform3D::setPosZ( float z ){
 
     positionList[2] = std::float64_t( z );
 };
@@ -116,6 +136,11 @@ void Transform3D::setPosZ( float& z){
 
 // Rotate
 
+/**
+ * Setter for the rotation's x,y,z values using a `Vector3`.
+ * 
+ * @param rotationVector Vector to set the rotation.
+ */
 void Transform3D::setRotate( Vector3 rotationVector){
 
     rotationList[0] = std::float64_t( rotationVector.x );
@@ -123,18 +148,32 @@ void Transform3D::setRotate( Vector3 rotationVector){
     rotationList[2] = std::float64_t( rotationVector.z );
 };
 
-void Transform3D::setRotateX( float& degrees){
+/**
+ * @brief Setter for the rotation's x value.
+ * 
+ * @param x X value, in degrees, to set.
+ */
+void Transform3D::setRotateX( float degrees ){
 
     rotationList[0] = std::float64_t( degrees );
 };
 
-
-void Transform3D::setRotateY( float& degrees){
+/**
+ * @brief Setter for the rotation's y value.
+ * 
+ * @param y Y value, in degrees, to set.
+ */
+void Transform3D::setRotateY( float degrees ){
 
     rotationList[1] = std::float64_t( degrees );
 };
 
-void Transform3D::setRotateZ( float& degrees){
+/**
+ * @brief Setter for the rotation's z value.
+ * 
+ * @param z Z value, in degrees, to set.
+ */
+void Transform3D::setRotateZ( float degrees ){
 
     rotationList[2] = std::float64_t( degrees );
 };
@@ -142,6 +181,11 @@ void Transform3D::setRotateZ( float& degrees){
 
 // Scale
 
+/**
+ * Setter for the scale's x,y,z values using a `Vector3`.
+ * 
+ * @param scaleVector Vector to set the scale.
+ */
 void Transform3D::setScale( Vector3 scaleVector){
 
     scaleList[0] = std::float32_t( scaleVector.x );
@@ -149,17 +193,32 @@ void Transform3D::setScale( Vector3 scaleVector){
     scaleList[2] = std::float32_t( scaleVector.z );
 };
 
-void Transform3D::setScaleX( float& x){
+/**
+ * @brief Setter for the scale's x value.
+ * 
+ * @param x X scale to set.
+ */
+void Transform3D::setScaleX( float x ){
 
     scaleList[0] = std::float32_t( x );
 };
 
-void Transform3D::setScaleY( float& y){
+/**
+ * @brief Setter for the scale's y value.
+ * 
+ * @param y Y scale to set.
+ */
+void Transform3D::setScaleY( float y ){
 
     scaleList[1] = std::float32_t( y );
 };
 
-void Transform3D::setScaleZ( float& z){
+/**
+ * @brief Setter for the scale's z value.
+ * 
+ * @param z Z scale to set.
+ */
+void Transform3D::setScaleZ( float z ){
 
     scaleList[2] = std::float32_t( z );
 };

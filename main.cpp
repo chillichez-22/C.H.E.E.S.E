@@ -82,14 +82,16 @@ int main() {
 	uint64_t previousTime = 0; 	/**< Start time of the last frame in milliseconds */
 	uint64_t startTime = 0;		/**< Start time of the current frame in milliseconds */
 	uint64_t endTime = 0;		/**< End time of the current frame in milliseconds */
-	uint64_t deltaTime = 0;		/**< Time taken to complete a frame ( Including the delay induced by the frame cap of `fps` ) */
+	float deltaTime = 0;		/**< Time taken to complete a frame in milliseconds ( Including the delay induced by the frame cap of `fps` ) */
 	uint16_t effectiveFps = 60;	/**< Current FPS of the game without delaying due to the frame cap of `fps` ( Hypothetically, its highest FPS we can run at ) */
 
 
 	// SDL Window Setup
 
-	unsigned int width = 500;
-	unsigned int height = 300;
+	float screenScale = 0.9;
+
+	unsigned int width = 1920 * screenScale;
+	unsigned int height = 1080 * screenScale;
 
 	SDL_Window* window;
 	SDL_Renderer* renderer; 
@@ -196,29 +198,32 @@ int main() {
 
 	std::array< ObjectVertex, 3 > vertexList{ vertexOne, vertexTwo, vertexThree };
 
-	std::cout << "Vertexes: " << vertexList[0] << vertexList[1] << vertexList[2] << "\n";
+	//std::cout << "Vertexes: " << vertexList[0] << vertexList[1] << vertexList[2] << "\n";
 
 	testEntity = loadVertexData( testEntity, vertexList, vertexBuffer, indexBuffer );
 
 	//std::cout << "\n" << vertexBuffer.size() << " | " << vertexBuffer << "\n";
 	//std::cout << "\n" << indexBuffer.size() << " | " << indexBuffer  << "\n\n";
 
-	/* Testing Transform3D & Model Matrix*/
 
-	//Vector3 movementVector = Vector3( 100, 100, 0 );
-	Vector3 scaleVector = Vector3( 4, 1, 1 );
+	/* Testing Transform3D & Model Matrix
+
+	//Vector3 movementVector = Vector3( -800, -750, 0 );
+	//Vector3 scaleVector = Vector3( 1, 1, 1 );
+	Vector3 rotationVector = Vector3( 0, 0.f, 0.f);
 
 	//std::cout << "transform pre: " << testEntity.transform << "\n";
 
 	//testEntity.transform.setPos( ( testEntity.transform.getPos() + movementVector) );
-	testEntity.transform.setScale( ( scaleVector) );
+	//testEntity.transform.setScale( ( scaleVector) );
+	testEntity.transform.setRotate( ( rotationVector) );
 
 	//std::cout << "transform post: " << testEntity.transform << "\n";
-	
+	*/
 
 	// Debugging
 
-	bool shouldLimitRuns = true;	/**< Should the game only run the loop once? */
+	bool shouldLimitRuns = false;	/**< Should the game only run the loop once? */
 	uint64_t totalRunLimit = 1;		/**< Number of runs */
 
 	bool shouldDeactivate = false;		/**< Should the game set a timer to stop after a defined time has elapsed? */
@@ -240,7 +245,9 @@ int main() {
 
 		deltaTime = startTime - previousTime; /** Time it took last frame to complete */
 
-		std::cout << "FPS: " << (unsigned int)( 1000 / deltaTime ) << "\n";
+		std::cout << "FPS: " << float( 1000 / deltaTime ) << "\n";
+		std::cout << "DT: " << float( deltaTime / 1000 ) << "\n";
+
 
 		/* Poll events */
 
@@ -315,8 +322,10 @@ int main() {
 
 					break;
 				}
-				
+			
 			}
+			// End of switch( event )
+
 
 			Vector2 mousePos = Vector2( 0.f, 0.f );
 			SDL_GetMouseState( &mousePos.x, &mousePos.y );
@@ -324,7 +333,15 @@ int main() {
 			//mainUI.setStatesOnInteractables( mousePos, leftMouseButton );
 
 		}
-		
+		// End of Event loop
+
+		/* Game Logic*/
+
+
+		//testEntity.transform.setRotateY( testEntity.transform.getRotationY() + (5 * (M_PI / 180.0) * ( deltaTime / 1000) ) );
+		//testEntity.transform.setPosX( testEntity.transform.getPosX() + ( 20 * ( deltaTime / 1000) ) );
+
+
 		/* Rendering */
 
 		/*
@@ -375,7 +392,7 @@ int main() {
 		deltaTime = endTime - startTime;
 
 		effectiveFps = 1000 / deltaTime;
-		std::cout << "Effective FPS: " << (unsigned int)(effectiveFps) << "\n";
+		std::cout << "Effective FPS: " << (effectiveFps) << "\n";
 
 		// Cap FPS
 		if ( deltaTime < secondsPerFrame ){
