@@ -27,6 +27,11 @@ set( font_sources
     "source/fonts/ttf.cpp"
 )
 
+set( interactions_sources 
+
+
+    "source/interactions/inputs/mouse.cpp"
+)
 
 set( iterables_sources 
 
@@ -100,12 +105,9 @@ set( shape_sources
     "source/shapes/shapes_3d/quad_3d.cpp"
 )
 
-set( interactions_sources 
 
-    # Inputs
-    "source/interactions/inputs/mouse.cpp"
+set( ui_sources     
 
-    # UI
     "source/interactions/ui/ui.cpp"
 
     "source/interactions/ui/button.cpp"
@@ -116,6 +118,8 @@ set( interactions_sources
     "source/interactions/ui/ui_element.cpp"
     
 )
+
+
 
 
 # Creates engine library
@@ -141,29 +145,29 @@ target_include_directories( cheese-engine
 
         ${CMAKE_CURRENT_SOURCE_DIR}/header
     
-        # Likes to misbehave without calling all individual header folders
-        ${CMAKE_CURRENT_SOURCE_DIR}/header/components
-        ${CMAKE_CURRENT_SOURCE_DIR}/header/entity
-        ${CMAKE_CURRENT_SOURCE_DIR}/header/files
-        ${CMAKE_CURRENT_SOURCE_DIR}/header/fonts
+        # # Likes to misbehave without calling all individual header folders
+        # ${CMAKE_CURRENT_SOURCE_DIR}/header/components
+        # ${CMAKE_CURRENT_SOURCE_DIR}/header/entity
+        # ${CMAKE_CURRENT_SOURCE_DIR}/header/files
+        # ${CMAKE_CURRENT_SOURCE_DIR}/header/fonts
 
-        ${CMAKE_CURRENT_SOURCE_DIR}/header/interactions
-        ${CMAKE_CURRENT_SOURCE_DIR}/header/interactions/inputs
-        ${CMAKE_CURRENT_SOURCE_DIR}/header/interactions/ui
+        # ${CMAKE_CURRENT_SOURCE_DIR}/header/interactions
+        # ${CMAKE_CURRENT_SOURCE_DIR}/header/interactions/inputs
+        # ${CMAKE_CURRENT_SOURCE_DIR}/header/interactions/ui
 
-        ${CMAKE_CURRENT_SOURCE_DIR}/header/iterables
-        ${CMAKE_CURRENT_SOURCE_DIR}/header/maths
+        # ${CMAKE_CURRENT_SOURCE_DIR}/header/iterables
+        # ${CMAKE_CURRENT_SOURCE_DIR}/header/maths
 
-        ${CMAKE_CURRENT_SOURCE_DIR}/header/physics
-        ${CMAKE_CURRENT_SOURCE_DIR}/header/physics/collision_2d
-        ${CMAKE_CURRENT_SOURCE_DIR}/header/physics/collision_3d
+        # ${CMAKE_CURRENT_SOURCE_DIR}/header/physics
+        # ${CMAKE_CURRENT_SOURCE_DIR}/header/physics/collision_2d
+        # ${CMAKE_CURRENT_SOURCE_DIR}/header/physics/collision_3d
 
-        ${CMAKE_CURRENT_SOURCE_DIR}/header/rendering   
-        ${CMAKE_CURRENT_SOURCE_DIR}/header/rendering/pipeline   
+        # ${CMAKE_CURRENT_SOURCE_DIR}/header/rendering   
+        # ${CMAKE_CURRENT_SOURCE_DIR}/header/rendering/pipeline   
 
-        ${CMAKE_CURRENT_SOURCE_DIR}/header/shapes
-        ${CMAKE_CURRENT_SOURCE_DIR}/header/shapes/shapes_2d
-        ${CMAKE_CURRENT_SOURCE_DIR}/header/shapes/shapes_3d
+        # ${CMAKE_CURRENT_SOURCE_DIR}/header/shapes
+        # ${CMAKE_CURRENT_SOURCE_DIR}/header/shapes/shapes_2d
+        # ${CMAKE_CURRENT_SOURCE_DIR}/header/shapes/shapes_3d
 )
 
 # Links SDL3 to the engine library
