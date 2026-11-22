@@ -1,4 +1,4 @@
-# include "vertex_shader.hpp"
+# include "rendering/pipeline/vertex_shader.hpp"
 
 WorldVertex vs_calculateWorldVertex( 
 

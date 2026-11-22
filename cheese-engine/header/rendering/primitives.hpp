@@ -1,9 +1,11 @@
 #pragma once
 
-#include "vector_3.hpp"
-#include "vertex.hpp"
-
 #include <array>
+
+#include "maths/vector_3.hpp"
+#include "rendering/vertex.hpp"
+
+
 
 template< typename vertexType >
 struct Primitive{

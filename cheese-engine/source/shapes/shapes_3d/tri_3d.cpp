@@ -1,4 +1,4 @@
-#include "tri_3d.hpp"
+#include "shapes/shapes_3d/tri_3d.hpp"
 
 
 Tri3D::Tri3D(){};

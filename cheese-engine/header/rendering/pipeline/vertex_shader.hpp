@@ -1,16 +1,18 @@
 #pragma once
 
-
-#include "buffer.hpp"
-#include "matrix.hpp"
-
-#include "vertex.hpp"
-#include "vector_2.hpp"
-#include "vector_3.hpp"
-#include "vector_4.hpp"
-
 #include <cstdint>
 #include <stdfloat>
+
+
+#include "iterables/buffer.hpp"
+
+#include "rendering/vertex.hpp"
+
+#include "maths/matrix.hpp"
+#include "maths/vector_2.hpp"
+#include "maths/vector_3.hpp"
+#include "maths/vector_4.hpp"
+
 
 
 /**

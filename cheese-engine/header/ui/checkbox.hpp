@@ -1,11 +1,10 @@
 #pragma once
 
-// Outside Scope
-#include "colour.hpp"
-#include "text.hpp"
+#include "rendering/colour.hpp"
 
-// Own Scope
-#include "interactable.hpp"
+#include "ui/text.hpp"
+#include "ui/interactable.hpp"
+
 
 
 /**

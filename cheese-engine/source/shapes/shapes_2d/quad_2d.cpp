@@ -1,10 +1,9 @@
-#include "quad_2d.hpp"
 
-// External
 #include <array>
 
-// Outside Scope
-#include "vector_2.hpp"
+#include "shapes/shapes_2d/quad_2d.hpp"
+#include "maths/vector_2.hpp"
+
 
 
 Quad2D::Quad2D(){};

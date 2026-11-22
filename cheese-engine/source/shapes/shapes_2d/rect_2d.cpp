@@ -1,7 +1,7 @@
-#include "rect_2d.hpp"
 
-// Outside Scope
-#include "vector_2.hpp"
+#include "maths/vector_2.hpp"
+#include "shapes/shapes_2d/rect_2d.hpp"
+
 
 
 Rect2D::Rect2D(){};

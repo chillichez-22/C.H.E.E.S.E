@@ -1,21 +1,23 @@
+#pragma once
 
-// Entity & Components
-#include "entity.hpp"
-#include "component.hpp"
-#include "transform.hpp"
-
-// Maths
-#include "buffer.hpp"
-#include "matrix.hpp"
-
-// Vertex & Vectors
-#include "vertex.hpp"
-#include "vector_2.hpp"
-#include "vector_3.hpp"
-#include "vector_4.hpp"
-#include "colour.hpp"
 #include <cstdint>
 #include <stdfloat>
+
+#include "entity/entity.hpp"
+#include "components/component.hpp"
+#include "components/transform.hpp"
+
+#include "iterables/buffer.hpp"
+
+#include "maths/matrix.hpp"
+#include "maths/vector_2.hpp"
+#include "maths/vector_3.hpp"
+#include "maths/vector_4.hpp"
+
+#include "rendering/vertex.hpp"
+#include "rendering/colour.hpp"
+
+
 
 /*
 std::vector< std::vector<ObjectVertex> > ia_assemblePrimitives(

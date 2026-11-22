@@ -1,13 +1,14 @@
 #pragma once
 
-#include "vector_2.hpp"
-#include "vector_3.hpp"
-#include "vector_4.hpp"
-
-#include "colour.hpp"
-
 #include <iostream>
 #include <vector>
+
+#include "maths/vector_2.hpp"
+#include "maths/vector_3.hpp"
+#include "maths/vector_4.hpp"
+
+#include "rendering/colour.hpp"
+
 
 /**
  * @brief A vertex holding a 3d position, uv, and colour.

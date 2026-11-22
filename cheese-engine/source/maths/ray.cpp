@@ -1,4 +1,4 @@
-#include "ray.hpp"
+#include "maths/ray.hpp"
 
 
 // Ray2D

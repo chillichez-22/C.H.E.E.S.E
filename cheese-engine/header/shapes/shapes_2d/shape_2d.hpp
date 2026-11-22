@@ -1,7 +1,8 @@
 #pragma once
 
-// Outside Scope
-#include "shape.hpp"
+
+#include "shapes/shape.hpp"
+
 
 /**
  * @brief Abstract class for any 2D shape

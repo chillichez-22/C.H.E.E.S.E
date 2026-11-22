@@ -1,7 +1,7 @@
 #pragma once
 
-#include "view_volume.hpp"
-#include "matrix.hpp"
+#include "maths/matrix.hpp"
+#include "rendering/view_volume.hpp"
 
 
 /**

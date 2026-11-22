@@ -1,7 +1,7 @@
-#include "line_2d.hpp"
 
-// Outside Scope
-#include "vector_2.hpp"
+#include "maths/vector_2.hpp"
+#include "shapes/shapes_2d/line_2d.hpp"
+
 
 Line2D::Line2D(){};
 

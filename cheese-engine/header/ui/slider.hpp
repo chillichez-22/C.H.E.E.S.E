@@ -1,14 +1,14 @@
 #pragma once
 
-// Outside Scope
-#include "shape_2d.hpp"
-#include "line_2d.hpp"
-#include "colour.hpp"
+#include "rendering/colour.hpp"
 
-// Own Scope
-#include "button.hpp"
-#include "text.hpp"
-#include "interactable.hpp"
+#include "shapes/shapes_2d/shape_2d.hpp"
+#include "shapes/shapes_2d/line_2d.hpp"
+
+#include "ui/button.hpp"
+#include "ui/text.hpp"
+#include "ui/interactable.hpp"
+
 
 
 /**

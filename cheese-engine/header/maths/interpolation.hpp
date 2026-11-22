@@ -1,10 +1,10 @@
 #pragma once
 
-#include "vector_2.hpp"
-#include "vector_3.hpp"
+#include "maths/vector_2.hpp"
+#include "maths/vector_3.hpp"
 
-#include "tri_2d.hpp"
-#include "tri_3d.hpp"
+#include "shapes/shapes_2d/tri_2d.hpp"
+#include "shapes/shapes_3d/tri_3d.hpp"
 
 
 

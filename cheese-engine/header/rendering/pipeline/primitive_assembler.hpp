@@ -1,10 +1,11 @@
 #pragma once
 
-#include "vector_2.hpp"
-#include "vector_3.hpp"
-#include "vertex.hpp"
+#include "maths/vector_2.hpp"
+#include "maths/vector_3.hpp"
 
-#include "primitives.hpp"
+#include "rendering/vertex.hpp"
+#include "rendering/primitives.hpp"
+
 
 /**
  * @brief Creates primitives using 3 or more vertexes.

@@ -1,7 +1,6 @@
 #pragma once
 
-// Own Scope
-#include "font.hpp"
+#include "fonts/font.hpp"
 
 class TTF : public Font{
 

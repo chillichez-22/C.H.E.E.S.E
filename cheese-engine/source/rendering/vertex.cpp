@@ -1,4 +1,4 @@
-#include "vertex.hpp"
+#include "rendering/vertex.hpp"
 
 // Object
 

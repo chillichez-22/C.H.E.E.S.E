@@ -1,4 +1,4 @@
-#include "vector_3.hpp"
+#include "maths/vector_3.hpp"
 
 
 Vector3::Vector3(){};

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "transform.hpp"
+#include "components/transform.hpp"
 
 #include <cstdint>
 
@@ -9,13 +9,13 @@ class Entity{
 
 public:
 
-    Transform3D transform;
+	Transform3D transform;
 
-    uint32_t vertexCount;   /**< Number of vertexes making up the object */
-    uint32_t indexOffset;   /**< Offset of the index buffer, ( where the object's vertex's indicies start )*/
-    uint32_t vertexOffset;  /**< Offset of the vertex buffer, ( where the object's vertex's start )*/
+	uint32_t vertexCount;   /**< Number of vertexes making up the object */
+	uint32_t indexOffset;   /**< Offset of the index buffer, ( where the object's vertex's indicies start )*/
+	uint32_t vertexOffset;  /**< Offset of the vertex buffer, ( where the object's vertex's start )*/
 
-    /*
+	/*
 
     // Suppose the vertex buffer holds 3 tris:
 

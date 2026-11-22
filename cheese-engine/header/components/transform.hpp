@@ -1,12 +1,12 @@
 #pragma once
 
-#include "component.hpp"
-#include "vector_3.hpp"
-
 #include <iostream>
 #include <array>
 #include <cstdint>
 #include <stdfloat>
+
+#include "components/component.hpp"
+#include "maths/vector_3.hpp"
 
 
 struct Transform3D : public Component{

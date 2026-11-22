@@ -1,26 +1,25 @@
 #pragma once
 
-// External
 #include <string>
 #include <iostream>
 #include <vector>
 #include <cstddef>
 #include <SDL3/SDL.h>
 
-// Outside Scope
-#include "math.hpp"
 
-#include "buffer.hpp"
+#include "iterables/buffer.hpp"
 
-#include "vector_2.hpp"
-#include "vector_3.hpp"
-#include "colour.hpp"
+#include "maths/math.hpp"
+#include "maths/vector_2.hpp"
+#include "maths/vector_3.hpp"
 
-#include "vertex.hpp"
-#include "primitives.hpp"
+#include "rendering/vertex.hpp"
+#include "rendering/colour.hpp"
+#include "rendering/primitives.hpp"
 
-#include "tri_2d.hpp"
-#include "line_2d.hpp"
+#include "shapes/shapes_2d/tri_2d.hpp"
+#include "shapes/shapes_2d/line_2d.hpp"
+
 
 
 /**

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "vector_2.hpp"
-#include "vector_3.hpp"
+#include "maths/vector_2.hpp"
+#include "maths/vector_3.hpp"
 
 
 /**

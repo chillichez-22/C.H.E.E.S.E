@@ -5,8 +5,9 @@
 #include <array>
 #include <cmath> 
 
-#include "vector_3.hpp"
-#include "vector_4.hpp"
+#include "maths/vector_3.hpp"
+#include "maths/vector_4.hpp"
+
 
 /**
  * @brief 

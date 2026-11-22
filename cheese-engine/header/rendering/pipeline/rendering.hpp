@@ -1,31 +1,28 @@
 #pragma once
 
 
-// Entity & Components
-#include "entity.hpp"
-#include "component.hpp"
-#include "transform.hpp"
+#include "entity/entity.hpp"
 
-// Maths
-#include "buffer.hpp"
-#include "matrix.hpp"
+#include "components/component.hpp"
+#include "components/transform.hpp"
 
-// Vertex & Vectors
-#include "vertex.hpp"
-#include "vector_2.hpp"
-#include "vector_3.hpp"
-#include "vector_4.hpp"
-#include "colour.hpp"
-#include "primitives.hpp"
+#include "iterables/buffer.hpp"
 
-// Graphics pipeline
-#include "input_assembler.hpp"
-#include "vertex_shader.hpp" 
-#include "primitive_assembler.hpp"
-#include "rasteriser.hpp"
-#include "fragment_shader.hpp"
+#include "maths/matrix.hpp"
+#include "maths/vector_2.hpp"
+#include "maths/vector_3.hpp"
+#include "maths/vector_4.hpp"
 
-//....
+#include "rendering/colour.hpp"
+#include "rendering/primitives.hpp"
+#include "rendering/vertex.hpp"
+
+#include "rendering/pipeline/input_assembler.hpp"
+#include "rendering/pipeline/vertex_shader.hpp" 
+#include "rendering/pipeline/primitive_assembler.hpp"
+#include "rendering/pipeline/rasteriser.hpp"
+#include "rendering/pipeline/fragment_shader.hpp"
+
 
 
 /**

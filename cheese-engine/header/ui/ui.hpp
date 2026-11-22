@@ -1,20 +1,19 @@
 #pragma once
 
-// External
+
 #include <vector>
 #include <memory>
 
-// Outside Scope
-#include "vector_2.hpp"
-#include "mouse.hpp"
 
-// Own Scope
-#include "button.hpp"
-#include "checkbox.hpp"
-#include "interactable.hpp"
-#include "slider.hpp"
-#include "text.hpp"
-#include "ui_element.hpp"
+#include "maths/vector_2.hpp"
+#include "inputs/mouse.hpp"
+
+#include "ui/button.hpp"
+#include "ui/checkbox.hpp"
+#include "ui/interactable.hpp"
+#include "ui/slider.hpp"
+#include "ui/text.hpp"
+#include "ui/ui_element.hpp"
 
 
 /**

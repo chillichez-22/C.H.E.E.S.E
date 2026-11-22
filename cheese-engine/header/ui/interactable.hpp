@@ -1,12 +1,13 @@
 #pragma once
 
-// Outside Scope
-#include "colour.hpp"
-#include "vector_2.hpp"
-#include "collision_result.hpp"
 
-// Own Scope
-#include "ui_element.hpp"
+#include "maths/vector_2.hpp"
+
+#include "physics/collision_result.hpp"
+
+#include "rendering/colour.hpp"
+
+#include "ui/ui_element.hpp"
 
 
 /**

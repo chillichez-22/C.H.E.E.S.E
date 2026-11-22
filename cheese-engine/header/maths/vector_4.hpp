@@ -1,9 +1,8 @@
 #pragma once
 
-// External
 #include <cmath>
 
-#include "vector_3.hpp"
+#include "maths/vector_3.hpp"
 
 
 /**

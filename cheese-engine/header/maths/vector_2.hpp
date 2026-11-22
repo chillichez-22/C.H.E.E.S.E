@@ -1,8 +1,9 @@
 #pragma once
 
-// External
+
 #include <cmath>
 #include <iostream>
+
 
 /**
  * @brief A vector of floats with 2 components: x, y.

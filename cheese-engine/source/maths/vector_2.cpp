@@ -1,4 +1,4 @@
-#include "vector_2.hpp"
+#include "maths/vector_2.hpp"
 
 
 Vector2::Vector2(){};

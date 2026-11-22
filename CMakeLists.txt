@@ -13,8 +13,15 @@ find_package( SDL3 REQUIRED )
 # Options
 option( IS_TESTING "Enables the testing." OFF )
 
+# Places the output into a bin folder
+set( CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/libs" )
+set( CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/libs" )
+set( CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/binaries" )
 
+
+# Adds the cheese-engine
 add_subdirectory( cheese-engine )
+
 
 if( IS_TESTING )
     
@@ -37,7 +44,6 @@ if( IS_TESTING )
 
         PRIVATE
             ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header
-            ${CMAKE_CURRENT_SOURCE_DIR}/cheese-engine/header/tests
     )
 
     # Adds Gtest to the project
@@ -64,3 +70,5 @@ else()
     )
 
 endif()
+
+

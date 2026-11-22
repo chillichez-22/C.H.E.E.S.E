@@ -5,13 +5,15 @@
 #include <vector>
 #include <string>
 
-#include "buffer.hpp"
-#include "vector_3.hpp"
-#include "vector_4.hpp"
 
-#include "entity.hpp"
+#include "entity/entity.hpp"
 
-#include "vertex.hpp"
+#include "iterables/buffer.hpp"
+
+#include "maths/vector_3.hpp"
+#include "maths/vector_4.hpp"
+
+#include "rendering/vertex.hpp"
 
 
 

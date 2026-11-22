@@ -1,7 +1,7 @@
 #pragma once
 
 // Outside Scope
-#include "shape.hpp"
+#include "shapes/shape.hpp"
 
 
 /**

@@ -6,43 +6,45 @@
 #include <SDL3/SDL.h>
 
 
-// Outside Scope
+// Entity
+#include "entity/entity.hpp"
+#include "entity/camera.hpp"
 
-#include "entity.hpp"
-#include "camera.hpp"
+// Files
+#include "files/loading.hpp"
 
+// Inputs
+#include "inputs/mouse.hpp"
 
+// Iterables
+#include "iterables/buffer.hpp"
 
 // Maths
-#include "math.hpp"
+#include "maths/math.hpp"
 
-#include "buffer.hpp"
-#include "vector_2.hpp"
-#include "vector_3.hpp"
-#include "matrix.hpp"
+#include "maths/vector_2.hpp"
+#include "maths/vector_3.hpp"
+#include "maths/matrix.hpp"
 
 // Shapes
-#include "shape_2d.hpp"
-#include "tri_2d.hpp"
+#include "shapes/shapes_2d/shape_2d.hpp"
+#include "shapes/shapes_2d/tri_2d.hpp"
 
-#include "shape_3d.hpp"
-#include "tri_3d.hpp"
+#include "shapes/shapes_3d/shape_3d.hpp"
+#include "shapes/shapes_3d/tri_3d.hpp"
 
-// Inputs & UI
-#include "mouse.hpp"
-#include "ui.hpp"
+// UI
+#include "ui/ui.hpp"
 
-// Loading
-#include "loading.hpp"
 
 // Rendering
 
-#include "projection.hpp"
-#include "rendering.hpp"
+#include "rendering/pipeline/rendering.hpp"
 
-#include "view_volume.hpp"
-#include "colour.hpp"
-#include "vertex.hpp"
+#include "rendering/colour.hpp"
+#include "rendering/projection.hpp"
+#include "rendering/view_volume.hpp"
+#include "rendering/vertex.hpp"
 
 
 int main() {

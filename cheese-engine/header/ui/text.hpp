@@ -1,15 +1,16 @@
 #pragma once
 
-// External
 #include <string>
 
-// Outside Scope
-#include "colour.hpp"
-#include "vector_2.hpp"
-#include "ttf.hpp"  
 
-// Own Scope
-#include "ui_element.hpp"
+#include "fonts/ttf.hpp"  
+
+#include "rendering/colour.hpp"
+
+#include "maths/vector_2.hpp"
+
+#include "ui/ui_element.hpp"
+
 
 
 /**

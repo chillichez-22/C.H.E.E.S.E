@@ -1,7 +1,7 @@
-#include "circle_2d.hpp"
 
-// Outside Scope
-#include "vector_2.hpp"
+
+#include "maths/vector_2.hpp"
+#include "shapes/shapes_2d/circle_2d.hpp"
 
 
 Circle2D::Circle2D(){};

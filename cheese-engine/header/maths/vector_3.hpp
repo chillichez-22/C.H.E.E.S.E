@@ -1,6 +1,6 @@
 #pragma once
 
-// External
+
 #include <cmath>
 #include <iostream>
 

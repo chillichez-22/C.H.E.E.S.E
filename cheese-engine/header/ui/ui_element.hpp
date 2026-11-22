@@ -1,8 +1,10 @@
 #pragma once
 
-// External
+
 #include <string>
 #include <SDL3/SDL.h>
+
+
 
 /**
  * @brief Abstract class for any UI Element to be rendered onto the screen as a part of a `UI`.

@@ -1,14 +1,13 @@
 #pragma once
 
-// Own Shape
-#include "ray.hpp"
 
-// Maths Objects
-#include "vertex.hpp"
-#include "vector_3.hpp"
+#include "maths/ray.hpp"
+#include "maths/vector_3.hpp"
 
-// Other Shapes
-#include "tri_3d.hpp"
+#include "rendering/vertex.hpp"
+
+#include "shapes/shapes_3d/tri_3d.hpp"
+
 
 /**
  * @brief 

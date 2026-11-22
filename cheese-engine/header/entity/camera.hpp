@@ -2,11 +2,11 @@
 
 #include <cstdint>
 
-#include "entity.hpp"
+#include "entity/entity.hpp"
 
-#include "vector_3.hpp"
-#include "vector_4.hpp"
-#include "view_volume.hpp"
+#include "maths/vector_3.hpp"
+#include "maths/vector_4.hpp"
+#include "rendering/view_volume.hpp"
 
 
 /**

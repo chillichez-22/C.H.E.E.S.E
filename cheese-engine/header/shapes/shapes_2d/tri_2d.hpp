@@ -1,13 +1,13 @@
 #pragma once
 
-// External
+
 #include <array>
 
-// Outside Scope
-#include "vector_2.hpp"
 
-// Own Scope
-#include "shape_2d.hpp"
+#include "maths/vector_2.hpp"
+#include "shapes/shapes_2d/shape_2d.hpp"
+
+
 
 /**
  * @brief A 2D Tri structure.

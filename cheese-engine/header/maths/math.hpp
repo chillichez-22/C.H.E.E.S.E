@@ -1,13 +1,13 @@
 #pragma once
 
-// Own Scope
-#include "matrix.hpp"
-#include "vector_2.hpp"
-#include "vector_3.hpp"
-#include "vector_4.hpp"
-
 // External
 #include <cmath>
+
+#include "maths/matrix.hpp"
+#include "maths/vector_2.hpp"
+#include "maths/vector_3.hpp"
+#include "maths/vector_4.hpp"
+
 
 float findCFromEOL( float m, float x, float y );
 

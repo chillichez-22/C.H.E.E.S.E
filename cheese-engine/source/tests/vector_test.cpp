@@ -1,8 +1,8 @@
 #define SDL_MAIN_HANDLED
 
-#include "vector_2.hpp"
-#include "vector_3.hpp"
-#include "vector_4.hpp"
+#include "maths/vector_2.hpp"
+#include "maths/vector_3.hpp"
+#include "maths/vector_4.hpp"
 
 #include <iostream>
 #include <gtest/gtest.h>

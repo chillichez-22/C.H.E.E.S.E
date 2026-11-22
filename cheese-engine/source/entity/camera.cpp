@@ -1,4 +1,4 @@
-#include "camera.hpp"
+#include "entity/camera.hpp"
 
 Camera::Camera(){};
 

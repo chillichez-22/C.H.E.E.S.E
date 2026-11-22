@@ -15,22 +15,21 @@ set( entity_sources
     
 )
 
-set( file_sources
+set( files_sources
 
     "source/files/loading.cpp"
 )
 
-set( font_sources
+set( fonts_sources
 
     "source/fonts/font.cpp"
 
     "source/fonts/ttf.cpp"
 )
 
-set( interactions_sources 
+set( inputs_sources 
 
-
-    "source/interactions/inputs/mouse.cpp"
+    "source/inputs/mouse.cpp"
 )
 
 set( iterables_sources 
@@ -52,13 +51,13 @@ set( maths_sources
 
 set( physics_sources
 
-    "source/physics/collision_result.cpp"    
     "source/physics/collisions.cpp"    
+    "source/physics/collision_result.cpp"    
 
     # Collision2D
 
     # Collision3D
-    "source/physics/collision_3d/ray_3d_collisions.cpp"   
+    "source/physics/collisions_3d/ray_3d_collisions.cpp"   
 
 )
 
@@ -108,14 +107,14 @@ set( shape_sources
 
 set( ui_sources     
 
-    "source/interactions/ui/ui.cpp"
+    "source/ui/ui.cpp"
 
-    "source/interactions/ui/button.cpp"
-    "source/interactions/ui/checkbox.cpp"
-    "source/interactions/ui/interactable.cpp"
-    "source/interactions/ui/slider.cpp"
-    "source/interactions/ui/text.cpp"
-    "source/interactions/ui/ui_element.cpp"
+    "source/ui/button.cpp"
+    "source/ui/checkbox.cpp"
+    "source/ui/interactable.cpp"
+    "source/ui/slider.cpp"
+    "source/ui/text.cpp"
+    "source/ui/ui_element.cpp"
     
 )
 
@@ -128,13 +127,15 @@ add_library( cheese-engine STATIC
     # Source files
     ${components_sources}
     ${entity_sources}
-    ${file_sources}
-    ${interactions_sources}
+    ${files_sources}
+    ${fonts_sources}
+    ${inputs_sources}
     ${iterables_sources}
     ${maths_sources}
     ${physics_sources}
     ${rendering_sources}
     ${shape_sources}
+    ${ui_sources}
 
 )
 

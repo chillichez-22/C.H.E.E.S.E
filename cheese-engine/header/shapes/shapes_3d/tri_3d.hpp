@@ -1,14 +1,12 @@
 #pragma once
 
-// External
 #include <array>
 #include <cstdint>
 
-// Outside Scope
-#include "vector_3.hpp"
 
-// Own Scope
-#include "shape_3d.hpp"
+#include "maths/vector_3.hpp"
+#include "shapes/shapes_3d/shape_3d.hpp"
+
 
 /**
  * @brief A 3D Tri structure.

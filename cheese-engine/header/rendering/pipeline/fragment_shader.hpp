@@ -1,21 +1,22 @@
 #pragma once
 
-
-#include "colour.hpp"
-#include "vector_2.hpp"
-#include "vector_3.hpp"
-#include "vector_4.hpp"
-#include "vertex.hpp"
-#include "primitives.hpp"
-
-#include "ray.hpp"
-#include "ray_3d_collisions.hpp"
-#include "collision_result.hpp"
-
-#include <SDL3/SDL.h>
-
 #include <cstdint>
 #include <stdfloat>
+#include <SDL3/SDL.h>
+
+
+#include "maths/vector_2.hpp"
+#include "maths/vector_3.hpp"
+#include "maths/vector_4.hpp"
+#include "maths/ray.hpp"
+
+#include "rendering/colour.hpp"
+#include "rendering/vertex.hpp"
+#include "rendering/primitives.hpp"
+
+#include "physics/collision_result.hpp"
+#include "physics/collisions_3d/ray_3d_collisions.hpp"
+
 
 
 

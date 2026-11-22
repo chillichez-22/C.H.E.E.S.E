@@ -1,10 +1,9 @@
-#include "tri_2d.hpp"
 
-// External
 #include <array>
 
-// Outside Scope
-#include "vector_2.hpp"
+#include "shapes/shapes_2d/tri_2d.hpp"
+#include "maths/vector_2.hpp"
+
 
 
 Tri2D::Tri2D(){};
