@@ -3,7 +3,7 @@
 
 #include "maths/vector_2.hpp"
 
-#include "physics/collision_result.hpp"
+#include "collisions/collision_result.hpp"
 
 #include "rendering/colour.hpp"
 

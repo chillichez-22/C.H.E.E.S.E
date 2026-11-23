@@ -43,21 +43,23 @@ set( maths_sources
 
     "source/maths/interpolation.cpp"
     "source/maths/matrix.cpp"
-    "source/maths/ray.cpp"
+    "source/maths/ray_2d.cpp"
+    "source/maths/ray_3d.cpp"
     "source/maths/vector_2.cpp"
     "source/maths/vector_3.cpp"
     "source/maths/vector_4.cpp"
 )
 
-set( physics_sources
+set( collisions_sources
 
-    "source/physics/collisions.cpp"    
-    "source/physics/collision_result.cpp"    
+
+    "source/collisions/collisions.cpp"    
+    "source/collisions/collision_result.cpp"    
 
     # Collision2D
 
     # Collision3D
-    "source/physics/collisions_3d/ray_3d_collisions.cpp"   
+    "source/collisions/collisions_3d/ray_3d_collisions.cpp"   
 
 )
 
@@ -132,7 +134,7 @@ add_library( cheese-engine STATIC
     ${inputs_sources}
     ${iterables_sources}
     ${maths_sources}
-    ${physics_sources}
+    ${collisions_sources}
     ${rendering_sources}
     ${shape_sources}
     ${ui_sources}

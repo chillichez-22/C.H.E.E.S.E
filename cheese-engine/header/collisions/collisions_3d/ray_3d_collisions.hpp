@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "maths/ray.hpp"
+#include "maths/ray_3d.hpp"
 #include "maths/vector_3.hpp"
 
 #include "rendering/vertex.hpp"

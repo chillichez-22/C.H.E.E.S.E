@@ -7,7 +7,7 @@
 
 #include "rendering/colour.hpp"
 
-#include "physics/collision_result.hpp"
+#include "collisions/collision_result.hpp"
 
 #include "ui/text.hpp"
 #include "ui/interactable.hpp"

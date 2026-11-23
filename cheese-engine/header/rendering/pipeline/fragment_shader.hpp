@@ -8,14 +8,15 @@
 #include "maths/vector_2.hpp"
 #include "maths/vector_3.hpp"
 #include "maths/vector_4.hpp"
-#include "maths/ray.hpp"
+#include "maths/ray_2d.hpp"
+#include "maths/ray_3d.hpp"
 
 #include "rendering/colour.hpp"
 #include "rendering/vertex.hpp"
 #include "rendering/primitives.hpp"
 
-#include "physics/collision_result.hpp"
-#include "physics/collisions_3d/ray_3d_collisions.hpp"
+#include "collisions/collision_result.hpp"
+#include "collisions/collisions_3d/ray_3d_collisions.hpp"
 
 
 
