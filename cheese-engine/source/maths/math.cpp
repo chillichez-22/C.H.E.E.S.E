@@ -1,5 +1,6 @@
 #include "maths/math.hpp"
 
+
 float findCFromEOL( float m, float x, float y ){
 
     return y - ( m * x );

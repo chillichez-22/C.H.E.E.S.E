@@ -1,23 +1,36 @@
 #pragma once
 
-
 #include <cmath>
 #include <iostream>
 
+#include "maths/math.hpp"
+#include "maths/vector_2.hpp"
+#include "maths/vector_4.hpp"
+
+
 /**
  * @brief A vector of floats with 3 components: x, y, z.
- * 
  */
 struct Vector3{
 
     float x;
     float y;
     float z;
-    
+
+public:
+
     /**
      * @brief Default Constructor
      */
     Vector3();
+
+
+    /**
+     * @brief Constructor for a new Vector3
+     * 
+     * @param fillValue Value to all the components.
+     */
+    Vector3( float fillValue );
 
     /**
      * @brief Constructor for a new Vector3
@@ -29,6 +42,26 @@ struct Vector3{
      * @return `Vector3` new Vector3
      */
     Vector3( float newX, float newY, float newZ );
+
+
+    // Conversions
+
+    /**
+     * @brief Constructor for a new Vector3
+     * 
+     * @param vector Vector to convert.
+     * @param z Z value to set.
+     */
+    Vector3( Vector2 vector, float z = 0.f );
+
+    /**
+     * @brief Constructor for a new Vector3
+     * 
+     * @param vector Vector to convert.
+     */
+    Vector3( Vector4 vector );
+
+
     
     //Iostream
 

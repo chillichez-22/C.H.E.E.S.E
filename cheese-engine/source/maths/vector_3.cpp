@@ -1,13 +1,47 @@
 #include "maths/vector_3.hpp"
 
-
+// Default
 Vector3::Vector3(){};
+
+
+// Constructors
+
+Vector3::Vector3( float fillValue ){
+
+    x = fillValue;
+    y = fillValue;
+    z = fillValue;
+
+};
 
 Vector3::Vector3( float newX, float newY, float newZ ){
 
     x = newX;
     y = newY;
     z = newZ;
+};
+
+
+// Conversions
+
+/**
+ * @brief Constructor for a new Vector3
+ */
+Vector3::Vector3( Vector2 vector, float z ){
+
+    x = vector.x;
+    y = vector.y;
+    z = z;
+};
+
+/**
+ * @brief Constructor for a new Vector3
+ */
+Vector3::Vector3( Vector4 vector ){
+
+    x = vector.x;
+    y = vector.y;
+    z = vector.z;
 };
 
 

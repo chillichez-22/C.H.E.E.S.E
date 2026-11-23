@@ -1,6 +1,5 @@
 #pragma once
 
-// External
 #include <cmath>
 
 #include "maths/matrix.hpp"
@@ -8,6 +7,9 @@
 #include "maths/vector_3.hpp"
 #include "maths/vector_4.hpp"
 
+#ifndef M_PI
+#define M_PI 3.1415926535897932384626433832795
+#endif
 
 float findCFromEOL( float m, float x, float y );
 
