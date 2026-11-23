@@ -95,11 +95,11 @@ Shader::Shader(
 
 
 	// shader Program
-	ID = glCreateProgram();
-	glAttachShader(ID, vertex);
-	glAttachShader(ID, fragment);
-	glLinkProgram(ID);
-	checkCompileErrors(ID, "PROGRAM");
+	m_id = glCreateProgram();
+	glAttachShader(m_id, vertex);
+	glAttachShader(m_id, fragment);
+	glLinkProgram(m_id);
+	checkCompileErrors(m_id, "PROGRAM");
 	// delete the shaders as they're linked into our program now and no longer necessary
 	glDeleteShader(vertex);
 	glDeleteShader(fragment);
@@ -111,7 +111,7 @@ Shader::Shader(
 
 void Shader::use(){
 
-	glUseProgram(ID);
+	glUseProgram(m_id);
 }
 
 
@@ -122,7 +122,7 @@ void Shader::setBool(
     bool value 
 ) const 
 {
-	glUniform1i(glGetUniformLocation(ID, name.c_str()), (int)value);
+	glUniform1i(glGetUniformLocation(m_id, name.c_str()), (int)value);
 }
 
 void Shader::setInt(
@@ -130,7 +130,7 @@ void Shader::setInt(
     int value 
 ) const 
 {
-	glUniform1i(glGetUniformLocation(ID, name.c_str()), value);
+	glUniform1i(glGetUniformLocation(m_id, name.c_str()), value);
 }
 
 void Shader::setFloat(
@@ -138,7 +138,7 @@ void Shader::setFloat(
     float value 
 ) const 
 {
-	glUniform1f(glGetUniformLocation(ID, name.c_str()), value);
+	glUniform1f(glGetUniformLocation(m_id, name.c_str()), value);
 }
 
 
@@ -146,10 +146,10 @@ void Shader::setFloat(
 
 void Shader::setVec2(
     const std::string& name, 
-    const glm::vec2& value 
+    const Vector2& value 
 ) const
 {
-	glUniform2fv(glGetUniformLocation(ID, name.c_str()), 1, &value[0]);
+	glUniform2f(glGetUniformLocation(m_id, name.c_str()), value.x, value.y);
 }
 
 void Shader::setVec2(
@@ -157,17 +157,17 @@ void Shader::setVec2(
     float x, float y
 ) const
 {
-	glUniform2f(glGetUniformLocation(ID, name.c_str()), x, y);
+	glUniform2f(glGetUniformLocation(m_id, name.c_str()), x, y);
 }
 
 // Vec3
 
 void Shader::setVec3(
     const std::string& name, 
-    const glm::vec3& value 
+    const Vector3& value 
 ) const
 {
-	glUniform3fv(glGetUniformLocation(ID, name.c_str()), 1, &value[0]);
+	glUniform3f(glGetUniformLocation(m_id, name.c_str()), value.x, value.y, value.z);
 }
 
 void Shader::setVec3(
@@ -177,18 +177,17 @@ void Shader::setVec3(
     float z
 ) const
 {
-	glUniform3f(glGetUniformLocation(ID, name.c_str()), x, y, z);
+	glUniform3f(glGetUniformLocation(m_id, name.c_str()), x, y, z);
 }
 
 // Vec4
 
 void Shader::setVec4(
     const std::string& name, 
-    const glm::vec4& value 
-
+    const Vector4& value 
 ) const
 {
-	glUniform4fv(glGetUniformLocation(ID, name.c_str()), 1, &value[0]);
+	glUniform4f(glGetUniformLocation(m_id, name.c_str()), value.x, value.y, value.z, value.w);
 }
 
 void Shader::setVec4(
@@ -198,7 +197,7 @@ void Shader::setVec4(
     float z, 
     float w
 ){
-	glUniform4f(glGetUniformLocation(ID, name.c_str()), x, y, z, w);
+	glUniform4f(glGetUniformLocation(m_id, name.c_str()), x, y, z, w);
 }
 
 
@@ -206,28 +205,28 @@ void Shader::setVec4(
 
 void Shader::setMat2(
     const std::string& name, 
-    const glm::mat2& mat 
+    const Matrix<float,2,2>& mat 
 ) const
 {
-	glUniformMatrix2fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, &mat[0][0]);
+	glUniformMatrix2fv(glGetUniformLocation(m_id, name.c_str()), 1, GL_FALSE, mat.getDataReference() );
 }
 
 
 void Shader::setMat3(
     const std::string& name, 
-    const glm::mat3& mat 
+    const Matrix3x3<float>& mat 
 ) const
 {
-	glUniformMatrix3fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, &mat[0][0]);
+	glUniformMatrix3fv(glGetUniformLocation(m_id, name.c_str()), 1, GL_FALSE, mat.getDataReference() );
 }
 
 
 void Shader::setMat4(
     const std::string& name, 
-    const glm::mat4& mat 
+    const Matrix4x4<float>& mat 
 ) const
 {
-	glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, &mat[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(m_id, name.c_str()), 1, GL_FALSE, mat.getDataReference() );
 }
 
 
@@ -238,8 +237,8 @@ void Shader::setUniformBlock(
     unsigned int uniformBlock
 ) const
 {
-	unsigned int uniformBlockIndex = glGetUniformBlockIndex(ID, name.c_str());
-	glUniformBlockBinding(ID, uniformBlockIndex, uniformBlock);
+	unsigned int uniformBlockIndex = glGetUniformBlockIndex(m_id, name.c_str());
+	glUniformBlockBinding(m_id, uniformBlockIndex, uniformBlock);
 }
 
 

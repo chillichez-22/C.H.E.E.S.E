@@ -98,6 +98,15 @@ public:
         return data[ index ];
     };
     
+    /**
+     * @brief Getter for a reference at the start index of the data in the matrix
+     * 
+     * @returns `valueType*` - Reference to the start index of the matrix.
+     */
+    const valueType* getDataReference() const {
+
+        return data.data();
+    } 
 
     // Setters
 
@@ -332,7 +341,7 @@ public:
      * @brief Default constructor
      */
     Matrix4x4(){};
-
+    
 
     Matrix4x4( valueType fillValue ){
         data.fill( fillValue );
