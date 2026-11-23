@@ -70,6 +70,7 @@ set( rendering_sources
     "source/rendering/colour.cpp"
     "source/rendering/primitives.cpp"
     "source/rendering/projection.cpp"
+    "source/rendering/texture_manager.cpp"
     "source/rendering/vertex.cpp"
     "source/rendering/view_volume.cpp"
     "source/rendering/window_manager.cpp"
