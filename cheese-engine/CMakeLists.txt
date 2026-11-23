@@ -29,6 +29,7 @@ set( fonts_sources
 
 set( inputs_sources 
 
+    "source/inputs/input_manager.cpp"
     "source/inputs/mouse.cpp"
 )
 
