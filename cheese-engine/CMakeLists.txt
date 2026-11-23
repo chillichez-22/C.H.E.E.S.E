@@ -3,8 +3,9 @@
 set( components_sources 
 
     "source/components/component.cpp"
-
     "source/components/transform.cpp"
+    "source/components/shader.cpp"
+
 )
 
 set( entity_sources 
