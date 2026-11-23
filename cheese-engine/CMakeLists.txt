@@ -65,7 +65,6 @@ set( collisions_sources
 
 )
 
-
 set( rendering_sources
     
     "source/rendering/colour.cpp"
@@ -83,15 +82,11 @@ set( rendering_sources
     "source/rendering/pipeline/rasteriser.cpp"
     "source/rendering/pipeline/rendering.cpp"
     "source/rendering/pipeline/vertex_shader.cpp"
-    
-    
 )
-
 
 set( scenes_sources
     
     "sources/scenes/scene.cpp"
-    
 )
 
 set( shape_sources
@@ -128,9 +123,14 @@ set( ui_sources
     "source/ui/slider.cpp"
     "source/ui/text.cpp"
     "source/ui/ui_element.cpp"
-    
 )
 
+
+set( external_sources
+
+    "external/source/glad/glad.c"      # Glad
+    "external/source/stb_image.cpp"    # Stb Image Loader
+)
 
 
 
@@ -151,6 +151,8 @@ add_library( cheese-engine STATIC
     ${shape_sources}
     ${ui_sources}
 
+    ${external_sources}
+
 )
 
 # Attaches the header files
@@ -159,6 +161,7 @@ target_include_directories( cheese-engine
     PUBLIC
 
         ${CMAKE_CURRENT_SOURCE_DIR}/header
+        ${CMAKE_CURRENT_SOURCE_DIR}/external/header
     
 )
 
