@@ -1,5 +1,13 @@
 # C++ gitignore file from [github's c++ gitignore]'https://github.com/github/gitignore/blob/main/C%2B%2B.gitignore'
 
+# Environment files
+.env
+.environment
+
+# Project files
+.vs
+.vscode
+
 # Prerequisites
 *.d
 
