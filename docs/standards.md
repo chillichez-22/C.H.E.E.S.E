@@ -46,7 +46,11 @@ const object* WINDOW
 
 #### Methods & Variables & Everything else
 
-Everything else will be camelCase where the first word has no capital letter at the start, but every following word has a capital start, with no word delimiter.
+Everything else will be camelCase where the first word has no capital letter at the start, but every following word has a capital start, with no word delimiter. 
+
+All private member variables will start with "m_" to denote that it is a member. 
+However public ones may have exceptions, such as a Vector where it can use `Vector.x`, `Vector.y`, etc... 
+<br>But this does not mean every member variable should be public. Ideally everything should be private, with exceptions.
 
 int add();
 <br>float subtractAllVectors();
@@ -55,6 +59,10 @@ int add();
 int myInt;
 <br>float widthOfLine;
 <br>Vector2 screenSpaceCoord;
+
+int Class.m_name;
+<br> float Vector2.x
+<br> Matrix Class->m_projectionMatrix;
 
 <br>
 

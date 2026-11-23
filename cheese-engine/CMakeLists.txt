@@ -83,6 +83,13 @@ set( rendering_sources
     
 )
 
+
+set( scenes_sources
+    
+    "sources/scenes/scene.cpp"
+    
+)
+
 set( shape_sources
 
     "source/shapes/shape.cpp"
@@ -136,6 +143,7 @@ add_library( cheese-engine STATIC
     ${maths_sources}
     ${collisions_sources}
     ${rendering_sources}
+    ${scene_sources}
     ${shape_sources}
     ${ui_sources}
 
@@ -148,29 +156,6 @@ target_include_directories( cheese-engine
 
         ${CMAKE_CURRENT_SOURCE_DIR}/header
     
-        # # Likes to misbehave without calling all individual header folders
-        # ${CMAKE_CURRENT_SOURCE_DIR}/header/components
-        # ${CMAKE_CURRENT_SOURCE_DIR}/header/entity
-        # ${CMAKE_CURRENT_SOURCE_DIR}/header/files
-        # ${CMAKE_CURRENT_SOURCE_DIR}/header/fonts
-
-        # ${CMAKE_CURRENT_SOURCE_DIR}/header/interactions
-        # ${CMAKE_CURRENT_SOURCE_DIR}/header/interactions/inputs
-        # ${CMAKE_CURRENT_SOURCE_DIR}/header/interactions/ui
-
-        # ${CMAKE_CURRENT_SOURCE_DIR}/header/iterables
-        # ${CMAKE_CURRENT_SOURCE_DIR}/header/maths
-
-        # ${CMAKE_CURRENT_SOURCE_DIR}/header/physics
-        # ${CMAKE_CURRENT_SOURCE_DIR}/header/physics/collision_2d
-        # ${CMAKE_CURRENT_SOURCE_DIR}/header/physics/collision_3d
-
-        # ${CMAKE_CURRENT_SOURCE_DIR}/header/rendering   
-        # ${CMAKE_CURRENT_SOURCE_DIR}/header/rendering/pipeline   
-
-        # ${CMAKE_CURRENT_SOURCE_DIR}/header/shapes
-        # ${CMAKE_CURRENT_SOURCE_DIR}/header/shapes/shapes_2d
-        # ${CMAKE_CURRENT_SOURCE_DIR}/header/shapes/shapes_3d
 )
 
 # Links SDL3 to the engine library
