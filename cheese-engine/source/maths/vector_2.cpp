@@ -1,12 +1,44 @@
 #include "maths/vector_2.hpp"
 
+#include "maths/vector_3.hpp"
+#include "maths/vector_4.hpp"
 
-Vector2::Vector2(){};
 
-Vector2::Vector2( float newX, float newY ){
-    x = newX;
-    y = newY;
+// Constructor
+
+Vector2::Vector2( 
+    float fillVal
+){
+    x = fillVal;
+    y = fillVal;
 };
+
+Vector2::Vector2( 
+    float xVal, 
+    float yVal 
+){
+    x = xVal;
+    y = yVal;
+};
+
+
+
+// Conversions
+
+Vector2::Vector2( Vector3 vector ){
+
+    x = vector.x;
+    y = vector.y;
+}
+
+Vector2::Vector2( Vector4 vector ){
+
+    x = vector.x;
+    y = vector.y;
+}
+
+
+
 
 
 // Comparison Operator Overloading

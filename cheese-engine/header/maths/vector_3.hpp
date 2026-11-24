@@ -3,9 +3,11 @@
 #include <cmath>
 #include <iostream>
 
-#include "maths/math.hpp"
-#include "maths/vector_2.hpp"
-#include "maths/vector_4.hpp"
+#include "maths/math_utils.hpp"
+
+// Forward declarations
+struct Vector2;
+struct Vector4;
 
 
 /**
@@ -19,29 +21,29 @@ struct Vector3{
 
 public:
 
-    /**
-     * @brief Default Constructor
-     */
-    Vector3();
-
+    // Constructors
 
     /**
      * @brief Constructor for a new Vector3
      * 
-     * @param fillValue Value to all the components.
+     * @param fillVal Value to fill the vector with.
      */
-    Vector3( float fillValue );
+    Vector3( float fillValue = 0.0 );
 
     /**
      * @brief Constructor for a new Vector3
      * 
-     * @param newX Float for the x component
-     * @param newY Float for the y component
-     * @param newZ Float for the z component
+     * @param xVal Float for the x component
+     * @param yVal Float for the y component
+     * @param zVal Float for the z component
      * 
      * @return `Vector3` new Vector3
      */
-    Vector3( float newX, float newY, float newZ );
+    Vector3( 
+        float xVal, 
+        float yVal, 
+        float zVal
+    );
 
 
     // Conversions
@@ -50,9 +52,12 @@ public:
      * @brief Constructor for a new Vector3
      * 
      * @param vector Vector to convert.
-     * @param z Z value to set.
+     * @param zVal Z value to set.
      */
-    Vector3( Vector2 vector, float z = 0.f );
+    Vector3( 
+        Vector2 vector, 
+        float zVal = 0.f 
+    );
 
     /**
      * @brief Constructor for a new Vector3

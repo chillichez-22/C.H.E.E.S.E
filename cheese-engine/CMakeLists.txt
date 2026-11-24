@@ -45,6 +45,7 @@ set( maths_sources
     "source/maths/math.cpp"
 
     "source/maths/interpolation.cpp"
+    "source/maths/math_utils.cpp"
     "source/maths/matrix.cpp"
     "source/maths/ray_2d.cpp"
     "source/maths/ray_3d.cpp"

@@ -1,8 +1,12 @@
 #pragma once
 
-
 #include <cmath>
 #include <iostream>
+
+
+// Forward declarations
+struct Vector3;
+struct Vector4;
 
 
 /**
@@ -14,20 +18,42 @@ struct Vector2{
     float x;
     float y;
 
+
     /**
-     * @brief Default Constructor
+     * @brief Constructor for a new Vector2.
+     * 
+     * @param fillVal Value to fill the vector with.
      */
-    Vector2();
+    Vector2( float fillValue = 0.0 );
+
+    /**
+     * @brief Constructor for a new Vector2.
+     * 
+     * @param xVal Float for the x component.
+     * @param yVal Float for the y component.
+     */
+    Vector2( 
+        float xVal, 
+        float yVal 
+    );
+
+
+    // Conversion
 
     /**
      * @brief Constructor for a new Vector2
      * 
-     * @param newX Float for the x component
-     * @param newY Float for the y component
-     * 
-     * @return `Vector2` new Vector2
+     * @param vector Vector to convert.
      */
-    Vector2( float newX, float newY );
+    Vector2( Vector3 vector );
+
+    /**
+     * @brief Constructor for a new Vector2
+     * 
+     * @param vector Vector to convert.
+     */
+    Vector2( Vector4 vector );
+
 
 
     //Iostream

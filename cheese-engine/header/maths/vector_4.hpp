@@ -1,13 +1,17 @@
 #pragma once
 
 #include <cmath>
+#include <iostream>
 
-#include "maths/vector_3.hpp"
+#include "maths/math_utils.hpp"
+
+// Forward declaration
+struct Vector2;
+struct Vector3;
 
 
 /**
  * @brief A vector of floats with 4 components: x, y, z, w.
- * 
  */
 struct Vector4{
 
@@ -16,13 +20,61 @@ struct Vector4{
     float z;
     float w;
 
-    Vector4(){};
+public:
 
-    Vector4( Vector3 vector ): x( vector.x ), y( vector.y ), z( vector.z ), w( 1.0 ){};
+    // Constructors
 
-    Vector4( float xVal, float yVal, float zVal, float wVal ): x( xVal ), y( yVal ), z( zVal ), w( wVal ){};
+    /**
+     * @brief Constructor for a new Vector4.
+     * 
+     * @param fillVal Value to fill the vector with.
+     */
+    Vector4( float fillVal = 0.f );
 
-    //Iostream
+    /**
+     * @brief Constructor for a new Vector4.
+     * 
+     * @param xVal Float for the x component.
+     * @param yVal Float for the y component.
+     * @param zVal Float for the z component.
+     * @param wVal Float for the w component.
+     */
+    Vector4( 
+        float xVal,
+        float yVal, 
+        float zVal, 
+        float wVal 
+    );
+
+
+    // Conversions
+
+    /**
+     * @brief Constructor for a new Vector4.
+     * 
+     * @param vector Vector to copy from.
+     * @param zVal Float for the z component.
+     * @param wVal Float for the w component.
+     */
+    Vector4( 
+        Vector2 vector, 
+        float zVal = 0.f, 
+        float wVal = 0.f 
+    );
+
+    /**
+     * @brief Constructor for a new Vector4.
+     * 
+     * @param vector Vector to copy from.
+     * @param wVal Float for the w component.
+     */
+    Vector4( 
+        Vector3 vector, 
+        float wVal = 0.0f 
+    );
+
+    
+    // Iostream
 
     /**
      * @brief Allows the use of `<iostream>` to print this object.

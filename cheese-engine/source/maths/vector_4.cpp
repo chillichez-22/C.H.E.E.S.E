@@ -1,4 +1,56 @@
+
 #include "maths/vector_4.hpp"
+
+#include "maths/vector_2.hpp"
+#include "maths/vector_3.hpp"
+
+
+// Constructors
+
+Vector4::Vector4(
+    float fillVal
+){
+    x = fillVal;
+    y = fillVal;
+    z = fillVal;
+    w = fillVal;
+}
+
+Vector4::Vector4( 
+    float xVal,
+    float yVal, 
+    float zVal, 
+    float wVal 
+){
+    x = xVal;
+    y = yVal;
+    z = zVal;
+    w = wVal;
+}
+
+
+// Conversion
+
+Vector4::Vector4( 
+    Vector2 vector, 
+    float zVal, 
+    float wVal 
+){
+    x = vector.x;
+    y = vector.y;
+    z = zVal;
+    w = wVal;
+}
+
+Vector4::Vector4( 
+    Vector3 vector, 
+    float wVal
+){
+    x = vector.x;
+    y = vector.y;
+    z = vector.z;
+    w = wVal;
+}
 
 
 
