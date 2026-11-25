@@ -9,29 +9,45 @@ Camera::Camera(
     float renderDist 
 ){
 
-    transform.setPos( camPos );
+    m_transform.setPos( camPos );
 
-    cameraViewVolume = Frustum( aspectRatio, fieldOfView, 0.1f, renderDist + 0.1f );
+    m_cameraViewVolume = Frustum( aspectRatio, fieldOfView, 0.1f, renderDist + 0.1f );
 
 };
 
 // Getters
 
-float Camera::getAspectRatio(){
+float& Camera::getAspectRatio(){
 
-    return cameraViewVolume.getAspectRatio();
+    return m_cameraViewVolume.getAspectRatio();
 };
 
 
-float Camera::getFov(){
+float& Camera::getFov(){
 
-    return cameraViewVolume.getFov();
+    return m_cameraViewVolume.getFov();
 };
 
 
-float Camera::getRenderDistance(){
+float& Camera::getRenderDistance(){
 
-    return cameraViewVolume.f();
+    return m_cameraViewVolume.f();
+};
+
+
+Vector3& Camera::getFront(){ 
+    
+    return  m_front; 
+};
+
+Vector3& Camera::getUp(){ 
+    
+    return  m_up; 
+};
+
+Vector3& Camera::getRight(){ 
+    
+    return  m_right; 
 };
 
 
@@ -39,19 +55,19 @@ float Camera::getRenderDistance(){
 
 void Camera::setAspectRatio( float newAspectRatio ){
 
-    cameraViewVolume.setAspectRatio( newAspectRatio );
+    m_cameraViewVolume.setAspectRatio( newAspectRatio );
 };
 
 
 void Camera::setFov( float newFov ){
 
-    cameraViewVolume.setFov( newFov );
+    m_cameraViewVolume.setFov( newFov );
 };
 
 
 void Camera::setRenderDistance( float newDistance ){
 
-    cameraViewVolume.setFar( newDistance );
+    m_cameraViewVolume.setFar( newDistance );
 };
 
 

@@ -1,100 +1,183 @@
+
 #include "rendering/view_volume.hpp"
+
+
+/* Viewing Volume*/
+
+// Constructor
+
+ViewVolume::ViewVolume( 
+    float aspectRatioVal, 
+    float nearDist, 
+    float farDist,
+    float heightVal
+):
+    m_aspectRatio( aspectRatioVal ),
+    m_near( nearDist ),
+    m_far( farDist ),
+    m_height( heightVal )
+{
+
+}
+
+
+// Getter
+
+float& ViewVolume::getAspectRatio(){
+
+    return m_aspectRatio;
+};
+
+
+// Geometry
+
+float ViewVolume::height(){
+
+    return m_height;
+};
+
+float ViewVolume::width(){
+
+    return ( height() * m_aspectRatio );
+};
+
+
+
+float ViewVolume::l(){
+
+    return -( width() / 2 );
+};
+
+float ViewVolume::r(){
+
+    return ( width() / 2 );
+};
+
+float ViewVolume::t(){
+
+    return -( height() / 2 );
+};
+
+float ViewVolume::b(){
+
+    return ( height() / 2 );
+};
+
+float& ViewVolume::n(){
+
+    return m_near;
+};
+
+float& ViewVolume::f(){
+
+    return m_far;
+};
+
+
+float ViewVolume::scaleToFar( float side ){
+
+    return side * ( m_far / m_near ); 
+}
+
+
+// Setter
+
+void ViewVolume::setAspectRatio( float newAspectRatio ){
+
+    m_aspectRatio = newAspectRatio;
+};
+
+void ViewVolume::setNear( float nearDist ){ 
+
+    m_near = nearDist;
+};
+
+void ViewVolume::setFar( float farDist ){ 
+
+    m_far = farDist;
+};
+
+
+void ViewVolume::setWidth( float widthVal ){
+    
+    m_aspectRatio = widthVal / height();
+}
+
+void ViewVolume::setHeight( float heightVal ){
+
+    m_height = heightVal;
+}
+
 
 
 /* Frustum */
 
+// Constructor
+
+Frustum::Frustum( 
+    float aspectRatioVal, 
+    float fieldOfView, 
+    float nearDist, 
+    float farDist
+
+): ViewVolume(
+    aspectRatioVal, 
+    nearDist, 
+    farDist 
+){
+    m_fov = fieldOfView;
+};
+
+
+// Conversions
+
+Frustum::Frustum(
+    ViewVolume viewVol,
+    float fov
+
+): ViewVolume( 
+    viewVol 
+){
+    m_fov = fov;
+}
+
 
 // Frustum Getters
 
-float& Frustum::getAspectRatio(){
-
-    return aspectRatio;
-};
-
 float& Frustum::getFov(){
 
-    return fov;
-};
-
-
-float* Frustum::getAspectRatioPointer(){
-
-    return &aspectRatio;
-};
-
-
-float* Frustum::getFovPointer(){
-
-    return &fov;
+    return m_fov;
 };
 
 
 // Frustum Geometry
 
-float Frustum::width(){
-
-    return ( height() * aspectRatio );
-};
 
 float Frustum::height(){
 
-    return ( 2 * tanf( fov / 2 ) * near );
+    return ( 2 * tanf( m_fov / 2 ) * m_near );
 };
-
-
-// Frustum Points/Sides
-
-float Frustum::l(){
-
-    return -( width() / 2 );
-};
-
-float Frustum::r(){
-
-    return ( width() / 2 );
-};
-
-float Frustum::t(){
-
-    return -( height() / 2 );
-};
-
-float Frustum::b(){
-
-    return ( height() / 2 );
-};
-
-float Frustum::n(){
-
-    return near;
-};
-
-float Frustum::f(){
-
-    return far;
-};
-
-
-float Frustum::scaleToFar( float side ){
-
-    return side * ( far / near ); 
-}
 
 
 // Frustum Setters
 
-void Frustum::setAspectRatio( float newAspectRatio ){
-    aspectRatio = newAspectRatio;
-};
-
 void Frustum::setFov( float fieldOfView ){ 
-    fov = fieldOfView;
+    
+    m_fov = fieldOfView;
 };
 
-void Frustum::setNear( float nearDist ){ 
-    near = nearDist;
-};
+void Frustum::setHeight( float heightVal ){
 
-void Frustum::setFar( float farDist ){ 
-    far = farDist;
-};
+    /* Conversion:
+    
+    H = 2 * tan( fov / 2 ) * near 
+    
+    
+    H / (2 * near) = tan( fov / 2)
+    arctan( H / (2*near) ) = fov / 2
+    2*arctan( h / (2*near) ) = fov
+    */
+
+    m_fov = 2 * atan( heightVal / ( 2 * n() ) );    
+
+}

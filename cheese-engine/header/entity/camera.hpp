@@ -20,16 +20,20 @@ class Camera : public Entity{
 
 private:
 
-	Vector3 cameraDirection{ 0.f, 0.f, 1.f };     /**< Direction the camera is facing */
+    Transform3D m_transform;  /**< Transform to position and rotate the camera */ 
+
+    Frustum m_cameraViewVolume;   /**< Viewing volume of the camera*/
+
+
+    float m_zoom;   /*< Zoom of the camera. */
+
+    Vector3 m_front;    /*< 3D Vector pointing in the front direction. */
+	Vector3 m_right;    /*< 3D Vector pointing in the right direction. */
+	Vector3 m_up;       /*< 3D Vector pointing in the up direction. */
+
 
 public:
 
-    Transform3D transform;      /**< Transform to position and rotate the camera */
-
-	Frustum cameraViewVolume;   /**< Viewing volume of the camera*/
-
-
-public:
 
     /**
      * @brief Default constructor for the camera.
@@ -68,7 +72,23 @@ public:
         float renderDist 
     );
 
+
     // Getters
+
+    /**
+     * @brief Getter for the camera's transform.
+     * 
+     * @returns `Transform3D` - Transform for the camera. Scale is not used.
+     */
+    Transform3D& getTransform();
+
+    /**
+     * @brief Getter for the camera's view volume.
+     * 
+     * @returns `Frustum` - View volume for the camera.
+     */
+    Frustum& ViewVolume();
+
 
     /**
      * @brief Getter for the aspectRatio.
@@ -77,7 +97,7 @@ public:
      * 
      * @returns `float` Aspect ratio of the camera.
      */
-    float getAspectRatio();
+    float& getAspectRatio();
 
     /**
      * @brief Getter for the fov.
@@ -86,7 +106,7 @@ public:
      * 
      * @returns `float` Fov of the camera.
      */
-    float getFov();
+    float& getFov();
 
     /**
      * @brief Gets the render distance.
@@ -95,7 +115,33 @@ public:
      * 
      * @returns `float` Camera's render distance.
      */
-    float getRenderDistance();
+    float& getRenderDistance();
+
+
+	/**
+	 * @brief Getter for the front (forward) vector of the camera.
+	 *
+	 * @return
+	 * `glm::vec3&` Reference to this camera's local front-facing (forward-facing)
+	 * vector.
+	 */
+	Vector3& getFront();
+
+	/**
+	 * @brief Getter for the up vector of the camera.
+	 *
+	 * @return
+	 * `glm::vec3&` Reference to this camera's local upwards-facing vector.
+	 */
+	Vector3& getUp();
+
+	/**
+	 * @brief Getter for the right vector of the camera.
+	 * 
+	 * @return 
+	 * `glm::vec3&` Reference to this camera's local right-facing vector.
+	 */
+	Vector3& getRight();
 
 
     // Setters
