@@ -14,6 +14,7 @@ set( entity_sources
     "source/entity/entity.cpp"
 
     "source/entity/camera.cpp"
+    "source/entity/empty.cpp"
     
 )
 
