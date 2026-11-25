@@ -4,7 +4,9 @@
 
 #include <cstdint>
 
-
+/**
+ * @brief Base entity class for gameobjects in the scene.
+ */
 class Entity{
 
 private:
