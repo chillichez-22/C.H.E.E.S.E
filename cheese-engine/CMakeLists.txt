@@ -3,7 +3,9 @@
 set( components_sources 
 
     "source/components/component.cpp"
+    
     "source/components/material.cpp"
+    "source/components/mesh.cpp"
     "source/components/transform.cpp"
     "source/components/shader.cpp"
 
@@ -69,6 +71,10 @@ set( collisions_sources
 )
 
 set( rendering_sources
+    
+    "source/rendering/vbo.cpp"
+    "source/rendering/vao.cpp"
+    "source/rendering/ebo.cpp"
     
     "source/rendering/colour.cpp"
     "source/rendering/primitives.cpp"
