@@ -6,6 +6,7 @@ set( components_sources
     
     "source/components/material.cpp"
     "source/components/mesh.cpp"
+    "source/components/texture.cpp"
     "source/components/transform.cpp"
     "source/components/shader.cpp"
 
@@ -23,6 +24,8 @@ set( entity_sources
 set( files_sources
 
     "source/files/loading.cpp"
+    "source/files/texture_manager.cpp"
+
 )
 
 set( fonts_sources
@@ -72,14 +75,9 @@ set( collisions_sources
 
 set( rendering_sources
     
-    "source/rendering/vbo.cpp"
-    "source/rendering/vao.cpp"
-    "source/rendering/ebo.cpp"
-    
     "source/rendering/colour.cpp"
     "source/rendering/primitives.cpp"
     "source/rendering/projection.cpp"
-    "source/rendering/texture_manager.cpp"
     "source/rendering/vertex.cpp"
     "source/rendering/view_volume.cpp"
     "source/rendering/window_manager.cpp"

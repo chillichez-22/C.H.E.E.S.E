@@ -2,44 +2,12 @@
 
 #include <array>
 #include <string>
-//#include <glad/glad.h>
+#include <glad/glad.h>
+
+#include "components/texture.hpp"
+
 
 #define TEXTURE_WALL_SIZE 16
-
-
-/**
- * @brief Texture object stored at each position in the wall.
- */
-struct Texture{
-
-public:
-
-    /**
-     * @brief Creates a new texture struct, holding texture data.
-     * 
-     * @param texUnit Unit for the texture.
-     * @param texId Id for the texture.
-     * @param texPath File-path for the texture.
-     * @param texName Name for the texture.
-     */
-    Texture(
-        int texUnit,
-        int texId,
-        std::string texPath,
-        std::string texName
-    ):
-        unit( texUnit ),
-        id( texId ),
-        path( texPath ),
-        name( texName )
-    {};
-
-
-    int unit = -1;  /*< Texture's Unit. */
-    int id = -1;    /*< Texture's Id. */
-    std::string path = "path";  /*< Texture's file path. */
-    std::string name = "name";  /*< Texture's file name. */
-};
 
 
 /**
@@ -96,7 +64,7 @@ public:
      * 
      * @returns `int` TextureUnit, index of the wall.
      */
-    int addTexture( const char* path );
+    Texture* addTexture( const char* path );
 
     /**
      * @brief Remove a texture from the texture wall.

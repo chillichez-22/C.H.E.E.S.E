@@ -178,5 +178,3 @@ Learn how to save 2D Images.
 
 TBC
 
-## UML Diagrams
-

@@ -39,6 +39,19 @@ void Shader::checkCompileErrors(
 
 // Public
 
+
+Shader::Shader(
+    std::string vertexPath, 
+    std::string fragmentPath
+){
+
+	Shader(
+		vertexPath.c_str(),
+		fragmentPath.c_str()
+	);
+};
+
+
 Shader::Shader(
     const char* vertexPath, 
     const char* fragmentPath

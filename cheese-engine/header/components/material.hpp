@@ -4,67 +4,52 @@
 #include <string>
 
 
-#include "maths/vector_2.hpp"
+#include "components/component.hpp"
+
 #include "maths/vector_3.hpp"
 #include "maths/vector_4.hpp"
 
 #include "components/shader.hpp"
+#include "components/texture.hpp"
 
-// Forward declaration of directional light
-class DirectionalLight;
+#include "files/texture_manager.hpp"
 
 
-/**
- * @brief Data about a texture, bound to a material.
- */
-struct MaterialTexture{
+constexpr unsigned int DIFFUSE_TEXTURE = 0;   /*< Diffuse texture index. */
+constexpr unsigned int SPECULAR_TEXTURE = 1;  /*< Specular texture index. */
+constexpr unsigned int NORMAL_TEXTURE = 2;    /*< Normal texture index. */
 
-    int texID = -1;     /*< Id of the texture when loading. */
-    int texUnit = -1;   /*< Hook it is stored on. */
-    bool isUsing = false;   
-};
 
 
 /** 
  * @class Abstract material class.
  */
-class Material{
+class Material : public Component{
 
-protected:
+private:
 
     std::string m_name = "newMaterial";   /**< Material Name. */ 
     unsigned int m_ID;  /*< ID of the material. */
 
-    Vector4 m_albedoColour{};   /*< Base albedo colour. */
 
-    Vector3 m_diffuseColour{ 0.f, 0.f, 0.f };   /*< Base diffuse colour, typically set to black {0.f, 0.f, 0.f}.*/
+    Vector4 m_albedoColour{ 0.f };   /*< Base albedo colour. */
 
-    Vector3 m_specularColour{ 1.f, 1.f, 1.f };  /*< Base specular colour, typically set to white {1.0, 1.0, 1.0}.*/  
-    float m_specularPower = 16;   /*< Power of the specular contribution. */
+    Vector3 m_diffuseColour{ 0.f };   /*< Base diffuse colour, typically set to black {0.f, 0.f, 0.f}.*/
+
+    Vector3 m_specularColour{ 1.f };  /*< Base specular colour, typically set to white {1.0, 1.0, 1.0}.*/  
+    float m_specularPower = 16;         /*< Power of the specular contribution. */
     float m_specularIntensity = 0.8f;   /*< Intensity of the specular. */
 
-    Vector3 m_fresnelColour = Vector3(1.f); /*< Base fresnel colour. */ 
-    float m_fresnelPower = 4.f;  /*< Power of the fresnel. */
-    float m_fresnelIntensity = 4.f;   /*< Intensity of the fresnel. */
-
+    Vector3 m_fresnelColour{ 1.f }; /*< Base fresnel colour. */ 
+    float m_fresnelPower = 4.f;             /*< Power of the fresnel. */
+    float m_fresnelIntensity = 4.f;     /*< Intensity of the fresnel. */
     
-    // Textures 
 
-    MaterialTexture m_diffuseTexture;    /**< Texture for the diffuse. */
-    MaterialTexture m_specularTexture;   /**< Texture for the specular. */
-    MaterialTexture m_normalTexture; /**< Texture for the normal. */
+    /*< List of textures units, for this material. 0 = Diffuse Unit | 1 = Specular Unit | 2 = Normal Unit. */
+    std::vector<int> m_textures{ -1, -1, -1 };  
 
-    Shader* m_shader; /*< Pointer to the shader for this material. */
+    Shader* m_shader = nullptr; /*< Pointer to the shader for this material. */
 
-    
-    // Functions
-
-    /**
-     * @brief Updates every material-uniform in this material's shader.
-     * 
-     * Should only be used when changing the shader when using `setShader`.
-     */
-    virtual void updateAllMaterialUniforms();
 
 
 public:
@@ -76,27 +61,37 @@ public:
 
     /**
      * @brief Constructor for a new material.
+     
+     * @param vertexShaderPath Path to a vertex shader.
+     * @param fragmentShaderPath Path to a fragment shader.
      * 
-     * @param albedoColour Base material colour, if shone in flat white lighting.
-     * @param vertexShaderPath Path to the vertex shader.
-     * @param fragmentShaderPath Path to the fragment shader.
+     * @param diffuseTexturePath Path to a diffuse texture.
+     * @param specularTexturePath Path to a specular texture.
+     * @param normalTexturePath Path to a normal texture.
+     * 
      * @param name Name of the material.
      */
     Material(
-        Vector4 albedoColour,
-        const char* vertexShaderPath,
-        const char* fragmentShaderPath,
+        
+        std::string vertexShaderPath,
+        std::string fragmentShaderPath,
+        
+        TextureManager& textureManager,
+        std::string diffuseTexturePath,
+        std::string specularTexturePath,
+        std::string normalTexturePath,
+
         std::string name = "myNewMaterial"
     );
 
 
     /**
-     * @brief Constructor for a new phong material.
-     * 
-     * @param albedoColour Base material colour, if shone in flat white lighting.
+     * @brief Constructor for a new material.
      * 
      * @param vertexShaderPath Path to the vertex shader.
      * @param fragmentShaderPath Path to the fragment shader.
+     * 
+     * @param albedoColour Base material colour, if shone in flat white lighting.
      * 
      * @param specularPower Power of the specular, lower = brighter & smaller.
      * @param specularIntensity Brightness factor for the specular component.
@@ -109,21 +104,34 @@ public:
      * 
      */
     Material(
+
+        std::string vertexShaderPath,
+        std::string fragmentShaderPath,
+
         Vector4 albedoColour,
-        const char* vertexShaderPath,
-        const char* fragmentShaderPath,
         float specularPower,
         float specularIntensity = 1.f,
         Vector3 fresnelColour = Vector3(1.f),
         float fresnelPower = 1.f,
         float fresnelIntensity = 1.f,
+        
         std::string name = "myNewMaterial"
     );
 
     /**
      * @brief Destructor for the material.
      */
-    virtual ~Material();
+    ~Material();
+
+
+    // Uniforms
+
+    /**
+     * @brief Updates every material-uniform in this material's shader.
+     * 
+     * Should only be used when changing the shader when using `setShader`.
+     */
+    void updateAllMaterialUniforms();
 
 
     /**
@@ -132,11 +140,12 @@ public:
      * Should be called when rendering a shape, since the material can/will be assigned to multiple shapes.
      * Adhering to a Entity Component Model (ECM).  
      */
-    virtual void updateShapeUniforms(
+    void updateUniforms(
         Matrix4x4<float> modelMatrix, 
         Matrix4x4<float> viewMatrix, 
-	    Matrix4x4<float> projectionMatrix
-    ) = 0;
+        Matrix4x4<float> projectionMatrix,
+        TextureManager& textureManager
+    );
 
 
 
@@ -147,14 +156,14 @@ public:
      * 
      * @returns `string&` - Reference to a string, of the name of the material.
      */
-    std::string& getName(){ return m_name; }
+    std::string& getName();
 
     /**
      * @brief Getter for the material's id.
      * 
      * @returns `uint&` - Reference to an unsigned int, of the id of the material.
      */
-    unsigned int& getID(){ return m_ID; }
+    unsigned int& getID();
 
 
     /**
@@ -162,7 +171,7 @@ public:
      * 
      * @returns `vec4&` - Reference to a vec4, containing the RGBA colour value.
      */
-    Vector4& getAlbedo(){ return m_albedoColour; }
+    Vector4& getAlbedo();
 
     
     /**
@@ -170,7 +179,7 @@ public:
      * 
      * @returns `vec3&` - Reference to a vec3, containing the RGB colour value.
      */
-    Vector3& getDiffuse(){ return m_diffuseColour; }
+    Vector3& getDiffuse();
 
 
     /**
@@ -178,22 +187,21 @@ public:
      * 
      * @returns `vec3&` - Reference to a vec3, containing the RGB colour value.
      */
-    Vector3& getSpecular(){ return m_specularColour; }
-
+    Vector3& getSpecular();
 
     /**
      * @brief Getter for the specular's power.
      * 
      * @returns `float&` Reference to a float, of the power of the specular.
      */
-    float& getSpecularPower(){ return m_specularPower; }
+    float& getSpecularPower();
 
-        /**
+    /**
      * @brief Getter for the specular's intensity.
      * 
      * @returns `float&` Reference to a float, of the intensity of the specular.
      */
-    float& getSpecularIntensity(){ return m_specularIntensity; }
+    float& getSpecularIntensity();
 
 
     /**
@@ -201,71 +209,54 @@ public:
      * 
      * @returns `vec3&` - Reference to a vec3, containing the RGB colour value.
      */
-    Vector3& getFresnel(){ return m_fresnelColour; }
-
+    Vector3& getFresnel();
 
     /**
      * @brief Getter for the fresnel's power.
      * 
      * @returns `float&` Reference to a float, of the power of the fresnel.
      */
-    float& getFresnelPower(){ return m_fresnelPower; }
+    float& getFresnelPower();
 
     /**
      * @brief Getter for the fresnel's intensity.
      * 
      * @returns `float&` Reference to a float, of the intensity of the fresnel.
      */
-    float& getFresnelIntensity(){ return m_fresnelIntensity; }
+    float& getFresnelIntensity();
     
-    /**
-     * @brief Getter for the material's shader.
-     * 
-     * @returns `shader* &` Reference of a pointer to a shader on the heap.
-     */
-    Shader* & getShader(){ return m_shader; }
-
-
-    // TEXTURES
-
+    
     /**
      * @brief Getter for the void Diffuse texture's id.
      * 
      * @returns `MaterialTexture&` - Reference for the MaterialTexture of the Diffuse Map.
      */
-    MaterialTexture& getDiffuseMap(){ return m_diffuseTexture; };
+    int& getTexture( int textureIndex );
     
+
     /**
-     * @brief Getter for the void Specular texture's id.
+     * @brief Getter for the material's shader.
      * 
-     * @returns `MaterialTexture&` - Reference for the MaterialTexture of the Specular Map.
+     * @returns `shader* &` Reference of a pointer to a shader on the heap.
      */
-    MaterialTexture& getSpecularMap(){ return m_specularTexture; };
-    
-    /**
-     * @brief Getter for the void Normal texture's id.
-     * 
-     * @returns `MaterialTexture&` - Reference for the MaterialTexture of the Normal Map.
-     */
-    MaterialTexture& getNormalMap(){ return m_normalTexture; };
+    Shader* & getShader();
 
 
     // Setter
-
 
     /**
      * @brief Getter for the material's name.
      * 
      * @param name String to set the name of the material.
      */
-    void setName( std::string name ){ m_name = name; }
+    void setName( std::string name );
 
     /**
      * @brief Getter for the material's ID.
      * 
      * @param id String to set the id of the material.
      */
-    void setID( unsigned int id ){ m_ID = id; }
+    void setID( unsigned int id );
     
 
     /**
@@ -324,64 +315,42 @@ public:
     void setFresnelIntensity( float intensity );
 
 
-
     /**
      * @brief Setter for the material's shader.
      * 
      * @param shader Shader to set.
      */
     void setShader( Shader* shader );
-    
-
-    // TEXTURES
 
     
     /**
      * @brief Setter for the Diffuse Map.
      * 
-     * @param textureID OpenGL texture id for the Diffuse texture. 
-     * @param textureUnit OpenGL textureUnit, id where the texture is placed. 
+     * @param textureIndex Index of the of the material's texture. 
+     * @param textureUnit OpenGL textureUnit, id of the texture. 
      *
      */
-    void setDiffuseMap( unsigned int textureID, unsigned int textureUnit );
+    void setTexture(
+
+        int textureIndex, 
+        unsigned int textureUnit 
+    );
     
     /**
-     * @brief Setter for the Specular Map.
+     * @brief Toggles a texture's state in the shader.
      * 
-     * @param textureID OpenGL texture id for the Specular texture. 
-     * @param textureUnit OpenGL textureUnit, id where the texture is placed. 
-     * 
+     * @param textureIndex Index of the of the material's texture.  
+     * @param state State to set the texture to.
      */
-    void setSpecularMap( unsigned int textureID, unsigned int textureUnit );
-    
-    /**
-     * @brief Setter for the Normal Map.
-     * 
-     * @param textureID OpenGL texture id for the Normal texture. 
-     * @param textureUnit OpenGL textureUnit, id where the texture is placed. 
-     * 
-     */
-    void setNormalMap( unsigned int textureID, unsigned int textureUnit );
-        
+    void toggleTexture(
+        int textureIndex,
+        bool state
+    );
 
-
-    
     /**
      * @brief Clears the Diffuse Map, and tells the shader not to use it anymore. 
      */
-    void clearDiffuseMap();
+    void clearTexture( int textureIndex );
     
-    /**
-     * @brief Clears the Specular Map, and tells the shader not to use it anymore. 
-     */
-    void clearSpecularMap();
-    
-    /**
-     * @brief Clears the Normal Map, and tells the shader not to use it anymore. 
-     */
-    void clearNormalMap();
-    
-
-
     
 };

@@ -1,56 +1,48 @@
 
 #include "components/material.hpp"
+#include "files/texture_manager.hpp"
 
 
-// Protected
-void Material::updateAllMaterialUniforms(){
-
-    m_shader->use();
-
-    m_shader->setVec3(  "albedoColour", Vector3(m_albedoColour) );
-    
-    m_shader->setVec3(  "diffuseColour", m_diffuseColour );
-
-    m_shader->setVec3(  "specularColour", m_specularColour );
-    m_shader->setFloat( "specularPower", m_specularPower );
-    m_shader->setFloat( "specularIntensity", m_specularIntensity );
-
-    m_shader->setVec3(  "fresnelColour", m_fresnelColour );
-    m_shader->setFloat( "fresnelPower", m_fresnelPower );
-    m_shader->setFloat( "fresnelIntensity", m_fresnelIntensity );
-
-    m_shader->setBool( "diffuseTexture.isUsing", m_diffuseTexture.isUsing );
-    m_shader->setBool( "specularTexture.isUsing", m_specularTexture.isUsing );   
-    m_shader->setBool( "normalTexture.isUsing", m_normalTexture.isUsing );
-    
-}
-
-
-
-// Public
+// Constructor
 
 Material::Material(
-    Vector4 albedoColour,
-    const char* vertexShaderPath,
-    const char* fragmentShaderPath,
+
+    std::string vertexShaderPath,
+    std::string fragmentShaderPath,
+    
+    TextureManager& textureManger,
+    std::string diffuseTexturePath,
+    std::string specularTexturePath,
+    std::string normalTexturePath,
+
     std::string name
-): 
-    m_albedoColour( albedoColour),
+):
     m_name( name )
 {
     m_shader = new Shader( vertexShaderPath, fragmentShaderPath );
+
+
+    m_textures[ DIFFUSE_TEXTURE ] = textureManger.addTexture( diffuseTexturePath.c_str() )->unit;
+    m_textures[ SPECULAR_TEXTURE ] = textureManger.addTexture( specularTexturePath.c_str() )->unit;
+    m_textures[ NORMAL_TEXTURE ] = textureManger.addTexture( normalTexturePath.c_str() )->unit;
+
+
     updateAllMaterialUniforms();
 }
 
+
 Material::Material(
+
+    std::string vertexShaderPath,
+    std::string fragmentShaderPath,
+
     Vector4 albedoColour,
-    const char* vertexShaderPath,
-    const char* fragmentShaderPath,
     float specularPower,
     float specularIntensity,
     Vector3 fresnelColour,
     float fresnelPower,
     float fresnelIntensity,
+
     std::string name
 ): 
     m_albedoColour( albedoColour),
@@ -75,38 +67,146 @@ Material::~Material(){
 }
 
 
-void Material::updateShapeUniforms(
+
+// Initialisers
+
+
+void Material::updateAllMaterialUniforms(){
+
+    m_shader->use();
+
+    m_shader->setVec3(  "albedoColour", Vector3(m_albedoColour) );
+    
+    m_shader->setVec3(  "diffuseColour", m_diffuseColour );
+
+    m_shader->setVec3(  "specularColour", m_specularColour );
+    m_shader->setFloat( "specularPower", m_specularPower );
+    m_shader->setFloat( "specularIntensity", m_specularIntensity );
+
+    m_shader->setVec3(  "fresnelColour", m_fresnelColour );
+    m_shader->setFloat( "fresnelPower", m_fresnelPower );
+    m_shader->setFloat( "fresnelIntensity", m_fresnelIntensity );
+
+    for( int t = 0; t < m_textures.size(); t++ ){
+
+        m_shader->setBool( ("textures[" + std::to_string(t) + "].isUsing"), (m_textures[ t ] != -1) );
+        m_shader->setBool( ("textures[" + std::to_string(t) + "].map"), m_textures[ t ] );
+    }
+    
+}
+
+
+void Material::updateUniforms(
     Matrix4x4<float> modelMatrix, 
     Matrix4x4<float> viewMatrix, 
-    Matrix4x4<float> projectionMatrix
+    Matrix4x4<float> projectionMatrix,
+    TextureManager& textureManager
 ){
 
-    // Sets basic matrix only
     m_shader->use();
+
+    // Sets basic matrix 
     m_shader->setMat4( "modelMat", modelMatrix );
 	m_shader->setMat4( "viewMat", viewMatrix );
 	m_shader->setMat4( "projectionMat", projectionMatrix );
 
-    // Sets textures ( if we need them )
-    
-    if ( m_diffuseTexture.isUsing ){
-        
-        glBindTextureUnit( m_diffuseTexture.texUnit, m_diffuseTexture.texID );
-    }
-    
-    if ( m_specularTexture.isUsing ){
-        
-        glBindTextureUnit( m_specularTexture.texUnit, m_specularTexture.texID );
-    }
 
-    if ( m_normalTexture.isUsing ){
-    
-        glBindTextureUnit( m_normalTexture.texUnit, m_normalTexture.texID );
+    // Sets textures ( if we need them )
+    for ( int t = 0; t < m_textures.size(); t++ ){
+
+        if ( (m_textures[ t ] != -1) ){
+            
+            Texture* tempTexture = textureManager.getTexture( m_textures[ t ] );
+
+            glBindTextureUnit( tempTexture->unit, tempTexture->id );
+
+        }
     }
+    
 }
 
 
-// Setter
+// Getters
+
+std::string& Material::getName(){ 
+    
+    return m_name; 
+}
+
+unsigned int& Material::getID(){ 
+    
+    return m_ID; 
+}
+
+
+Vector4& Material::getAlbedo(){ 
+    
+    return m_albedoColour; 
+}
+
+
+Vector3& Material::getDiffuse(){ 
+    
+    return m_diffuseColour; 
+}
+
+
+Vector3& Material::getSpecular(){ 
+    
+    return m_specularColour; 
+}
+
+float& Material::getSpecularPower(){ 
+    
+    return m_specularPower; 
+}
+
+float& Material::getSpecularIntensity(){ 
+    
+    return m_specularIntensity; 
+}
+
+
+Vector3& Material::getFresnel(){ 
+    
+    return m_fresnelColour; 
+}
+
+float& Material::getFresnelPower(){ 
+    
+    return m_fresnelPower; 
+}
+
+float& Material::getFresnelIntensity(){ 
+    
+    return m_fresnelIntensity; 
+}
+
+
+int& Material::getTexture( int textureIndex ){
+
+    return m_textures[textureIndex]; 
+}
+
+
+Shader*& Material::getShader(){ 
+    
+    return m_shader; 
+}
+
+
+
+// Setters
+
+void Material::setName( std::string name ){ 
+    
+    m_name = name; 
+}
+
+void Material::setID( unsigned int id ){ 
+    
+    m_ID = id; 
+}
 
 void Material::setAlbedo( Vector4 colour ){ 
     
@@ -179,81 +279,42 @@ void Material::setFresnelIntensity( float intensity ){
 
 // Textures
 
-void Material::setDiffuseMap( 
-    unsigned int textureID, 
-    unsigned int textureUnit 
+void Material::setTexture( 
+
+    int textureIndex, 
+    unsigned int textureUnit
 ){
     
-    m_diffuseTexture.texID = textureID;
-    m_diffuseTexture.texUnit = textureUnit;
-    m_diffuseTexture.isUsing = true;
+    m_textures[ textureIndex ] = textureUnit;
+
     
     m_shader->use();
-    m_shader->setBool( "diffuseTexture.isUsing", true );
-    m_shader->setInt( "diffuseTexture.map", m_diffuseTexture.texUnit );
+    m_shader->setBool( ("textures[" + std::to_string( textureIndex ) + "].isUsing"), true );
+    m_shader->setBool( ("textures[" + std::to_string( textureIndex ) + "].map"), textureUnit );
+    
 }
 
-void Material::setSpecularMap( 
-    unsigned int textureID, 
-    unsigned int textureUnit 
+void Material::toggleTexture(
+
+    int textureIndex,
+    bool state
 ){
-    
-    m_specularTexture.texID = textureID;
-    m_specularTexture.texUnit = textureUnit;
-    m_specularTexture.isUsing = true;
-    
     m_shader->use();
-    m_shader->setBool( "specularTexture.isUsing", true );
-    m_shader->setInt( "specularTexture.map", m_specularTexture.texUnit );
+    m_shader->setBool( ("textures[" + std::to_string( textureIndex ) + "].isUsing"), state );
 }
 
-void Material::setNormalMap( 
-    unsigned int textureID, 
-    unsigned int textureUnit 
+void Material::clearTexture(
+    
+    int textureIndex
 ){
 
-    m_normalTexture.texID = textureID;
-    m_normalTexture.texUnit = textureUnit;
-    m_normalTexture.isUsing = true;
+    m_textures[ textureIndex ] = -1;
 
+    
     m_shader->use();
-    m_shader->setBool( "normalTexture.isUsing", true );
-    m_shader->setInt( "normalTexture.map", m_normalTexture.texUnit );
-}
-
-
-
-void Material::clearNormalMap(){
-
-    m_normalTexture.texID = -1;
-    m_normalTexture.texUnit = -1;
-    m_normalTexture.isUsing = false;
-
-    m_shader->use();
-    m_shader->setBool( "normalTexture.isUsing", false );
-    m_shader->setInt( "normalTexture.map", -1 );
-}
-
-void Material::clearDiffuseMap(){
-
-    m_diffuseTexture.texID = -1;
-    m_diffuseTexture.texUnit = -1;
-    m_diffuseTexture.isUsing = false;
-
-    m_shader->use();
-    m_shader->setBool( "diffuseTexture.isUsing", false );
-    m_shader->setInt( "diffuseTexture.map", -1 );
-}
-
-void Material::clearSpecularMap(){
-
-    m_specularTexture.texID = -1;
-    m_specularTexture.texUnit = -1;
-    m_specularTexture.isUsing = false;
-
-    m_shader->use();
-    m_shader->setBool( "specularTexture.isUsing", false );
-    m_shader->setInt( "specularTexture.map", -1 );
+    m_shader->setBool( ("textures[" + std::to_string( textureIndex ) + "].isUsing"), false );
+    m_shader->setBool( ("textures[" + std::to_string( textureIndex ) + "].map"), -1 );
+    
 }
 
 

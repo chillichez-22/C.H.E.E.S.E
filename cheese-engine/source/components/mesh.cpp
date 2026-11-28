@@ -4,127 +4,168 @@
 
 // Constructor
 
-Mesh::~Mesh(){
+Mesh::Mesh(
+    std::vector<float> vertexData,
+    std::vector<int> indexData,
 
+    int attributeCount,
+    std::vector<int> countsOfAttributes,
+    std::vector<GLenum> typesOfAttributes,
 
-    delete(m_vboPtr);
-    m_vboPtr = nullptr;
+    int indexOffset,
+    int vertexOffset
+){
 
-    delete(m_vaoPtr);
-    m_vaoPtr = nullptr;
+    bind(    
+        vertexData,
+        indexData,
+        attributeCount,
+        countsOfAttributes,
+        typesOfAttributes
+    );
 
-    delete(m_eboPtr);
-    m_eboPtr = nullptr;
 }
+
+
+Mesh::~Mesh(){}
 
 
 // Initialiser
 
-void Mesh::bind(){
+
+std::vector< int > Mesh::calculateStrides(
+
+    int attributeCount,
+    std::vector<int> attributeValueCounts
+){
+
+    int stride = 0;
+    std::vector<int> cumulativeStride = {};
+
+    cumulativeStride.resize( attributeCount + 1, 0.0f );
+    cumulativeStride[0] = 0;
+
+    // Calculates stride
+    for( int i = 0;  i < attributeCount; i++ ) {
+
+        // Every value in the vertex data is a float
+        stride += sizeof( float ) * attributeValueCounts[i];
+
+        cumulativeStride[i+1] = stride;
+    }
+
+    return cumulativeStride;
+}
+
+
+
+
+void Mesh::bind(
+
+    std::vector<float> vertexData,
+    std::vector<int> indexData,
+
+    int attributeCount,
+    std::vector<int> countsOfAttributes,
+    std::vector<GLenum> typesOfAttributes,
+
+    int indexOffset,
+    int vertexOffset
+){
 				
-    m_vaoPtr->calculateStrides();
+    std::vector<int> offsetStrides = calculateStrides( 
+        attributeCount, 
+        countsOfAttributes 
+    );
+    int stride = offsetStrides.back();
 
 
     glCreateBuffers(
 
-        1,		
-        &(m_vboPtr->getId())
+        1,      // Number of buffers to create
+        &m_vbo
     );
 
     glCreateBuffers(
 
         1,	
-        &( m_eboPtr->getId() )
+        &m_ebo 
+    );
+
+    glCreateVertexArrays(   // If something breaks move this below
+
+        1,		
+        &m_vao
     );
 
     // Creates and initialises the buffer objects data
     glNamedBufferStorage(
 
-        m_vboPtr->getId(),									 
-        sizeof( float ) * m_vboPtr->getVertexData()->size(),    
-        m_vboPtr->getVertexData()->data(),                  
+        m_vbo,									 
+        sizeof( float ) * vertexData.size(),    
+        vertexData.data(),                  
         GL_DYNAMIC_STORAGE_BIT  // Makes the buffer mutable
     );
     glNamedBufferStorage(
 
-        m_eboPtr->getId(),
-        sizeof( unsigned int ) * m_eboPtr->getIndexData()->size(),
-        m_eboPtr->getIndexData()->data(),
+        m_ebo,
+        sizeof( unsigned int ) * indexData.size(),
+        indexData.data(),
         GL_DYNAMIC_STORAGE_BIT  // Makes the buffer mutable
     );
 
 
-    glCreateVertexArrays(
-
-        1,		
-        &(m_vaoPtr->getId())
-    );
 
     // Binds the buffers to the VAO
     glVertexArrayVertexBuffer(
 
-        (m_vaoPtr->getId()),
-        0,		                    // Index of the binding point
-        m_vboPtr->getId(),	
-        0,		                    // Offset to first index
-        m_vaoPtr->getStride()
+        m_vao,
+        0,      // Index of the binding point
+        m_vbo,
+        0,		// Offset to first index
+        stride
     );
     glVertexArrayElementBuffer(
 
-        m_vaoPtr->getId(),
-        m_eboPtr->getId()
+        m_vao,
+        m_ebo
     );
 
+    // Atrributes
+    for (int i = 0;  i < attributeCount; i++) {
 
-    for (int i = 0;  i < m_vaoPtr->getAttrCount(); i++) {
-
-        // Enables atrributes
         glEnableVertexArrayAttrib(
 
-            m_vaoPtr->getId(),
+            m_vao,
             i
         );
 
-
-        // Formats atrributes
+        // Formats
         glVertexArrayAttribFormat(
 
-            m_vaoPtr->getId(),
+            m_vao,
             i,
-            m_vaoPtr->getAttrValueCounts()[i],
-            m_vaoPtr->getAttrTypes()[i],
-            GL_FALSE,	// Should the data be normalised to fixed point when they are accessed
-            m_vaoPtr->getCumulativeAttrStrides()[i]	// Relative offset to the start of the vertexes ( There for we do i-1 )
+            countsOfAttributes[i],
+            typesOfAttributes[i],
+            GL_FALSE,	        // Should the data be normalised to a fixed point when they are accessed
+            offsetStrides[i]	    // Relative offset to the start of the vertexes ( There for we do i-1 )
         );
 
-        // Binds Attributes
+        // Binds
         glVertexArrayAttribBinding(
 
-            m_vaoPtr->getId(),
-            i,
+            m_vao,
+            i,  
             0	// Binding index
         );
     }
+
 
 } 
 
 
 // Getter
 
-VBO*& Mesh::getVbo(){
-
-    return m_vboPtr;
-}
-
-VAO*& Mesh::getVao(){
-
-    return m_vaoPtr;
-}
-
-EBO*& Mesh::getEbo(){
-
-    return m_eboPtr;
-}
 
 GLenum& Mesh::getRenderMode(){
 

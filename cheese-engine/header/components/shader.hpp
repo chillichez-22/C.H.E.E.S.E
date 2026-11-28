@@ -1,6 +1,5 @@
 #pragma once
 
-#pragma once
 #ifndef SHADER_H
 #define SHADER_H
 
@@ -60,6 +59,17 @@ public:
 	Shader(
 		const char* vertexPath, 
 		const char* fragmentPath
+	);
+
+	/**
+	 * @brief Constructor for a new shader.
+	 * 
+	 * @param vertexPath Pointer to the path for the vertex shader.
+	 * @param fragmentPath Pointer to the path for the fragment shader.
+	 */
+	Shader(
+		std::string vertexPath, 
+		std::string fragmentPath
 	);
 
 
