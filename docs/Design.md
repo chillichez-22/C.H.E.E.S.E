@@ -99,7 +99,11 @@ The footer section would store data specifying and extensions added to the file,
 
 ### Prefabs ( .prefab )
 
-Prefab data
+Prefab data is stored in `.prefab` files in JSON-like data structures.
+
+They store set data on an entity, including paths to materials, meshes, other components.
+But it may lack a transform however, as it might be instanced.
+<br>
 
 
 ## Rendering 
